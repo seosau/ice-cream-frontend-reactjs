@@ -1,0 +1,32 @@
+.admin-container {
+    background-image: url("../../assets//img//bg1.png");
+
+    background-repeat: no-repeat;
+
+    background-position: center;
+    background-size: cover;
+}
+
+//-----------------------------------scrollbar-----------------------------------
+::-webkit-scrollbar {
+    width: 5px;
+}
+::-webkit-scrollbar-thumb {
+    --webkit-border-radius: 20px;
+    border-radius: 20px;
+    height: 40px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    background-color: var(--pink-color);
+    position: relative;
+}
+::-webkit-scrollbar-track {
+    background-color: transparent;
+    --webkit-border-radius: 20px;
+    border-radius: 20px;
+    height: 40px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-right: 10px;
+    margin-left: 10px;
+}

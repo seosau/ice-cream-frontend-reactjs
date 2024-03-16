@@ -1,0 +1,153 @@
+.form-container {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 4% 0;
+    position: relative;
+}
+.form-container form {
+    background-color: var(--white-alpha-25);
+    border: 2px solid var(--white-alpha-40);
+    backdrop-filter: var(--backdrop-filter);
+    box-shadow: var(--box-shadow);
+    border-radius: 0.5rem;
+    padding: 2rem;
+}
+// .form-container form .flex {
+//     display: flex;
+//     gap: 2rem;
+// }
+// .form-container form .flex .col {
+//     flex: 1 1 25rem;
+// }
+.input-field {
+    position: relative;
+}
+.icon-showpassword {
+    position: relative;
+    top: -48px;
+    left: 92%;
+    z-index: 5;
+    font-size: 20px;
+
+}
+.form-container .register {
+    width: 50rem;
+}
+.form-container .register .img-box {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+.form-container .register img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50px;
+    text-align: center;
+    padding: 10px;
+    background-color: var(--main-color);
+}
+.form-container form h3 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--main-color);
+    text-transform: capitalize;
+    font-weight: bolder;
+}
+.form-container form p {
+    padding-top: 1rem;
+    font-size: 1.2rem;
+    text-transform: capitalize;
+}
+.form-container form p span {
+    color: red;
+}
+.form-container form .link {
+    padding-bottom: 1rem;
+    font-size: 1.2rem;
+    text-transform: capitalize;
+}
+.form-container form .link a {
+    color: var(--main-color);
+}
+.form-container form .link a:hover {
+    color: var(--pink-color);
+    text-decoration: underline;
+}
+.form-container form .box,
+.form-container form .profile-img-box {
+    background-color: var(--white-alpha-25);
+    border: 2px solid var(--white-alpha-40);
+    backdrop-filter: var(--backdrop-filter);
+    box-shadow: var(--box-shadow);
+    width: 100%;
+    border-radius: 0.5rem;
+    margin: 0.5rem 0;
+    font-size: 1.3rem;
+    padding: 1rem;
+}
+
+.form-container form .btn {
+    width: 100%;
+    font-size: 1.3rem;
+}
+.form-container .image {
+    height: 30rem;
+}
+input[type="submit"] {
+    cursor: pointer;
+}
+input[type="submit"]:hover {
+    color: var(--main-color);
+}
+.input-field {
+    // max-height: 300px;
+}
+.profile-img-box {
+    
+    display: flex;
+    align-items: center;
+}
+.img-choose {
+    width: 120px !important;
+    height: 120px !important;
+    border-radius: 15px !important;
+    background-color: #fff !important;
+    object-fit: cover;
+}
+.btn-chooseImg {
+    position: relative;
+    margin-left: 20px;
+    background-color: #fff;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #8b8b8a;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 8px;
+    border-color: var(--main-color);
+    padding: 10px;
+}
+.img-choose-input {
+    position: absolute;
+    width: 100%;
+    background-color: rgb(8, 157, 92);
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    opacity: 0;
+}
+.icon-style {
+    width: 2rem;
+    height: 2rem;
+    font-size: 4rem;
+    color: #b9bab7;
+    text-align: center;
+}
+.error{
+    font-size: 1.2rem;
+    color: red;
+}

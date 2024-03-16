@@ -1,0 +1,412 @@
+.banner {
+  display: flex;
+  // justify-content: center;
+  align-items: center;
+  margin-top: 80px;
+  background-image: url("../../../assets/img/banner.jpg");
+  // position: relative;
+  width: 100%;
+  min-height: 110vh;
+  // margin-bottom: 5rem;
+  background-size: cover;
+  /* hoặc background-size: contain; */
+  background-position: center center;
+  /* Để giữ ảnh ở giữa */
+  background-repeat: no-repeat;
+}
+
+.banner h1 {
+  color: var(--main-color);
+  margin-left: 80px;
+}
+
+.banner p {
+  margin-left: 80px;
+  font-size: 1.5rem;
+}
+
+.heading {
+  text-align: center;
+  line-height: 1.5;
+}
+
+.heading span {
+  font-size: 20px;
+}
+
+// Chef ######################################################################
+.chef {
+  padding-left: 4%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.chef .box {
+  line-height: 1.5;
+  text-align: center;
+  box-shadow: none;
+  flex: 1;
+}
+
+.chef .box .img {
+  width: 70%;
+  margin-bottom: -2rem;
+}
+
+
+
+.chef .box p {
+  font-size: 1.3rem;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.chef .box .flex-btn {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+// Story
+.story {
+  background-image: url("../../../assets/img/about_bg.jpg");
+  position: relative;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.story p {
+  padding-bottom: 2rem;
+  columns: gray;
+  font-size: 20px;
+}
+
+//Our team
+.team {
+  background-image: url("../../../assets/img/bn3.3.webp");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 100px 6%;
+}
+
+.team .heading span {
+  font-size: 2rem;
+  color: var(--main-color);
+  text-transform: capitalize;
+  font-weight: bold;
+}
+
+.team .box-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.team .box-container .box {
+  overflow: hidden;
+  box-shadow: 5px 5px 10px #666;
+}
+
+.team .box-container .box .img {
+  width: 100%;
+  transition: 0.5s;
+}
+
+.team .box-container .box:hover .img {
+  transform: scale(1.1);
+}
+
+.team .box-container .box .content {
+  position: relative;
+  display: block;
+  background-color: #fff;
+  padding: 43px 30px 42px 30px;
+  margin-top: -80px;
+  border-top-right-radius: 80px;
+  text-align: center;
+  line-height: 1.5;
+  text-transform: capitalize;
+}
+
+.team .box-container .box .content .shap {
+  position: absolute;
+  left: 0;
+  top: -80px;
+  width: 80px;
+  height: 80px;
+  background-repeat: no-repeat;
+}
+
+.team .box-container .box .content p {
+  margin-left: 0;
+}
+
+// Stander
+.standers {
+  background-image: url("../../../assets/img/std.jpg");
+  padding: 135px 0 210px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  line-height: 1.5;
+  padding-left: 6%;
+}
+
+.standers p {
+  font-size: 1.6rem;
+  color: #666;
+  padding-bottom: 0.5rem;
+}
+
+.standers i {
+  font-size: 2rem;
+  color: var(--main-color);
+}
+
+.icon-style {
+  display: inline-block;
+  font-size: 2rem;
+  color: #ffb100;
+  height: 2.5rem;
+  width: 2.5rem;
+  line-height: 2.4rem;
+  text-align: center;
+}
+
+.standers .detail ol {
+  font-size: 18px;
+}
+
+.standers .detail ol li {
+  margin: 30px;
+}
+
+//Testimonial
+.testimonial {
+  width: 800px;
+  margin: 2rem auto;
+}
+
+.testimonial-container {
+  overflow: hidden;
+}
+
+.slide-row {
+  display: flex;
+  flex-wrap: wrap;
+  width: 3200px;
+  transition: 0.5s;
+  overflow: hidden;
+}
+
+.slide-col {
+  width: 800px;
+  height: 400px;
+  position: relative;
+  overflow: hidden;
+}
+
+.user-img {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  border-radius: 10px;
+  width: 320px;
+  object-fit: cover;
+}
+
+.user-img img {
+  height: 100%;
+  border-radius: 10px;
+  width: 320px;
+  object-fit: cover;
+}
+
+.user-text {
+  background-color: var(--white-alpha-25);
+  border: 2px solid var(--white-alpha-40);
+  border-radius: 16px;
+  box-shadow: var(--box-shadow);
+  backdrop-filter: var(--backdrop-filter);
+  width: 520px;
+  height: 270px;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 10px;
+  color: #4d4352;
+  padding: 45px;
+  z-index: 2;
+}
+
+.user-text p {
+  font-size: 20px;
+  line-height: 24px;
+  margin-left: 0;
+}
+
+.user-text h2 {
+  margin: 35px 0 5px;
+}
+
+.indicator {
+  display: flex;
+  justify-content: center;
+  margin-top: 4rem;
+}
+
+.indicator .btn {
+  display: inline-block;
+  height: 15px;
+  width: 15px;
+  margin: 4px;
+  background-color: #000;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+  border-radius: 15px;
+}
+
+.indicator #now-active {
+  width: 45px;
+  background-color: var(--main-color);
+}
+
+// Mission
+.mission {
+  background-image: url("../../../assets/img/bg1.webp");
+  background-position: center;
+  background-size: cover;
+  padding: 0 4%;
+  position: relative;
+  padding-top: 80px;
+}
+
+.mission .box-container {
+  display: flex;
+}
+
+.mission .box-container .box {
+  box-shadow: none;
+  background-color: transparent;
+  border: none;
+}
+
+.mission .box-container .box .detail {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0.6rem 0;
+}
+
+.mission .box-container .box .detail h2 {
+  color: var(--main-color);
+  margin-bottom: 0.5rem;
+}
+
+.mission .box-container .box .detail p {
+  font-size: 20px;
+  color: #666;
+  line-height: 1.5;
+  margin-left: 0;
+}
+
+.mission .box-container .box .detail .img-box {
+  text-align: center;
+  margin-right: 1rem;
+}
+
+.mission .box-container .box .detail .img-box img {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  object-fit: contain;
+  border: 2px dashed var(--main-color);
+}
+
+.mission .box-container .box .img {
+  width: 100%;
+  margin-bottom: -3, 7rem;
+}
+
+@media screen and (max-width: 430px) {
+  .banner {
+    min-height: 50vh;
+  }
+  
+  // Chef ######################################################################
+  .chef {
+    padding-left: 4%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .chef .box > img {
+    width: 95vw;
+  }
+
+  .team .box-container {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  //Testimonial
+  .testimonial {
+    width: 100vw;
+  }
+  
+  .slide-row {
+    width: 400vw;
+  }
+  
+  .slide-col {
+    width: 100vw;
+    height: 400px;
+  }
+  
+  .user-img {
+    width: 320px;
+    object-fit: cover;
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .user-img img {
+    width: 70%;
+  }
+  
+  .user-text {
+    width: 60vw;
+    height: 370px;
+  }
+  
+  // Mission
+  .mission .box-container .box .img {
+    width: 0;
+  }
+}
+
+@media screen and (min-width: 431px) and (max-width: 1030px) {
+  .banner {
+    min-height: 50vh;
+  }
+  .team .box-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    align-items: center;
+    gap: 3rem,
+  }
+
+}

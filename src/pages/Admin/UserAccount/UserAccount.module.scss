@@ -1,0 +1,176 @@
+.container {
+    margin-bottom: 5rem;
+    flex: 1;
+    min-height: 65vh;
+}
+
+.heading {
+    text-align: center;
+    line-height: 1.5;
+}
+.heading h1 {
+    font-size: 2rem;
+    text-transform: capitalize;
+}
+.heading span {
+    color: var(--main-color);
+    text-transform: capitalize;
+    font-size: 16px;
+}
+.heading img {
+    margin-top: 0.5rem;
+    width: 150px !important;
+}
+
+.box-container {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+    margin-top: 3rem;
+   
+}
+.box {
+    background-color: var(--white-alpha-25);
+    border: 2px solid var(--white-alpha-40);
+    backdrop-filter: var(--backdrop-filter);
+    box-shadow: var(--box-shadow);
+    margin: 1rem;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    text-align: center;
+    padding: 2rem;
+    text-transform: capitalize;
+    margin-bottom: 4rem;
+    color: gray;
+}
+
+.box p {
+    text-transform: capitalize;
+    margin-bottom: 1rem;
+    line-height: 1;
+
+    font-size: 1.2rem;
+}
+.box img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    box-shadow: var(--box-shadow);
+    padding: 0.5rem;
+    background-color: var(--white-alpha-40);
+    margin-top: -5rem;
+    margin-bottom: 1rem;
+}
+.box h4 {
+    text-transform: capitalize;
+    color: var(--main-color);
+    line-height: 1;
+
+    font-size: 1.2rem;
+}
+.name {
+    text-transform: capitalize;
+    font-size: 2rem;
+    line-height: 1;
+}
+.empty {
+    background-color: var(--white-alpha-25);
+    border: 2px solid var(--white-alpha-40);
+    backdrop-filter: var(--backdrop-filter);
+    box-shadow: var(--box-shadow);
+    text-transform: capitalize;
+    color: var(--main-color);
+    padding: 1.5rem;
+    text-align: center;
+    align-self: center;
+    margin: 2rem auto;
+    width: 50vw;
+    border-radius: 0.5rem;
+    line-height: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 3rem;
+}
+.empty p {
+    font-size: 20px;
+    padding-bottom: 1rem;
+}
+.flex-btn {
+    display: flex;
+    justify-content: space-evenly;
+}
+.status {
+    position: absolute;
+    left: -4%;
+    top: 1%;
+    text-transform: uppercase;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: var(--box-shadow);
+    background-color: var(--white-alpha-40);
+    display: inline-block;
+    padding: 0.5rem;
+}
+.details {
+    margin-top: 3rem;
+    line-height: 2;
+    color: gray;
+    text-transform: capitalize;
+}
+.box span {
+    text-transform: none;
+}
+.my-btn {
+    transform: translateX(-55%);
+    left:  50%;
+    background-color: var(--white-alpha-25);
+    border: 2px solid var(--white-alpha-40);
+    backdrop-filter: var(--backdrop-filter);
+    box-shadow: var(--box-shadow);
+    text-transform: capitalize;
+    color: var(--main-color);
+    padding: 0.8rem 2rem;
+    border-radius: 1.5rem;
+    font-size: 20px;
+    cursor: pointer;
+    position: relative;
+    margin: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+}
+
+
+.my-btn::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 50%;
+    width: 0;
+    height: 100%;
+    padding-left: 0;
+    padding-right: 0;
+    border-radius: 1.5rem;
+    background-color: var(--main-color);
+    z-index: -1;
+    transition: all 0.3s ease;
+    text-align: center;
+    align-items: center;
+    opacity: 0;
+}
+.my-btn:hover::before {
+    left: 0%;
+    padding-left: 50%;
+    padding-right: 50%;
+    opacity: 1;
+}
+.my-btn:hover {
+    color: #fff;
+}
+.my-btn:hover svg{
+    color: #fff;
+}

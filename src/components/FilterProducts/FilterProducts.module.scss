@@ -1,0 +1,123 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  margin: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+
+  position: relative;
+  border-radius: 2px;
+}
+.sort-choice {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-height: 60px;
+}
+.sort-text {
+  font-size: 20px;
+  color: var(--main-color);
+  font-weight: 500;
+  margin-right: 20px;
+}
+.select {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 210px;
+  padding: 6px 8px;
+  background-color: #fff;
+  border-radius: 2px;
+  position: relative;
+  box-shadow: var(--box-shadow);
+  margin-right: 20px;
+}
+
+.select__label {
+  font-size: 18px;
+  text-transform: capitalize;
+}
+
+.select__list {
+  position: absolute;
+  top: calc(100% + 1px);
+  right: 0;
+  display: none;
+  width: 100%;
+  list-style: none;
+  padding-left: 0;
+  background-color: #fff;
+  box-shadow: 0 0 3px #ccc;
+  border-radius: 2px;
+  margin: 0;
+  z-index: 1;
+}
+.select:hover .select__list {
+  display: block;
+}
+.select__item {
+  padding: 8px 8px;
+  display: flex;
+  align-items: center;
+}
+
+.select__item--active {
+  color: var(--main-color);
+  float: right;
+}
+
+.select__link {
+  flex: 1;
+  text-decoration: none;
+}
+
+.select__item .select__link {
+  color: var(--text-color);
+  font-size: 18px;
+}
+.select__item .select__link:hover {
+  color: var(--main-color);
+}
+.btn-sort {
+  background-color: #fff;
+  font-size: 18px;
+  padding: 6px 8px;
+  box-shadow: var(--box-shadow);
+  border-radius: 2px;
+  margin-right: 20px;
+  min-width: 100px;
+  cursor: pointer;
+  color: #000;
+  text-align: center;
+}
+.active {
+  background-color: var(--main-color);
+  color: #fff;
+}
+
+@media screen and (max-width: 1025px){
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .sort-choice {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+  }
+  .sort-text {
+    flex: 1 100%;
+    text-align: center;
+  }
+  .btn-sort, .select {
+    flex: 1 35%;
+    margin: 0;
+    padding: 1rem;
+  }
+}

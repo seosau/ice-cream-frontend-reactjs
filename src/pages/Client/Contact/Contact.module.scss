@@ -1,0 +1,227 @@
+.banner {
+    display: flex;
+    // justify-content: center;
+    align-items: center;
+    margin-top: 80px;
+    background-image: url('../../../assets/img/banner.jpg');
+    // position: relative;
+    width: 100%;
+    min-height: 110vh;
+    // margin-bottom: 5rem;
+    background-size: cover;
+    /* hoặc background-size: contain; */
+    background-position: center center;
+    /* Để giữ ảnh ở giữa */
+    background-repeat: no-repeat;
+}
+
+.banner h1 {
+    color: var(--main-color);
+}
+
+.banner h1,
+.banner p {
+    margin-left: 80px;
+}
+
+.banner p {
+    font-size: 1.5rem;
+}
+
+.heading {
+    text-align: center;
+    line-height: 1.5;
+}
+
+.heading h1 {
+    font-size: 2rem;
+    text-transform: capitalize;
+}
+
+//===========================services================================
+.services {
+    background-image: url("../../../assets/img/bn3.3.webp");
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 100px 6%;
+    position: relative;
+    min-height: 100vh;
+}
+
+.services .box-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 40px;
+}
+
+.services .box-container .box {
+    line-height: 1.5;
+    text-align: center;
+    padding: 1.5rem;
+    box-shadow: var(--box-shadow);
+    border-radius: 10px;
+    // transition: 0.5s;
+    backdrop-filter: var(--backdrop-filter);
+    margin-top: 3rem;
+}
+
+// .services .box-container .box:hover{
+//     transform: scale(1.1);
+// }
+
+.services .box-container .box h1 {
+    font-size: 25px;
+    color: var(--main-color);
+    margin: .5rem 0;
+    text-transform: capitalize;
+}
+
+//Form CS ======================================================================================
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 4% 0;
+    position: relative;
+    background-image: url('../../../assets/img/bg1.png');
+}
+
+.form-container form {
+    background-color: var(--white-alpha-25);
+    border: 2px solid var(--white-alpha-40);
+    backdrop-filter: var(--backdrop-filter);
+    box-shadow: var(--box-shadow);
+    border-radius: .5rem;
+    padding: 2rem;
+    margin-top: 40px;
+}
+
+.form-container .register {
+    width: 50rem;
+
+}
+
+.form-container form .box {
+    background-color: var(--white-alpha-25);
+    border: 2px solid var(--white-alpha-40);
+    backdrop-filter: var(--backdrop-filter);
+    box-shadow: var(--box-shadow);
+    width: 100%;
+    border-radius: .5rem;
+    margin: .5rem 0;
+    font-size: 1.3rem;
+    padding: 1rem;
+}
+
+.form-container form textarea {
+    height: 20rem;
+    resize: none;
+}
+
+.form-container .register .input-field label {
+    padding-top: 1rem;
+    font-size: 1.2rem;
+    text-transform: capitalize;
+}
+
+.form-container form sup {
+    color: red;
+}
+
+//Form CS ======================================================================================
+
+.address {
+    // padding: 5% 8%;
+    // min-height: 50vh;
+    padding: 100px 6%;
+    position: relative;
+    min-height: 100vh;
+    margin-bottom: -100px;
+}
+
+.address .box-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 40px;
+}
+
+.address .box {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    line-height: 2;
+    width: 25rem;
+    padding: 2rem 1.5rem;
+    background-color: var(--pink-opacity);
+    text-align: left;
+    box-shadow: var(--box-shadow);
+    border-radius: 10px;
+    margin-top: 3rem;
+}
+
+.address .box h4 {
+    text-transform: uppercase;
+    color: var(--main-color);
+    font-size: 1.5rem;
+}
+
+.box-map {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 50px;
+}
+
+.box-mapdetail {
+    flex: 0.9;
+    height: 500px;
+}
+
+.address .box .icon-style {
+    font-size: 2.5rem;
+    color: var(--main-color);
+    height: 2.5rem;
+    width: 2.5rem;
+    line-height: 2.4rem;
+    text-align: center;
+    margin-left: .5rem;
+    // cursor: pointer;
+    border-radius: 50%;
+    box-shadow: var(--box-shadow);
+    padding: 1rem;
+    background-color: var(--white-alpha-40);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.error {
+    font-size: 1.2rem;
+    color: red;
+}
+
+//responsive ======================================================================================
+@media (max-width: 1300px) {
+    .form-container .register {
+        width: 60%;
+    }
+}
+
+@media (max-width: 500px) {
+    .form-container .register {
+        width: 95%;
+    }
+}
+
+@media screen and (max-width: 1025px) {
+    .banner {
+        min-height: 50vh;
+    }
+}

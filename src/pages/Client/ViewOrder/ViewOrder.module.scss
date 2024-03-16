@@ -1,0 +1,116 @@
+.order-detail {
+    position: relative;
+    margin-top: 80px;
+    background-image: url('../../../assets/img/bg1.webp');
+    padding: 4%;
+    padding-bottom: 50px;
+}
+
+.heading {
+    text-align: center;
+    line-height: 1.5;
+}
+
+.order-detail .box-container {
+    border-radius: .5rem;
+    max-width: 1200px;
+    margin: 1rem auto;
+    padding: 1rem;
+    box-shadow: var(--box-shadow);
+    background-color: var(--white-alpha-40);
+}
+
+.order-detail .box-container .box {
+    position: relative;
+    margin: 1rem;
+    overflow: hidden;
+    top: 0;
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    align-items: center;
+    overflow-x: hidden;
+}
+
+.order-detail .box-container .box .col {
+    flex: 1 1 30rem;
+    font-size: 1rem;
+}
+
+.order-detail .box-container .box img {
+    height: 30rem;
+    width: 100%;
+    object-fit: contain;
+    margin: 1rem 0;
+}
+
+.order-detail .box-container .box .col .date {
+    padding: .5rem 1.2rem;
+    color: #fff;
+    font-size: 1rem;
+    display: inline-block;
+    border-radius: .5rem;
+    background-color: var(--main-color);
+}
+
+.order-detail .box-container .box .col .flex {
+    display: flex;
+    justify-content: space-around;
+}
+
+.order-detail .box-container .box .col .price,
+.order-detail .box-container .box .col .quantity {
+    font-size: 1.1rem;
+    padding: .5rem 0;
+    text-transform: capitalize;
+}
+
+.order-detail .box-container .box .col h3 {
+    text-transform: capitalize;
+    font-size: 1.6rem;
+}
+.order-detail .box-container .box .col .nameProduct {
+    text-align: center;
+}
+.order-detail .box-container .box .col .user {
+    padding: .5rem 0;
+    font-size: 1.3rem;
+}
+
+.order-detail .box-container .box .col .icon {
+    color: gray;
+    margin-right: 1rem;
+}
+
+.order-detail .box-container .box .col .grand-total {
+    color: var(--main-color);
+    font-size: 1.5rem;
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.order-detail .box-container .box .col .status {
+    color: orange;
+    font-size: 1.4rem;
+    text-transform: capitalize;
+}
+
+.order-detail .box-container .box .col .status.canceled {
+    color: red;
+}
+.order-detail .box-container .box .col .status.delivered {
+    color: green;
+}
+
+@media screen and (max-width: 1025px) {
+    .order-detail .box-container .box img {
+        height: 17rem;
+        width: 100%;
+        object-fit: contain;
+        margin: 1rem 1.2rem;
+    }
+    .order-detail .box-container .box .col {
+        flex: 1 1 20rem;
+        font-size: 1rem;
+    }
+}

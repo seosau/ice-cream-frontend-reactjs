@@ -1,0 +1,195 @@
+.main-container{
+    // margin-top: 100px;
+}
+.view-detail{
+    background-image: url('../../../assets/img/bn3.3.webp');
+    // background-attachment: fixed;
+    background-position: center center; /* Để giữ ảnh ở giữa */
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 100px 6%
+}
+.view-detail .main-box{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.view-detail .main-box .img-box,
+.view-detail .main-box .detail-box{
+    flex: 1 1 40rem;
+    padding: 2rem;
+}
+.view-detail .main-box .img-box{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    overflow: hidden;
+}
+.view-detail .main-box .img-box img{
+    width: 600px;
+    height: 600px;
+    object-fit: cover; /* Để ảnh không bị bóp méo, nhưng có thể cắt bớt */
+    object-position: center; /* Đưa ảnh về giữa container */
+}
+.view-detail .main-box .detail-box .in-stock{
+    font-size: 1.5rem;
+    text-transform: capitalize;
+    color: green;
+}
+.view-detail .main-box .detail-box .out-of-stock{
+    font-size: 1.5rem;
+    text-transform: capitalize;
+    color: orange;
+}
+.view-detail .main-box .detail-box h2{
+    font-weight: normal;
+    margin-left: 0;
+    margin-top: 2rem;
+    font-size: 1.5rem;
+}
+.view-detail .main-box .detail-box .product-price{
+    font-size: 2rem;
+    font-weight: 600;
+    margin-left: 0;
+    margin-top: 2rem;
+}
+.view-detail .main-box .detail-box h2{
+    font-weight: bolder;
+    color: var(--main-color);
+    font-size: 2rem;
+}
+.view-detail .main-box .detail-box .description-text{
+    line-height: 2rem;
+    margin-top: 1rem;
+    margin-left: 0;
+    margin-bottom: 2rem;
+    font-size: 1.5rem;
+}
+.view-detail .main-box .detail-box .detail-btn{
+    display: flex;
+}
+.products {
+    position: relative;
+    margin-top: -100px;
+    background-image: url('../../../assets/img/bg1.webp');
+    padding: 4%;
+    padding-bottom: 50px;
+}
+.heading {
+    text-align: center;
+    line-height: 1.5;
+}
+.box-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+    align-items: center;
+}
+.products .box-container .box {
+    position: relative;
+    margin: 1rem;
+    overflow: hidden;
+    top: 0;
+    max-width: 25rem;
+}
+.products .box-container .box img {
+    width: 100%;
+    height: 25rem;
+    object-fit: cover;
+    transition: .5s;
+    background-color: palegreen;
+}
+.products .box-container .box:hover img {
+    transform: scale(1.1);
+}
+.products .box-container .box .status{
+    margin-left: .5rem;
+    font-size: 1rem;
+    text-transform: capitalize;
+    position: absolute;
+    top: 1%;
+    left: 1%;
+    padding: .5rem 1.2rem;
+    color: #fff;
+    font-size: 1rem;
+    display: inline-block;
+    border-radius: .5rem;
+    background-color: var(--main-color);
+}
+
+.products .box-container .box .content {
+    position: relative;
+    background-color: #fff;
+    padding: 30px 10px;
+    margin-top: -80px;
+    border-top-right-radius: 80px;
+    line-height: 1.5;
+    text-transform: capitalize;
+}
+.products .box-container .box .content .shap {
+    position: absolute;
+    left: 0;
+    top: -80px;
+    width: 80px;
+    height: 80px;
+    background-repeat: no-repeat;
+    transform: scale(1);
+    background-color: transparent;
+}
+
+.products .box-container .box .content .price-name .price{
+    font-size: 20px;
+}
+.products .box-container .box .content .price-name .name{
+    font-size: 22px;
+}
+.products .box-container .box .content .flex-btn {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.products .box-container .box .content .flex-btn .like-cart{
+    display: flex;
+    align-items: center;
+    margin-left: 6rem;
+}
+.products .box-container .box .content .flex-btn .like-cart #like-icon{
+    padding-right: 2rem;
+}
+
+.detail-icon-style {
+    font-size: 2rem;
+    height: 1.5rem;
+    width: 1.5rem;
+    line-height: 2.4rem;
+    text-align: center;
+    margin-left: .5rem;
+    cursor: pointer;
+}
+.icon-style {
+    font-size: 2rem;
+    height: 2.5rem;
+    width: 2.5rem;
+    line-height: 2.4rem;
+    text-align: center;
+    margin-left: .5rem;
+    cursor: pointer;
+}
+.products .box-container .box h3 {
+    text-transform: capitalize;
+    font-size: 18px;
+}
+.products .box-container .box .price {
+    text-transform: capitalize;
+    font-weight: bold;
+    font-size: 1rem;
+}
+.empty {
+    background-color: var(--pink-opacity);
+    padding: 2rem;
+}
+.empty p {
+    color: var(--main-color);
+    text-transform: capitalize;
+    font-size: 1.8rem;
+    text-align: center;
+}
