@@ -34,18 +34,21 @@ function View1Product() {
         console.log(error);
       });
   };
-  const getProductById = useCallback(async (id = null) => {
-    let product_id = id ? id : productId;
-    setLoading(true);
-    try {
-      const { data } = await axiosClient.get(`/menu/${product_id}`);
-      setProduct(data.data[0]);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setLoading(false);
-    }
-  }, [productId]);
+  const getProductById = useCallback(
+    async (id = null) => {
+      let product_id = id ? id : productId;
+      setLoading(true);
+      try {
+        const { data } = await axiosClient.get(`/menu/${product_id}`);
+        setProduct(data.data[0]);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setLoading(false);
+      }
+    },
+    [productId]
+  );
   const fetchData = useCallback(async () => {
     window.scrollTo(0, 0);
     setLoading(true);
@@ -58,7 +61,7 @@ function View1Product() {
   }, [state, getProductById]);
   useEffect(() => {
     fetchData();
-  }, [fetchData,getProductById]);
+  }, [fetchData, getProductById]);
   useEffect(() => {
     getProducts();
   }, []);
@@ -83,7 +86,7 @@ function View1Product() {
         .post("/wishlists", payload)
         .then(({ data }) => {
           setWishListIds(data.wishListIds);
-          Alert("success", "Add to wish list successfully");
+          Alert("success", "Thêm vào yêu thích thành công");
         })
         .catch((error) => {
           if (error.response) {
@@ -93,8 +96,8 @@ function View1Product() {
     } else {
       Alert(
         "warning",
-        "You are not logged in",
-        "Please login to have more experience"
+        "Bạn chưa đăng nhập",
+        "Vui lòng đăng nhập để thực hiện chức năng này"
       );
       navigate("/login");
     }
@@ -103,8 +106,8 @@ function View1Product() {
     if (currentUser.id) {
       if (product.stock === 0) {
         Swal.fire({
-          title: "Sorry",
-          text: "This product will refill soon",
+          title: "Xin lỗi",
+          text: "Sản phẩm này sẽ sớm được thêm vào",
           imageUrl: require("../../../assets/img/crying.png"),
           imageWidth: 80,
           imageHeight: 80,
@@ -118,7 +121,7 @@ function View1Product() {
         .then(({ data }) => {
           setCartIds(data.cartListIds);
           setQuantityCart(data.quantity);
-          Alert("success", "Add to cart successfully");
+          Alert("success", "Thêm vào giỏ hàng thành công");
         })
         .catch((error) => {
           if (error.response) {
@@ -128,8 +131,8 @@ function View1Product() {
     } else {
       Alert(
         "warning",
-        "You are not logged in",
-        "Please login to have more experience"
+        "Bạn chưa đăng nhập",
+        "Vui lòng đăng nhập để thực hiện chức năng này"
       );
       navigate("/login");
     }
@@ -138,7 +141,7 @@ function View1Product() {
     <div className={cx("main-container")}>
       <section className={cx("view-detail")}>
         <div className={cx("heading")}>
-          <h1>Product Detail</h1>
+          <h1>Chi tiết sản phẩm</h1>
           <img
             src={require("../../../assets/img/separator.png")}
             alt="separator"
@@ -156,9 +159,9 @@ function View1Product() {
                   product.stock > 0 ? cx("in-stock") : cx("out-of-stock")
                 }
               >
-                {product?.stock > 0 ? "In Stock" : "Out of Stock"}
+                {product?.stock > 0 ? "Còn sản phẩm" : "Hết sản phẩm"}
               </span>
-              <p className={cx("product-price")}>Price: ${product.price}</p>
+              <p className={cx("product-price")}>Giá: {product.price}VNĐ</p>
               <h2>{product.name}</h2>
               <p className={cx("description-text")}>{product.product_detail}</p>
               <div className={cx("detail-btn")}>
@@ -170,8 +173,8 @@ function View1Product() {
                   value={
                     <>
                       {handleCheckProductInWishList(product.id)
-                        ? "Already In Wishlist"
-                        : "Add To Wishlist"}
+                        ? "Đã Yêu Thích"
+                        : "Yêu Thích"}
 
                       <FontAwesomeIcon
                         icon={faHeart}
@@ -193,8 +196,8 @@ function View1Product() {
                   value={
                     <>
                       {handleCheckProductInCart(product.id)
-                        ? "Already In Cart"
-                        : "Add To Cart"}
+                        ? "Đã Trong Giỏ"
+                        : "Thêm Vào Giỏ"}
 
                       <FontAwesomeIcon
                         icon={faShoppingCart}
@@ -215,7 +218,7 @@ function View1Product() {
       </section>
       <div className={cx("products")}>
         <div className={cx("heading")}>
-          <h1>Similar Products</h1>
+          <h1>Sản Phẩm Tương Tự</h1>
           <img
             src={require("../../../assets/img/separator.png")}
             alt="separator"
@@ -239,10 +242,10 @@ function View1Product() {
                       <img src={product.image_url} alt="product" />
                       <p className={cx("status")}>
                         {product.stock > 9
-                          ? "In Stock"
+                          ? "Hết Sản Phẩm"
                           : product.stock > 0
-                          ? `Hunry, only ${product.stock} left`
-                          : "Out of Stock"}
+                          ? `Nhanh, chỉ còn ${product.stock} sản phẩm`
+                          : "Còn sản phẩm"}
                       </p>
                     </Link>
                     <div className={cx("content")}>
@@ -253,7 +256,7 @@ function View1Product() {
                       />
                       <div className={cx("price-name")}>
                         <h2 className={cx("name")}> {product.name}</h2>
-                        <h3 className={cx("price")}>Price ${product.price}</h3>
+                        <h3 className={cx("price")}>Giá {product.price}VNĐ</h3>
                       </div>
                       <div className={cx("flex-btn")}>
                         <Btn
@@ -261,7 +264,7 @@ function View1Product() {
                           style={{
                             width: "50%",
                           }}
-                          value="Buy Now"
+                          value="Mua Ngay"
                         />
                         <div className={cx("like-cart")}>
                           <FontAwesomeIcon
@@ -292,7 +295,7 @@ function View1Product() {
                 ))
               ) : (
                 <div className={cx("empty")}>
-                  <p>no product was found!</p>
+                  <p>không tìm thấy sản phẩm nào!</p>
                 </div>
               )}
             </>

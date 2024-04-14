@@ -63,7 +63,7 @@ function UpdateUserProfile() {
       .then(({ data }) => {
         console.log(data);
         setcurrentUser(data);
-        Alert("success", "Update Successfully", "Have a nice day");
+        Alert("success", "Cập nhật thành công", "Chúc bạn 1 ngày vui vẻ");
         navigate("/profile");
       })
       .catch((error) => {
@@ -71,8 +71,8 @@ function UpdateUserProfile() {
           setErrors(error.response.data.errors);
           Alert(
             "error",
-            "Update Failed",
-            "Something went wrong, please check again"
+            "Cập Nhật Lỗi",
+            "Có gì đó sai sót, vui lòng kiểm tra lại"
           );
         }
       });
@@ -81,17 +81,19 @@ function UpdateUserProfile() {
     <div className={cx("form-container")}>
       <div className={cx("banner")}>
         <div className={cx("detail")}>
-          <h1>Update Profile</h1>
+          <h1>Cập nhật thông tin</h1>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing
+            Chỉ cần vài bước đơn giản dưới đây là bạn có thể cập nhật ngay các
             <br />
-            elit, sed do eiusmod tempor incididunt ut labore et <br />
-            dolore magna aliqua.
+            thông tin cần thiết. Hãy luôn cập nhật các thông tin mới nhất của
+            <br />
+            bạn, và đảm bảo các thông tin được nhập vào chính xác nhất.
+            <br />
           </p>
         </div>
       </div>
       <div className={cx("heading")}>
-        <h1>update profile details</h1>
+        <h1>các thông tin cập nhật</h1>
         <img src={require("../../../assets/img/separator.png")} />
       </div>
       {loading && <Loader />}
@@ -110,12 +112,12 @@ function UpdateUserProfile() {
           <div className={cx("")}>
             <div className={cx("row")}>
               <div className={cx("input-field")}>
-                <p className={cx("")}>your name</p>
+                <p className={cx("")}>họ và tên</p>
                 <input
                   className={cx("box")}
                   type="text"
                   name="name"
-                  placeholder="enter your name..."
+                  // placeholder="enter your name..."
                   maxLength={50}
                   onChange={(e) => {
                     if (errors?.name) {
@@ -133,12 +135,12 @@ function UpdateUserProfile() {
                 ) : null}
               </div>
               <div className={cx("input-field")}>
-                <p className={cx("")}>your email</p>
+                <p className={cx("")}>email của bạn</p>
                 <input
                   className={cx("box")}
                   type="email"
                   name="email"
-                  placeholder="enter your email..."
+                  // placeholder="enter your email..."
                   maxLength={50}
                   onChange={(e) => {
                     if (errors?.email) {
@@ -159,12 +161,12 @@ function UpdateUserProfile() {
 
             <div className={cx("row")}>
               <div className={cx("input-field")}>
-                <p className={cx("")}>your current password</p>
+                <p className={cx("")}>mật khẩu hiện tại</p>
                 <input
                   className={cx("box")}
                   type="password"
                   name="current password"
-                  placeholder="enter your password..."
+                  // placeholder="enter your password..."
                   maxLength={50}
                   value={userDataUpdate.old_password}
                   onChange={(e) => {
@@ -184,13 +186,13 @@ function UpdateUserProfile() {
               </div>
               <div className={cx("input-field")}>
                 <p className={cx("")}>
-                  your new password <span className={cx("required")}>*</span>
+                  mật khẩu mới <span className={cx("required")}>*</span>
                 </p>
                 <input
                   className={cx("box")}
                   type="password"
                   name="new password"
-                  placeholder="enter your new password..."
+                  // placeholder="enter your new password..."
                   maxLength={50}
                   value={userDataUpdate.password}
                   onChange={(e) => {
@@ -212,14 +214,14 @@ function UpdateUserProfile() {
               </div>
               <div className={cx("input-field")}>
                 <p className={cx("")}>
-                  confirm your new password
+                  xác nhận mật khẩu mới
                   <span className={cx("required")}>*</span>
                 </p>
                 <input
                   className={cx("box")}
                   type="password"
                   name="password-confirmation"
-                  placeholder="confirm your new password..."
+                  // placeholder="confirm your new password..."
                   maxLength={50}
                   value={userDataUpdate.password_confirmation}
                   onChange={(e) => {
@@ -239,7 +241,7 @@ function UpdateUserProfile() {
             </div>
           </div>
           <div className={cx("")}>
-            <p className={cx("")}>your profile</p>
+            <p className={cx("")}>ảnh đại diện</p>
             <input
               className={cx("box")}
               type="file"
@@ -248,7 +250,11 @@ function UpdateUserProfile() {
               onChange={(e) => onImageChoose(e)}
             />
           </div>
-          <Btn value={"update now"} onclick={onUpdate} style={{ width: "100%" }}></Btn>
+          <Btn
+            value={"cập nhật"}
+            onclick={onUpdate}
+            style={{ width: "100%" }}
+          ></Btn>
         </form>
       )}
     </div>

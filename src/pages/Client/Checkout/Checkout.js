@@ -71,7 +71,7 @@ export default function Checkout() {
       axiosClient
         .put(`/order/${id}`, payload)
         .then(({ data }) => {
-          Alert("success", "Order again successfully");
+          Alert("success", "Đặt lại thành công");
           navigate("/order");
         })
         .catch((error) => {
@@ -85,7 +85,7 @@ export default function Checkout() {
         .post("/order", payload)
         .then(({ data }) => {
           setCartIds([]);
-          Alert("success", "Order successfully");
+          Alert("success", "Đặt hàng thành công");
           navigate("/order");
         })
         .catch((error) => {
@@ -136,7 +136,7 @@ export default function Checkout() {
     <div className={cx("main-container")}>
       <div className={cx("checkout")}>
         <div className={cx("heading")}>
-          <h1>checkout summary</h1>
+          <h1>thanh toán</h1>
           <img
             src={require("../../../assets/img/separator.png")}
             alt="separator"
@@ -144,7 +144,7 @@ export default function Checkout() {
         </div>
         {loading && <Loader />}
         <div className={cx("summary")}>
-          <h3>My Bag</h3>
+          <h3>Giỏ Của Tôi</h3>
           <div className={cx("box-container")}>
             {products.map((product) => (
               <div className={cx("box")} key={product.product_id}>
@@ -186,21 +186,21 @@ export default function Checkout() {
             ))}
           </div>
           <div className={cx("total")}>
-            <span>Total amount payable: {grandTotal}$</span>
+            <span>Tổng tiền phải trả: {grandTotal}$</span>
           </div>
         </div>
         <div className={cx("form-container")}>
           <form className={cx("register")}>
-            <h3 className={cx("")}>billing details</h3>
+            <h3 className={cx("")}>thông tin nhận hàng</h3>
             <div className={cx("input-field")}>
               <p className={cx("")}>
-                your name <span className={cx("")}>*</span>
+                họ tên <span className={cx("")}>*</span>
               </p>
               <input
                 className={cx("box")}
                 type="text"
                 name="name"
-                placeholder="enter your name..."
+                // placeholder="enter your name..."
                 value={orderData.user_name}
                 onChange={(e) => {
                   if (errors?.user_name) {
@@ -218,13 +218,13 @@ export default function Checkout() {
             </div>
             <div className={cx("input-field")}>
               <p className={cx("")}>
-                your phone number <span className={cx("")}>*</span>
+                số điện thoại <span className={cx("")}>*</span>
               </p>
               <input
                 className={cx("box")}
                 type="tel"
                 name="number"
-                placeholder="enter your number..."
+                // placeholder="enter your number..."
                 maxLength={50}
                 value={orderData.phone_number}
                 onChange={(e) => {
@@ -243,13 +243,13 @@ export default function Checkout() {
             </div>
             <div className={cx("input-field")}>
               <p className={cx("")}>
-                your email <span className={cx("")}>*</span>
+                email <span className={cx("")}>*</span>
               </p>
               <input
                 className={cx("box")}
                 type="email"
                 name="email"
-                placeholder="enter your email..."
+                // placeholder="enter your email..."
                 onChange={(e) => {
                   if (errors?.email) {
                     setErrors({ ...errors, email: "" });
@@ -266,7 +266,7 @@ export default function Checkout() {
               ) : null}
               <div className={cx("input-field")}>
                 <p className={cx("")}>
-                  payment method <span className={cx("")}>*</span>
+                  phương thức thanh toán <span className={cx("")}>*</span>
                 </p>
                 <select
                   name="method"
@@ -279,9 +279,9 @@ export default function Checkout() {
                     });
                   }}
                 >
-                  <option value="cash on delivery">cash on delivery</option>
+                  <option value="cash on delivery">thanh toán khi nhận</option>
                   <option value="credit or debit card">
-                    credit or debit card
+                    thẻ tín dụng hoặc thẻ ghi nợ
                   </option>
                   <option value="net banking">net banking</option>
                 </select>
@@ -290,13 +290,13 @@ export default function Checkout() {
 
             <div className={cx("input-field")}>
               <p className={cx("")}>
-                your address <span className={cx("")}>*</span>
+                địa chỉ của bạn <span className={cx("")}>*</span>
               </p>
               <input
                 className={cx("box")}
                 type="text"
                 name="country"
-                placeholder="enter your address..."
+                // placeholder="enter your address..."
                 maxLength={50}
                 value={orderData.address}
                 onChange={(e) => {

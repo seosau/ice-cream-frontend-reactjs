@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate,useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import className from "classnames/bind";
 import style from "./SearchResult.module.scss";
@@ -15,7 +15,7 @@ const cx = className.bind(style);
 
 function SearchResult() {
   const navigate = useNavigate();
-  const {keyword} = useParams();
+  const { keyword } = useParams();
   const {
     currentUser,
     wishListIds,
@@ -115,7 +115,7 @@ function SearchResult() {
         .post("/wishlists", payload)
         .then(({ data }) => {
           setWishListIds(data.wishListIds);
-          Alert("success", "Add to wish list successfully");
+          Alert("success", "Thêm vào giỏ hàng thành công");
         })
         .catch((error) => {
           if (error.response) {
@@ -125,8 +125,8 @@ function SearchResult() {
     } else {
       Alert(
         "warning",
-        "You are not logged in",
-        "Please login to have more experience"
+        "Bạn chưa đăng nhập",
+        "Vui lòng đăng nhập để thực hiện chức năng này"
       );
       navigate("/login");
     }
@@ -135,8 +135,8 @@ function SearchResult() {
     if (currentUser.id) {
       if (product.stock === 0) {
         Swal.fire({
-          title: "Sorry",
-          text: "This product will refill soon",
+          title: "Xin lỗi",
+          text: "Sản phẩm này sẽ sớm được thêm vào",
           imageUrl: require("../../../assets/img/crying.png"),
           imageWidth: 80,
           imageHeight: 80,
@@ -150,7 +150,7 @@ function SearchResult() {
         .then(({ data }) => {
           setCartIds(data.cartListIds);
           setQuantityCart(data.quantity);
-          Alert("success", "Add to cart successfully");
+          Alert("success", "Thêm vào giỏ hàng thành công");
         })
         .catch((error) => {
           if (error.response) {
@@ -160,8 +160,8 @@ function SearchResult() {
     } else {
       Alert(
         "warning",
-        "You are not logged in",
-        "Please login to have more experience"
+        "Bạn chưa đăng nhập",
+        "Vui lòng đăng nhập để thực hiện chức năng này"
       );
       navigate("/login");
     }
@@ -170,8 +170,8 @@ function SearchResult() {
     if (currentUser.id) {
       if (product.stock === 0) {
         Swal.fire({
-          title: "Sorry",
-          text: "This product will refill soon",
+          title: "Xin lỗi",
+          text: "Sản phẩm này sẽ sớm được thêm vào",
           imageUrl: require("../../../assets/img/crying.png"),
           imageWidth: 80,
           imageHeight: 80,
@@ -183,8 +183,8 @@ function SearchResult() {
     } else {
       Alert(
         "warning",
-        "You are not logged in",
-        "Please login to have more experience"
+        "Bạn chưa đăng nhập",
+        "Vui lòng đăng nhập để thực hiện chức năng này"
       );
       navigate("/login");
     }
@@ -193,18 +193,18 @@ function SearchResult() {
     <div className={cx("main-container")}>
       <div className={cx("banner")}>
         <div className={cx("detail")}>
-          <h1>Search Products</h1>
+          <h1>Tìm Kiếm Sản Phẩm</h1>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing
+            {/* Lorem ipsum dolor sit amet, consectetur adipiscing
             <br />
             elit, sed do eiusmod tempor incididunt ut labore et <br />
-            dolore magna aliqua.
+            dolore magna aliqua. */}
           </p>
         </div>
       </div>
       <div className={cx("products")}>
         <div className={cx("heading")}>
-          <h1>Our Latest Flavoure</h1>
+          <h1>Những món ngon mới nhất</h1>
           <img
             src={require("../../../assets/img/separator.png")}
             alt="separator"
@@ -232,10 +232,10 @@ function SearchResult() {
                       <img src={product.image_url} alt="product" />
                       <p className={cx("status")}>
                         {product.stock > 9
-                          ? "In Stock"
+                          ? "Còn sản phẩm"
                           : product.stock > 0
-                          ? `Hunry, only ${product.stock} left`
-                          : "Out of Stock"}
+                          ? `Nhanh, chỉ còn ${product.stock} sản phẩm`
+                          : "Hết sản phẩm"}
                       </p>
                     </Link>
                     <div className={cx("content")}>
@@ -245,7 +245,7 @@ function SearchResult() {
                         className={cx("shap")}
                       />
                       <div className={cx("price-name")}>
-                        <h2 className={cx("price")}>Price ${product.price}</h2>
+                        <h2 className={cx("price")}>Giá {product.price}VNĐ</h2>
                         <h3 className={cx("name")}>{product.name}</h3>
                       </div>
                       <div className={cx("flex-btn")}>
@@ -254,7 +254,7 @@ function SearchResult() {
                           style={{
                             width: "fit-content",
                           }}
-                          value="Buy Now"
+                          value="Mua Ngay"
                           href={`?from=menu&id=${product.id}`}
                         />
                         <div className={cx("like-cart")}>
@@ -286,7 +286,7 @@ function SearchResult() {
                 ))
               ) : (
                 <div className={cx("empty")}>
-                  <p>no product was found!</p>
+                  <p>không tìm thấy sản phẩm nào!</p>
                 </div>
               )}
             </>

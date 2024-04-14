@@ -12,8 +12,7 @@ const cx = className.bind(style);
 
 function Favourite() {
   const navigate = useNavigate();
-  const { currentUser, setCartIds, cartIds, userToken } =
-    useStateContext();
+  const { currentUser, setCartIds, cartIds, userToken } = useStateContext();
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const { setWishListIds } = useStateContext();
@@ -33,19 +32,19 @@ function Favourite() {
     if (userToken) {
       getProductsInWishList();
     } else {
-      Alert("warning", "Please login to have more experience");
+      Alert("warning", "Vui lòng đăng nhập để thực hiện chức năng này");
       navigate("/login");
     }
   }, [userToken]);
   const handleButtonDelete = (id) => {
     Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      title: "Bạn chắc chắn?",
+      text: "Bạn sẽ không thể hoàn tác hành động này!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonText: "Đúng, xóa nó!",
     }).then((result) => {
       if (result.isConfirmed) {
         axiosClient
@@ -56,14 +55,14 @@ function Favourite() {
               prevProducts.filter((product) => product.product_id !== id)
             );
             Swal.fire({
-              title: "Deleted!",
-              text: "Your product has been deleted.",
+              title: "Đã xóa!",
+              text: "Đã xóa sản phẩm thành công",
               icon: "success",
             });
           })
           .catch((error) => {
             Swal.fire({
-              title: "Something went wrong",
+              title: "Có lỗi!",
               icon: "error",
             });
           });
@@ -80,8 +79,8 @@ function Favourite() {
   const handleClickCart = (product) => {
     if (product.stock === 0) {
       Swal.fire({
-        title: "Sorry",
-        text: "TThis product is temporarily out of stock",
+        title: "Xin lỗi",
+        text: "Sản phẩm tạm thời không còn",
         imageUrl: require("../../../assets/img/crying.png"),
         imageWidth: 80,
         imageHeight: 80,
@@ -98,7 +97,7 @@ function Favourite() {
     axiosClient
       .post("/cart", payload)
       .then(({ data }) => {
-        Alert("success", "Add to cart successfully");
+        Alert("success", "Thêm vào giỏ hàng thành công");
         setCartIds(data.cartListIds);
       })
       .catch((error) => {
@@ -144,8 +143,8 @@ function Favourite() {
                           value={
                             <>
                               {handleCheckProductInCart(product.product_id)
-                                ? "Already In Cart"
-                                : "Add To Cart"}
+                                ? "Đã Trong Giỏ"
+                                : "Thêm Vào Giỏ"}
 
                               <FontAwesomeIcon
                                 icon={faCartShopping}
@@ -166,14 +165,14 @@ function Favourite() {
                           style={{
                             width: "40%",
                           }}
-                          value={"Delete"}
+                          value={"Xóa"}
                         />
                         <Btn
                           href={`/checkout?from=menu&id=${product.product_id}`}
                           style={{
                             width: "40%",
                           }}
-                          value="buy now"
+                          value="mua ngay"
                         />
                       </div>
                     </div>
@@ -181,7 +180,7 @@ function Favourite() {
                 ))
               ) : (
                 <div className={cx("empty")}>
-                  <p>no product was found!</p>
+                  <p>không tìm thấy sản phẩm nào!</p>
                 </div>
               )}
             </>
