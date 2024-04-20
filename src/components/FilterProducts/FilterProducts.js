@@ -14,12 +14,12 @@ function FilterProducts({
 }) {
   const [btnSorts, setBtnSorts] = useState([
     {
-      title: "Latest",
+      title: "Mới nhất",
       sortBy: "newest",
       isChecked: false,
     },
     {
-      title: "Hot Sale",
+      title: "Bán chạy",
       sortBy: "bestsale",
       isChecked: false,
     },
@@ -30,12 +30,12 @@ function FilterProducts({
       options: [
         {
           sortType: "active",
-          title: "Status: Active",
+          title: "Trạng thái: Còn hàng",
           isChecked: false,
         },
         {
           sortType: "inactive",
-          title: "Status: Inactive",
+          title: "Trạng thái: Hết hàng",
           isChecked: false,
         },
       ],
@@ -45,12 +45,12 @@ function FilterProducts({
       options: [
         {
           sortType: "asc",
-          title: "Price: Low to High",
+          title: "Giá: Thấp đến Cao",
           isChecked: false,
         },
         {
           sortType: "desc",
-          title: "Price: High to Low",
+          title: "Price: Cao đến Thấp",
           isChecked: false,
         },
       ],
@@ -61,22 +61,22 @@ function FilterProducts({
       options: [
         {
           sortType: "corn",
-          title: "Category: Corn",
+          title: "Loại: Kem ngô",
           isChecked: false,
         },
         {
           sortType: "coconut",
-          title: "Category: Coconut",
+          title: "Loại: Kem đưa",
           isChecked: false,
         },
         {
           sortType: "chocolate",
-          title: "Category: Chocolate",
+          title: "Loại: Kem socola",
           isChecked: false,
         },
         {
           sortType: "strawberry",
-          title: "Category: Strawberry",
+          title: "Loại: Kem dâu",
           isChecked: false,
         },
       ],
@@ -108,7 +108,7 @@ function FilterProducts({
   return (
     <div className={cx("container")}>
       <div className={cx("sort-choice")}>
-        <p className={cx("sort-text")}>Sorted by</p>
+        <p className={cx("sort-text")}>Sắp xếp theo</p>
         {btnSorts.map((btnSort, index) => {
           return isClient ? (
             <Link
@@ -139,7 +139,7 @@ function FilterProducts({
                       className={cx("select__link")}
                       onClick={() => {
                         onOptionClick(sectionIndex, optionIndex);
-                        onGetSortValue(selection.type, option.sortType)
+                        onGetSortValue(selection.type, option.sortType);
                       }}
                     >
                       {option.title}

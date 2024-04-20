@@ -87,7 +87,7 @@ function Search({ classname }) {
         render={(attrs) => (
           <div className={cx("search-result")} tabIndex="-1" {...attrs}>
             <div className={cx("search-wrapper")}>
-              <h4 className={cx("search-title")}>Products</h4>
+              <h4 className={cx("search-title")}>Sản phẩm</h4>
               {searchResult.map((result) => (
                 <SearchItemResult
                   data={result}
@@ -102,7 +102,7 @@ function Search({ classname }) {
         <div className={classname}>
           <input
             type="text"
-            placeholder="Search product..."
+            placeholder="Tìm sản phẩm..."
             ref={inputRef}
             value={searchValue}
             onChange={handleChange}
