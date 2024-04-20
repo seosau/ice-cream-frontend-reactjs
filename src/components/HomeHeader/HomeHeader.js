@@ -47,7 +47,7 @@ function HomeHeader({ children }) {
         .catch((error) => {
           return error;
         });
-    } 
+    }
   }, []);
   useEffect(() => {
     if (!currentUser.id) {
@@ -74,7 +74,7 @@ function HomeHeader({ children }) {
       .catch((error) => {
         console.log(error);
       });
-  }, [currentUser,setCartIds]);
+  }, [currentUser, setCartIds]);
   const handleShowProfile = () => {
     setShowProfile(!showProfile);
   };
@@ -112,11 +112,11 @@ function HomeHeader({ children }) {
             />
           </Link>
           <nav className={showNavBar ? navBarActive : navBarClass}>
-            <Link to="/">home</Link>
-            <Link to="/about">about</Link>
-            <Link to="/shop">shop</Link>
-            <Link to="/order">order</Link>
-            <Link to="/contact">contact</Link>
+            <Link to="/">Trang chủ</Link>
+            <Link to="/about">Về chúng tôi</Link>
+            <Link to="/shop">Sản phẩm</Link>
+            <Link to="/order">Đơn đã đặt</Link>
+            <Link to="/contact">Liên hệ</Link>
           </nav>
           <Search
             classname={showSearchForm ? searchFormActive : searchFormClass}
@@ -176,10 +176,10 @@ function HomeHeader({ children }) {
                 </div>
               ) : (
                 <>
-                  <p className={cx("text")}>Please register or login</p>
+                  <p className={cx("text")}>Vui lòng đăng ký hoặc đăng nhập.</p>
                   <div className={cx("flex-btn")}>
-                    <Btn href="/login" value="login" style={{width:'40%'}}></Btn>
-                    <Btn href="/register" value="register"  style={{width:'40%'}}></Btn>
+                    <Btn href="/login" value="login" style={{ width: '40%' }}></Btn>
+                    <Btn href="/register" value="register" style={{ width: '40%' }}></Btn>
                   </div>
                 </>
               )}

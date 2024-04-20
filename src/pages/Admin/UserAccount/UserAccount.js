@@ -24,13 +24,13 @@ function UserAccount() {
   };
   const onDeleteUser = (user_id) => {
     Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      title: "Bạn có chắc không?",
+      text: "Bạn sẽ không thể khôi phục lại",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonText: "Có",
     }).then((result) => {
       if (result.isConfirmed) {
         setListUsers((prevListUsers) =>
@@ -42,14 +42,15 @@ function UserAccount() {
           })
           .then((res) => {
             Swal.fire({
-              title: "Deleted!",
-              text: "This user has been deleted.",
+              title: "Đã xóa!",
+              text: "Đã xóa người dùng này.",
               icon: "success",
             });
           })
           .catch((error) => {
             Swal.fire({
-              title: "Something went wrong",
+              title: "Lỗi",
+              text: "Đã có lỗi xảy ra.",
               icon: "error",
             });
           });
@@ -63,7 +64,7 @@ function UserAccount() {
   return (
     <div className={cx("container")}>
       <div className={cx("heading")}>
-        <h1 className={cx("heading-title")}>registered users</h1>
+        <h1 className={cx("heading-title")}>Danh sách người dùng</h1>
         <img src={require("../../../assets/img/separator.png")} alt="spr" />
       </div>
       {loading && <Loader />}
@@ -82,27 +83,27 @@ function UserAccount() {
                     alt="user image"
                   />
                   <p>
-                   {currentPath.includes('seller') ? 'user':'seller' }  name: <span> {user.name} </span>
+                   {currentPath.includes('seller') ? 'user':'seller' }  Họ tên: <span> {user.name} </span>
                   </p>
                   <p>
-                  {currentPath.includes('seller') ? 'user':'seller' } email:<span>{user.email} </span>
+                  {currentPath.includes('seller') ? 'user':'seller' } Email:<span>{user.email} </span>
                   </p>
                   <p>
-                  {currentPath.includes('seller') ? 'user':'seller confirmed' } order:<span>{user.orderQuantity} </span>
+                  {currentPath.includes('seller') ? 'user':'seller confirmed' } Số lượng đơn:<span>{user.orderQuantity} </span>
                   </p>
                   {currentPath.includes("admin") ? (
                     <button
                       className={cx("my-btn")}
                       onClick={() => onDeleteUser(user.id)}
                     >
-                      delete
+                      Xóa
                     </button>
                   ) : null}
                 </div>
               ))
             ) : (
               <div className={cx("empty")}>
-                <p>no registered user yet!</p>
+                <p>Không có người dùng nào!</p>
               </div>
             )}
           </>

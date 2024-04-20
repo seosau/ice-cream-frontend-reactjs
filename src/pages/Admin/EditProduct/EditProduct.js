@@ -51,13 +51,13 @@ function EditProduct() {
             ? "/seller/viewproduct"
             : "/admin/viewproduct"
         );
-        Alert("success", "update product successfully");
+        Alert("Thành công", "Cập nhật sản phẩm thành công");
       })
       .catch((error) => {
         if (error.response) {
           setErrors(error.response.data.error);
         }
-        Alert("error", "Something went wrong");
+        Alert("Lỗi", "Đã xảy ra lỗi");
       });
   };
 
@@ -78,7 +78,7 @@ function EditProduct() {
   return (
     <div className={cx("container")}>
       <div className={cx("heading")}>
-        <h1 className={cx("heading-title")}>edit product</h1>
+        <h1 className={cx("heading-title")}>Cập nhật thông tin sản phẩm</h1>
         <img src={require("../../../assets/img/separator.png")} alt="spr" />
       </div>
       {loading && <Loader />}
@@ -89,7 +89,7 @@ function EditProduct() {
             <form action="" method="post" encType="multipart/form-data">
               <div className={inputField}>
                 <p>
-                  product status<span>*</span>
+                  Trạng thái<span>*</span>
                 </p>
                 <select
                   name="status"
@@ -99,13 +99,13 @@ function EditProduct() {
                   }
                   value={product.status}
                 >
-                  <option value="active">active</option>
-                  <option value="inactive">inactive</option>
+                  <option value="active">Đang bán</option>
+                  <option value="inactive">Chưa bán</option>
                 </select>
               </div>
               <div className={inputField}>
                 <p>
-                  product name<span>*</span>
+                  Tên sản phẩm<span>*</span>
                 </p>
                 <input
                   type="text"
@@ -120,7 +120,7 @@ function EditProduct() {
               </div>
               <div className={inputField}>
                 <p>
-                  product price<span>*</span>
+                  Giá sản phẩm<span>*</span>
                 </p>
                 <input
                   type="number"
@@ -135,7 +135,7 @@ function EditProduct() {
               </div>
               <div className={inputField}>
                 <p>
-                  product category<span>*</span>
+                  Phân loại<span>*</span>
                 </p>
                 <select
                   name="category"
@@ -145,15 +145,15 @@ function EditProduct() {
                   }
                   value={product.category}
                 >
-                  <option value="corn">corn</option>
-                  <option value="coconut">coconut</option>
-                  <option value="chocolate">chocolate</option>
-                  <option value="strawberry">strawberry</option>
+                  <option value="corn">Bắp</option>
+                  <option value="coconut">Dừa</option>
+                  <option value="chocolate">Socola</option>
+                  <option value="strawberry">Dâu</option>
                 </select>
               </div>
               <div className={inputField}>
                 <p>
-                  product description<span>*</span>
+                  Chi tiết sản phẩm<span>*</span>
                 </p>
 
                 <textarea
@@ -167,7 +167,7 @@ function EditProduct() {
               </div>
               <div className={inputField}>
                 <p>
-                  product stock<span>*</span>
+                  Số lượng<span>*</span>
                 </p>
                 <input
                   type="number"
@@ -185,7 +185,7 @@ function EditProduct() {
               </div>
               <div className={inputField}>
                 <p>
-                  product image<span>*</span>
+                  Ảnh sản phẩm<span>*</span>
                 </p>
                 <input
                   type="file"
@@ -204,14 +204,14 @@ function EditProduct() {
                 ) : null}
                 <div className={cx("flex-btn")}>
                   <Btn
-                    value={"update product"}
+                    value={"Cập nhật"}
                     style={{
                       width: "49%",
                     }}
                     onclick={onEdit}
                   />
                   <Btn
-                    value={"go back"}
+                    value={"Quay lại"}
                     style={{ width: "49%", height: "3rem" }}
                     href={
                       currentPath.includes("seller")

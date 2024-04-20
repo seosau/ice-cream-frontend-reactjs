@@ -74,7 +74,7 @@ function Header({ children }) {
         setcurrentUser({});
         setUserToken(null);
         handleShowProfile();
-        Alert("success", "Logout Successfully");
+        Alert("Thành công", "Đăng xuất thành công");
       })
       .catch((error) => {
         return error;
@@ -127,18 +127,18 @@ function Header({ children }) {
                     <Btn
                       href={currentURL.includes('seller') ? "/seller/profile" : '/admin/profile'}
                       onclick={() => handleShowProfile()}
-                      value="profile"
+                      value="Tài khoản"
                       style={{width:'100%'}}
                     ></Btn>
-                    <Btn value="logout" onclick={handleLogout}  style={{width:'100%'}}></Btn>
+                    <Btn value="Đăng xuất" onclick={handleLogout}  style={{width:'100%'}}></Btn>
                   </div>
                 </div>
               ) : (
                 <>
-                  <p className={cx("text")}>Please register or login</p>
+                  <p className={cx("text")}>Vui lòng đăng nhập hoặc đăng ký</p>
                   <div className={cx("flex-btn")}>
-                    <Btn href="/seller/login" value="login"></Btn>
-                    <Btn href="/seller/register" value="register"></Btn>
+                    <Btn href="/seller/login" value="Đăng nhập"></Btn>
+                    <Btn href="/seller/register" value="Đăng ký"></Btn>
                   </div>
                 </>
               )}
@@ -167,7 +167,7 @@ function Header({ children }) {
                       className={cx("sidebar-icon")}
                       icon={faHome}
                     />
-                    <p>dashboard</p>
+                    <p>Bảng điều khiển</p>
                   </Link>
                 </li>
                 <li>
@@ -176,7 +176,7 @@ function Header({ children }) {
                       className={cx("sidebar-icon")}
                       icon={faFileImport}
                     />
-                    <p>{currentURL.includes('seller') ? 'add products' : 'add sellers' }</p>
+                    <p>{currentURL.includes('seller') ? 'Thêm sản phẩm' : 'Thêm nhân viên' }</p>
                   </Link>
                 </li>
                 <li>
@@ -185,7 +185,7 @@ function Header({ children }) {
                       className={cx("sidebar-icon")}
                       icon={faEye}
                     />
-                    <p>view product</p>
+                    <p>Xem sản phẩm</p>
                   </Link>
                 </li>
                 <li>
@@ -194,7 +194,7 @@ function Header({ children }) {
                       className={cx("sidebar-icon")}
                       icon={faUserPlus}
                     />
-                    <p>accounts</p>
+                    <p>Tài khoản</p>
                   </Link>
                 </li>
                 <li>
@@ -203,12 +203,12 @@ function Header({ children }) {
                       className={cx("sidebar-icon")}
                       icon={faRightFromBracket}
                     />
-                    <p>logout</p>
+                    <p>Đăng xuất</p>
                   </Link>
                 </li>
               </ul>
             </div>
-            <h5>find us</h5>
+            <h5>Liên hệ với chúng tôi</h5>
             <div className={cx("social-links")}>
               <FontAwesomeIcon
                 className={cx("social-icon")}

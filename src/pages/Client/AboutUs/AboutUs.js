@@ -57,14 +57,13 @@ function AboutUs() {
     <div className={cx("main-container")}>
       <div className={cx("banner")}>
         <div className={cx("detail")}>
-          <h1>About Us</h1>
+          <h1>Về chúng tôi</h1>
           <p>
-            Welcome to our virtual ice cream haven! Indulge in the finest frozen
-            treats, from classic Vanilla Bean to trendy delights. <br />
-            Order online, and we'll deliver premium ice cream straight to your
-            door. Immerse yourself in a world of flavor crafted for your
-            delight. <br />
-            Your journey into frozen bliss begins here!
+            Chào mừng bạn đến thiên đường kem của chúng tôi! Tận hưởng những hương vị <br />
+            ngon nhất từ Vanilla Bean truyền thống đến những sáng tạo mới lạ nhất. Đặt hàng <br />
+            trực tuyến và chúng tôi sẽ giao kem chất lượng đến tận cửa nhà bạn. Hãy thả mình <br />
+            vào thế giới của những hương vị, nơi niềm vui đang chờ đợi bạn. Hành trình <br />
+            khám phá hạnh phúc băng giá của bạn bắt đầu từ đây!
           </p>
         </div>
       </div>
@@ -73,17 +72,16 @@ function AboutUs() {
         <div className={cx("box")}>
           <div className={cx("heading")}>
             <span>Alex Doe</span>
-            <h1>Masterchef</h1>
+            <h1>Siêu đầu bếp</h1>
             <img
               src={require("../../../assets/img/separator.png")}
               alt="separator"
             />
           </div>
           <p>
-            Maria is a Roman-born pastry chef who spent 15 years in his city
-            Rome perfecting his craft and exceptional creations. Vestibulum
-            rhoncus ornare tincidunt. Etiam pretium metus sit amet est aliquet
-            vulputate.
+            Maria là một đầu bếp bánh ngọt gốc La Mã, người đã dành 15 năm ở
+            thành phố Rome để hoàn thiện kỹ năng thủ công và những sáng tạo đặc
+            biệt của mình.
           </p>
           <div className={cx("flex-btn")}>
             <Btn
@@ -91,14 +89,14 @@ function AboutUs() {
               style={{
                 width: "fit-content",
               }}
-              value="explore our menu"
+              value="Khám phá ngay"
             />
             <Btn
               href={"/"}
               style={{
                 width: "fit-content",
               }}
-              value="visit our shop"
+              value="Trang chủ"
             />
           </div>
         </div>
@@ -109,35 +107,34 @@ function AboutUs() {
       {/* ====================Our Story=================== */}
       <div className={cx("story")}>
         <div className={cx("heading")}>
-          <h1>Our Story</h1>
+          <h1>Câu chuyện của chúng tôi</h1>
           <img
             src={require("../../../assets/img/separator.png")}
             alt="separator"
           />
         </div>
         <p>
-          Once upon a summer, our founder's childhood memories of chasing the
-          ice cream truck sparked a dream.<br/> Fueled by nostalgia, they envisioned
-          creating a haven where every scoop evoked the joy of those carefree
-          days. <br/>From that dream, our online ice cream emporium was born — a
-          place where families and friends could savor moments of delight. <br/>Each
-          flavor tells a tale of passion and craftsmanship, connecting us to the
-          sweet chapters of life.<br/> We continue to scoop happiness into every
-          order, spreading the magic of frozen bliss, one scoop at a time.
+
+          Ngày xưa, trong ký ức thơ ấu của người sáng lập, hình ảnh đuổi theo chiếc xe bán kem đã thôi thúc một ước mơ. <br />
+          Dẫn dắt bởi kỷ niệm, họ mơ tưởng về việc tạo ra một ốc đảo, nơi mỗi ngụm kem đều tái hiện niềm vui trong những ngày<br />
+          thơ ấu không lo lắng. Từ ước mơ ấy, cửa hàng kem trực tuyến của chúng tôi ra đời — nơi gia đình và bạn bè cùng nhau thưởng <br />
+          thức khoảnh khắc vui vẻ. Mỗi hương vị kể lên một câu chuyện về đam mê và sự khéo léo, gắn kết chúng ta với những khoảnh khắc <br />
+          ngọt ngào trong cuộc sống. Chúng tôi tiếp tục truyền đi niềm vui qua từng đơn hàng, lan truyền phép màu của sự hạnh phúc đông lạnh, <br />
+          từng miếng kem một.
         </p>
         <Btn
           href={"/home"}
           style={{
             width: "fit-content",
           }}
-          value="our service"
+          value="Dịch vụ"
         />
       </div>
       {/* ====================Our Team=================== */}
       <div className={cx("team")}>
         <div className={cx("heading")}>
-          <span>our team</span>
-          <h1>Quality & passion with our services</h1>
+          <span>Đội ngũ nhân viên</span>
+          <h1>Nhân viên chất lượng và có niềm đam mê</h1>
           <img
             src={require("../../../assets/img/separator-img.png")}
             alt="Separator"
@@ -157,7 +154,7 @@ function AboutUs() {
                 className={cx("shap")}
               />
               <h2>Tran Ngo Gia Bao</h2>
-              <p>Founder</p>
+              <p>Người sáng lập</p>
             </div>
           </div>
           <div className={cx("box")}>
@@ -173,9 +170,9 @@ function AboutUs() {
                 className={cx("shap")}
               />
               <h2>Huynh Sinh Truong</h2>
-              <p>Co-Founder</p>
+              <p>Đồng sáng lập</p>
             </div>
-            
+
           </div>
           <div className={cx("box")}>
             <img
@@ -190,7 +187,7 @@ function AboutUs() {
                 className={cx("shap")}
               />
               <h2>Dang Quoc Duy</h2>
-              <p>Co-Founder</p>
+              <p>Đồng sáng lập</p>
             </div>
           </div>
           <div className={cx("box")}>
@@ -206,7 +203,7 @@ function AboutUs() {
                 className={cx("shap")}
               />
               <h2>Ma Seo Sau</h2>
-              <p>Co-Founder</p>
+              <p>Đồng sáng lập</p>
             </div>
           </div>
         </div>
@@ -215,7 +212,7 @@ function AboutUs() {
       <div className={cx("standers")}>
         <div className={cx("detail")}>
           <div className={cx("heading")}>
-            <h1>Our Standards</h1>
+            <h1>Tiêu chuẩn của chúng tôi</h1>
             <img
               src={require("../../../assets/img/separator.png")}
               alt="Separator"
@@ -226,57 +223,54 @@ function AboutUs() {
               <h2>
                 {" "}
                 <FontAwesomeIcon icon={faMedal} className={cx("icon-style")} />
-                Quality Ingredients:{" "}
+                Thành phần chất lượng:{" "}
               </h2>
               <p>
-                Ensure the use of premium, fresh ingredients to achieve the rich
-                flavor and smooth texture of fresh cream.
+                Đảm bảo sử dụng nguyên liệu tươi, cao cấp để đạt được hương vị đậm đà
+                và kết cấu mịn màng của kem tươi.
               </p>
             </li>
             <li>
               <h2>
                 {" "}
                 <FontAwesomeIcon icon={faMedal} className={cx("icon-style")} />
-                Hygienic Processing:{" "}
+                Xử lý vệ sinh:{" "}
               </h2>
               <p>
-                Adhere to stringent hygiene standards throughout the production
-                process to guarantee a safe and contaminant-free final product.
+                Tuân thủ các tiêu chuẩn vệ sinh nghiêm ngặt trong suốt quá trình sản xuất
+                để đảm bảo sản phẩm cuối cùng an toàn và không có chất gây ô nhiễm.
               </p>
             </li>
             <li>
               <h2>
                 {" "}
                 <FontAwesomeIcon icon={faMedal} className={cx("icon-style")} />
-                Consistent Churning Process:
+                Quá trình làm kem nhất quán:
               </h2>
               <p>
-                Implement a precise churning process to maintain consistent
-                creaminess and prevent ice crystal formation in every batch of
-                fresh cream.
+                Thực hiện quy trình khuấy chính xác để duy trì độ kem ổn định và ngăn
+                chặn sự hình thành tinh thể đá trong mỗi mẻ kem tươi.
               </p>
             </li>
             <li>
               <h2>
                 {" "}
                 <FontAwesomeIcon icon={faMedal} className={cx("icon-style")} />
-                Strict Temperature Control:
+                Kiểm soát nhiệt độ nghiêm ngặt:
               </h2>
               <p>
-                Monitor and control temperature conditions meticulously to
-                preserve the integrity of the cream and achieve optimal texture
-                and taste.
+                Theo dõi và kiểm soát các điều kiện nhiệt độ một cách tỉ mỉ để duy
+                trì tính toàn vẹn của kem và đạt được kết cấu cũng như hương vị tối ưu.
               </p>
             </li>
             <li>
               <h2>
                 <FontAwesomeIcon icon={faMedal} className={cx("icon-style")} />
-                Artisanal Craftsmanship:{" "}
+                Công nghệ thủ công{" "}
               </h2>
               <p>
-                Embrace artisanal techniques to create a unique and delightful
-                fresh cream experience, meeting the highest standards of taste
-                and indulgence.
+                Áp dụng các kỹ thuật thủ công để tạo ra trải nghiệm kem tươi độc đáo và
+                thú vị, đáp ứng các tiêu chuẩn cao nhất về hương vị và cảm giác thích thú.
               </p>
             </li>
           </ol>
@@ -286,7 +280,7 @@ function AboutUs() {
       {/* ===================Testimonial==================== */}
       <div className={cx("testimonial")}>
         <div className={cx("heading")}>
-          <h1>Testimonial</h1>
+          <h1>Lời chứng thực</h1>
           <img
             src={require("../../../assets/img/separator.png")}
             alt="Separator"
@@ -297,12 +291,12 @@ function AboutUs() {
             <div className={cx("slide-col")}>
               <div className={cx("user-text")}>
                 <p>
-                  Zen Doan is a business analyst, entrepreneur and media
-                  proprietor, and investor. She also known as the best selling
-                  book author.
+                  Zen Doan là một nhà phân tích kinh doanh, doanh nhân, chủ
+                  sở hữu truyền thông và nhà đầu tư. Cô còn được biết đến là
+                  tác giả cuốn sách bán chạy nhất.
                 </p>
                 <h2>Zen</h2>
-                <p>Author</p>
+                <p>Tác giả</p>
               </div>
               <div className={cx("user-img")}>
                 <img
@@ -314,12 +308,12 @@ function AboutUs() {
             <div className={cx("slide-col")}>
               <div className={cx("user-text")}>
                 <p>
-                  Zen Doan is a business analyst, entrepreneur and media
-                  proprietor, and investor. She also known as the best selling
-                  book author.
+                  Zen Doan là một nhà phân tích kinh doanh, doanh nhân, chủ
+                  sở hữu truyền thông và nhà đầu tư. Cô còn được biết đến là
+                  tác giả cuốn sách bán chạy nhất.
                 </p>
                 <h2>Zen</h2>
-                <p>Author</p>
+                <p>Tác giả</p>
               </div>
               <div className={cx("user-img")}>
                 <img
@@ -331,12 +325,12 @@ function AboutUs() {
             <div className={cx("slide-col")}>
               <div className={cx("user-text")}>
                 <p>
-                  Zen Doan is a business analyst, entrepreneur and media
-                  proprietor, and investor. She also known as the best selling
-                  book author.
+                  Zen Doan là một nhà phân tích kinh doanh, doanh nhân, chủ
+                  sở hữu truyền thông và nhà đầu tư. Cô còn được biết đến là
+                  tác giả cuốn sách bán chạy nhất.
                 </p>
                 <h2>Zen</h2>
-                <p>Author</p>
+                <p>Tác giả</p>
               </div>
               <div className={cx("user-img")}>
                 <img
@@ -348,12 +342,12 @@ function AboutUs() {
             <div className={cx("slide-col")}>
               <div className={cx("user-text")}>
                 <p>
-                  Zen Doan is a business analyst, entrepreneur and media
-                  proprietor, and investor. She also known as the best selling
-                  book author.
+                  Zen Doan là một nhà phân tích kinh doanh, doanh nhân, chủ
+                  sở hữu truyền thông và nhà đầu tư. Cô còn được biết đến là
+                  tác giả cuốn sách bán chạy nhất.
                 </p>
                 <h2>Zen</h2>
-                <p>Author</p>
+                <p>Tác giả</p>
               </div>
               <div className={cx("user-img")}>
                 <img
@@ -376,7 +370,7 @@ function AboutUs() {
         <div className={cx("box-container")}>
           <div className={cx("box")}>
             <div className={cx("heading")}>
-              <h1>Our Mission</h1>
+              <h1>Sứ mệnh của chúng tôi</h1>
               <img
                 src={require("../../../assets/img/separator.png")}
                 alt="Separator"
@@ -390,10 +384,11 @@ function AboutUs() {
                 />
               </div>
               <div>
-                <h2>Mexicon Chocolate</h2>
+                <h2>Socola Mexico</h2>
                 <p>
-                  Layers of shaped marshmallow candies - bunnies, chicks, and
-                  simple flowers - make a memorable gift in a beribboned box
+                  Các lớp kẹo dẻo marshmallow có hình dạng - thỏ,
+                  gà con và những bông hoa đơn giản - tạo nên một
+                  món quà đáng nhớ đựng trong hộp có dây ruy băng
                 </p>
               </div>
             </div>
@@ -405,10 +400,11 @@ function AboutUs() {
                 />
               </div>
               <div>
-                <h2>Vanila With Honey</h2>
+                <h2>Vanila với mật ong</h2>
                 <p>
-                  Layers of shaped marshmallow candies - bunnies, chicks, and
-                  simple flowers - make a memorable gift in a beribboned box
+                  Các lớp kẹo dẻo marshmallow có hình dạng - thỏ,
+                  gà con và những bông hoa đơn giản - tạo nên một
+                  món quà đáng nhớ đựng trong hộp có dây ruy băng
                 </p>
               </div>
             </div>
@@ -420,10 +416,11 @@ function AboutUs() {
                 />
               </div>
               <div>
-                <h2>Pappermint Chip</h2>
+                <h2>Chip bạc hà</h2>
                 <p>
-                  Layers of shaped marshmallow candies - bunnies, chicks, and
-                  simple flowers - make a memorable gift in a beribboned box
+                  Các lớp kẹo dẻo marshmallow có hình dạng - thỏ,
+                  gà con và những bông hoa đơn giản - tạo nên một
+                  món quà đáng nhớ đựng trong hộp có dây ruy băng
                 </p>
               </div>
             </div>
@@ -435,10 +432,11 @@ function AboutUs() {
                 />
               </div>
               <div>
-                <h2>Raspberry Sorbat</h2>
+                <h2>Mâm xôi Sorbat</h2>
                 <p>
-                  Layers of shaped marshmallow candies - bunnies, chicks, and
-                  simple flowers - make a memorable gift in a beribboned box
+                  Các lớp kẹo dẻo marshmallow có hình dạng - thỏ,
+                  gà con và những bông hoa đơn giản - tạo nên một
+                  món quà đáng nhớ đựng trong hộp có dây ruy băng
                 </p>
               </div>
             </div>

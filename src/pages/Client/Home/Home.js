@@ -12,13 +12,13 @@ function Home() {
   const slides = [
     {
       imgSrc: require("../../../assets/img/slider.jpg"),
-      title1: "we pride ourselves on ",
-      title2: "exceptional flavors",
+      title1: "Chúng tôi tự hào về ",
+      title2: "Hương vị đặc biệt",
     },
     {
       imgSrc: require("../../../assets/img/slider0.jpg"),
-      title1: "cold treats are my kind",
-      title2: "of comfort food",
+      title1: "Đồ ăn lạnh là món ăn ",
+      title2: "ưa thích của tôi",
     },
   ];
 
@@ -26,74 +26,74 @@ function Home() {
     {
       img1: require("../../../assets/img/services.png"),
       img2: require("../../../assets/img/services (1).png"),
-      title: "delivery",
-      details: "Delivery Free",
+      title: "Vận chuyển",
+      details: "Miễn phí vận chuyển",
     },
     {
       img1: require("../../../assets/img/services (2).png"),
       img2: require("../../../assets/img/services (3).png"),
-      title: "support",
-      details: "24/7 hours",
+      title: "Hỗ trợ",
+      details: "24/7",
     },
     {
       img1: require("../../../assets/img/services (5).png"),
       img2: require("../../../assets/img/services (6).png"),
-      title: "payment",
-      details: "100% secure",
+      title: "Thanh toán",
+      details: "An toàn 100%",
     },
     {
       img1: require("../../../assets/img/services (7).png"),
       img2: require("../../../assets/img/services (8).png"),
-      title: "gift service",
-      details: "support gift service",
+      title: "dịch vụ quà tặng",
+      details: "hỗ trợ dịch vụ quà tặng",
     },
     {
       img1: require("../../../assets/img/service.png"),
       img2: require("../../../assets/img/service (1).png"),
-      title: "returns",
-      details: "24/7 free returns",
+      title: "Đổi trả",
+      details: "Đổi trả miễn phí 24/7",
     },
     {
       img1: require("../../../assets/img/aftersale.png"),
       img2: require("../../../assets/img/aftersale1.png"),
-      title: "after sale",
-      details: "Dedicated",
+      title: " Dịch vụ hậu mãi",
+      details: "Hết lòng với khách hàng",
     },
   ];
 
   const categories = [
     {
       img: require("../../../assets/img/categories.jpg"),
-      title: "coconut",
+      title: "Dừa",
     },
     {
       img: require("../../../assets/img/categories0.jpg"),
-      title: "chocolate",
+      title: "Socola",
     },
     {
       img: require("../../../assets/img/categories2.jpg"),
-      title: "strawberry",
+      title: "Dâu",
     },
     {
       img: require("../../../assets/img/categories1.jpg"),
-      title: "corn",
+      title: "Bắp",
     },
   ];
 
   const tastes = [
     {
-      title1: "natural sweetness",
+      title1: "vị ngọt tự nhiên",
       title2: "vanilla",
       img: require("../../../assets/img/taste.webp"),
     },
     {
-      title1: "natural sweetness",
+      title1: "vị ngọt tự nhiên",
       title2: "matcha",
       img: require("../../../assets/img/taste0.webp"),
     },
     {
-      title1: "natural sweetness",
-      title2: "blueberry",
+      title1: "vị ngọt tự nhiên",
+      title2: "việt quất",
       img: require("../../../assets/img/taste1.webp"),
     },
   ];
@@ -101,40 +101,40 @@ function Home() {
   const tastes2 = [
     {
       img: require("../../../assets/img/type4.jpg"),
-      title: "strawberry",
+      title: "dâu",
     },
     {
       img: require("../../../assets/img/type3.jpg"),
-      title: "strawberry",
+      title: "dâu",
     },
     {
       img: require("../../../assets/img/type1.png"),
-      title: "strawberry",
+      title: "dâu",
     },
     {
       img: require("../../../assets/img/type2.png"),
-      title: "strawberry",
+      title: "dâu",
     },
     {
       img: require("../../../assets/img/type0.jpg"),
-      title: "strawberry",
+      title: "dâu",
     },
     {
       img: require("../../../assets/img/type5.png"),
-      title: "strawberry",
+      title: "dâu",
     },
   ];
 
   const statistic = [
     {
       count: 5000,
-      title: "Successfully Trained",
-      content: "Learner & counting",
+      title: "Sản phẩm",
+      content: "đã bán",
     },
     {
       count: 1000,
-      title: "Certification seller",
-      content: "Online seller",
+      title: "Chứng nhận",
+      content: "Bán hàng trực tuyến",
     },
   ];
 
@@ -167,7 +167,7 @@ function Home() {
                 <h1 className={cx("title")}>{slide.title2}</h1>
                 <Btn
                   href="/shop"
-                  value="shop now"
+                  value="Khám phá ngay"
                   style={{ width: "fit-content" }}
                 />
               </div>
@@ -214,7 +214,7 @@ function Home() {
       </div>
       <div className={cx("categories")}>
         <div className={cx("heading")}>
-          <h1>categories features</h1>
+          <h1>Danh mục sản phẩm</h1>
           <img
             src={require("../../../assets/img/separator.png")}
             alt="separator"
@@ -241,8 +241,8 @@ function Home() {
       </div>
       <div className={cx("taste")}>
         <div className={cx("heading")}>
-          <span>Taste</span>
-          <h1>buy any ice cream @ get one free</h1>
+          <span>Hương vị</span>
+          <h1>Mua 1 tặng 1</h1>
           <img
             src={require("../../../assets/img/separator.png")}
             alt="separator"
@@ -264,16 +264,16 @@ function Home() {
         <div className={cx("overlay")}></div>
         <div className={cx("detail")}>
           <h1>
-            Ice cream is cheaper than <br /> therapy for stress
+            Ăn kem để <br /> giải tỏa căng thẳng
           </h1>
           <p>
-            Scoop away stress without breaking the bank. Our ice cream, a sweet <br/>
-            therapy, offers an affordable escape, turning moments of tension <br/>
-            into delicious pockets of joy. Indulge, destress, and savor life
+          Giảm bớt căng thẳng mà không tốn kém nhiều. Sản phẩm của chúng tôi,<br/>
+          với hương vị ngọt ngào, biến những khoảnh khắc căng thẳng thành niềm vui <br />
+          đầy ý nghĩa. Hãy thưởng thức và trải nghiệm sự hạnh phúc trong cuộc sống!
           </p>
           <Btn
             href="/shop"
-            value="shop now"
+            value="Khám phá ngay"
             style={{
               width: "fit-content",
               backgroundColor: "#000",
@@ -285,17 +285,16 @@ function Home() {
         <div className={cx("t-banner")}>
           <div className={cx("overlay")}></div>
           <div className={cx("detail")}>
-            <h1>find your taste of desserts</h1>
+            <h1>Hãy tìm món tráng miệng phù hợp với bạn</h1>
             <p>
-              Treat them to a delicious treat and send them some Luck'o the
-              Irish too!
+              Có vô vàn món tráng miệng ở đây. Hãy tìm và thưởng thức chúng
             </p>
             <Btn
               href="/shop"
               style={{
                 width: "fit-content",
               }}
-              value="shop now"
+              value="Khám phá ngay"
             />
           </div>
         </div>
@@ -306,7 +305,7 @@ function Home() {
               <img src={taste.img} alt="taste" />
               <div className={cx("box-details", "fadeIn-bottom")}>
                 <h1>{taste.title}</h1>
-                <p>Find your taste of desserts</p>
+                <p>Hãy tìm món tráng miệng phù hợp với bạn</p>
                 <Btn
                   href=""
                   style={{
@@ -327,23 +326,22 @@ function Home() {
           />
           <div className={cx("detail")}>
             <h1>
-              hot deal! sale up to <span>20% off</span>
+              Hấp dẫn! Giảm giá đến <span>20%</span>
             </h1>
-            <p>expired</p>
             <Btn
               href="/shop"
               style={{
                 width: "fit-content",
               }}
-              value="shop now"
+              value="Khám phá ngay"
             />
           </div>
         </div>
       </div>
       <div className={cx("newsletter")}>
         <div className={cx("content")}>
-          <span>get the latest information from us </span>
-          <h1>subscribe our newsletter</h1>
+          <span>Nhận thông tin mới nhất từ chúng tôi </span>
+          <h1>Nhập thông tin tại đây</h1>
           <div className={cx("input-field")}>
             <input
               type="email"
@@ -360,7 +358,7 @@ function Home() {
               value="subscribe"
             />
           </div>
-          <p>no ads, no trails, no commitment</p>
+          <p>Không quảng cáo, không độc hại</p>
           <div className={cx("box-container")}>
             {statistic.map((value, index) => (
               <div className={cx("box")} key={index}>

@@ -27,7 +27,7 @@ function ProductDetail() {
   return (
     <div className={cx("container")}>
       <div className={cx("heading")}>
-        <h1 className={cx("heading-title")}>your products</h1>
+        <h1 className={cx("heading-title")}>Sản phẩm của bạn</h1>
         <img src={require("../../../assets/img/separator.png")} alt="spr" />
       </div>
       {loading && <Loader />}
@@ -38,7 +38,7 @@ function ProductDetail() {
             <div
               className={cx("status")}
               style={{
-                color: product.status === "active" ? "limegreen" : "coral",
+                color: product.status === "Đang bán" ? "limegreen" : "coral",
               }}
             >
               {product.status}
@@ -59,7 +59,7 @@ function ProductDetail() {
                   width: "40%",
                 }}
                 href={`/seller/editproduct/${id}`}
-                value={"edit"}
+                value={"Sửa"}
               />
 
               <Btn
@@ -67,7 +67,7 @@ function ProductDetail() {
                   width: "40%",
                 }}
                 href={currentPath.includes('seller') ? "/seller/viewproduct" : '/admin/viewproduct'}
-                value={"go back"}
+                value={"Quay lại"}
               />
             </div>
           </div>

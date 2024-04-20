@@ -24,13 +24,13 @@ function Message() {
   };
   const handleDeleteMessage = (messageId) => {
     Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      title: "Bạn có chắc không?",
+      text: "Bạn sẽ không thể khôi phục lại!",
       icon: "question",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, cancel it!",
+      confirmButtonText: "Có",
     }).then((result) => {
       if (result.isConfirmed) {
         axiosClient
@@ -38,8 +38,8 @@ function Message() {
           .then(({ data }) => {
             setMessages(prevMessages => prevMessages.filter((message) => message.id !== messageId ));
             Swal.fire({
-              title: "Deleted!",
-              text: "This message was deleted!",
+              title: "Đã xóa!",
+              text: "Đoạn chat này đã được xóa.",
               icon: "success",
             });
           })
@@ -56,7 +56,7 @@ function Message() {
   return (
     <div className={cx("container")}>
       <div className={cx("heading")}>
-        <h1 className={cx("heading-title")}>unread message</h1>
+        <h1 className={cx("heading-title")}>Tin nhắn chưa đọc</h1>
         <img src={require("../../../assets/img/separator.png")} alt="spr" />
       </div>
       {loading && <Loader />}
@@ -71,7 +71,7 @@ function Message() {
                   <p>{message.message}</p>
                   <form action="" method="post">
                     <Btn
-                      value={"delete this message"}
+                      value={"Xóa tin nhắn?"}
                       style={{ width: "fit-content" }}
                       onclick={() => handleDeleteMessage(message.id)}
                     />
@@ -80,7 +80,7 @@ function Message() {
               ))
             ) : (
               <div className={cx("empty")}>
-                <p>no unread message yet!</p>
+                <p>Không có tin nhắn chưa đọc</p>
               </div>
             )}
           </>

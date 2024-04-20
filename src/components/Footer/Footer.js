@@ -24,22 +24,22 @@ function Footer() {
 
     const categories = [
         {
-            title: "My account",
-            content: ["My account", "order history", "wishlist", "newsletter"],
+            title: "Tài khoản của tôi",
+            content: ["Chung", "Lịch sử đặt hàng", "Yêu thích", "Tin tức"],
             icon: [faChevronRight],
         },
         {
-            title: "information",
-            content: ["about us", "deliver information", "privacy policy", "term & condition"],
+            title: "Thông tin",
+            content: ["Về chúng tôi", "Thông tin giao hàng", "Chính sách bảo mật", "Các điều khoản"],
             icon: [faChevronRight],
         },
         {
-            title: "extras",
-            content: ["brands", "gift certification", "affiliate", "specials"],
+            title: "Tính năng",
+            content: ["Nhãn hàng", "Quà tặng", "Liên kết", "Đặc biệt"],
             icon: [faChevronRight]
         },
         {
-            title: "contact us",
+            title: "Liên hệ với chúng tôi",
             content: ["0123.456.789", "bankem@gmail.com", "Ho Chi Minh City"],
             icon: [faPhone, faEnvelope, faLocationDot]
         }
@@ -51,10 +51,10 @@ function Footer() {
                 <div className={cx("box")}>
                     <img src={require("../../assets/img/logo.png")}
                         alt="logo" />
-                    <p>We're always in search for talented and motivated people. Don't be shy introduce yourself</p>
+                    <p>Chúng tôi luôn tìm kiếm những người tài năng. Đừng ngần ngại giới thiệu bản thân</p>
                     <Btn
                         href="/contact"
-                        value="contact now"
+                        value="Liên hệ ngay"
                     />
                 </div>
                 {
@@ -105,7 +105,7 @@ function Footer() {
                 }
             </div>
             <div className={cx("bottom")}>
-                <p>© 2023 code with my team. All Right Reserved</p>
+                <p>© Bản quyền thuộc về nhóm CNTT2021 IS207.O11</p>
             </div>
         </footer>
     )

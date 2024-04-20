@@ -26,17 +26,17 @@ function Dashboard() {
   return (
     <div className={cx("container")}>
       <div className={cx("heading")}>
-        <h1 className={cx("heading-title")}>dashboard</h1>
+        <h1 className={cx("heading-title")}>Bảng điều khiển</h1>
         <img src={require("../../../assets/img/separator.png")} alt="spr" />
       </div>
       {loading && <Loader />}
       {!loading && (
         <div className={cx("box-container")}>
           <div className={cx("box")}>
-            <h3 className={cx("box-title")}>Welcome !</h3>
+            <h3 className={cx("box-title")}>Chào mừng!</h3>
             <p>{currentUser.name}</p> {/*fetch_profile['name'] */}
             <Btn
-              value={"update profile"}
+              value={"Cập nhật thông tin"}
               style={{
                 width: "fit-content",
               }}
@@ -53,7 +53,7 @@ function Dashboard() {
               {data.totalMessage}
               {/*Number of message */}
             </h3>
-            <p>unread message</p>
+            <p>Tin nhắn chưa đọc</p>
 
             <Btn
               value={"see message"}
@@ -74,7 +74,7 @@ function Dashboard() {
               {/*Number of product */}
             </h3>
 
-            <p>products added</p>
+            <p>Sản phẩm đã thêm</p>
             <Btn
               href={
                 currentURL.includes("seller")
@@ -96,7 +96,7 @@ function Dashboard() {
               {/*Number of active product */}
             </h3>
 
-            <p>Total active products</p>
+            <p>Sản phẩm đang được bán</p>
 
             <Btn
               href={
@@ -104,7 +104,7 @@ function Dashboard() {
                   ? "/seller/viewproduct?sortBy=status&order=active"
                   : "/admin/viewproduct?sortBy=status&order=active"
               }
-              value={"View active product"}
+              value={"Xem"}
               style={{
                 width: "fit-content",
               }}
@@ -117,7 +117,7 @@ function Dashboard() {
               {/*Number of inactive product */}
             </h3>
 
-            <p>Total inactive products</p>
+            <p>Sản phẩm chưa được bán</p>
 
             <Btn
               href={
@@ -125,7 +125,7 @@ function Dashboard() {
                   ? "/seller/viewproduct?sortBy=status&order=inactive"
                   : "/admin/viewproduct?sortBy=status&order=inactive"
               }
-              value="View inactive product"
+              value="Xem"
               style={{
                 width: "fit-content",
               }}
@@ -138,10 +138,10 @@ function Dashboard() {
                 {data.totalUserAccounts}
                 {/*Number of users */}
               </h3>
-              <p>users account</p>
+              <p>Tài khoản người dùng</p>
               <Btn
                 href={"/admin/useraccount"}
-                value={"see users"}
+                value={"Xem"}
                 style={{
                   width: "fit-content",
                 }}
@@ -155,10 +155,10 @@ function Dashboard() {
                 {data.totalSellerAccounts}
                 {/*Number of sellers */}
               </h3>
-              <p>sellers account</p>
+              <p>Tài khoản nhân viên</p>
               <Btn
                 href={"/admin/staffaccount"}
-                value={"see sellers"}
+                value={"Xem"}
                 style={{
                   width: "fit-content",
                 }}
@@ -168,13 +168,13 @@ function Dashboard() {
           <div className={cx("box")}>
             {/*select orders from db*/}
             <h3 className={cx("box-title")}>{data.totalOrderPlaced}</h3>
-            <p>total orders placed</p>
+            <p>Tổng đơn đặt hàng</p>
 
             <Btn
               href={
                 currentURL.includes("seller") ? "/seller/order" : "/admin/order"
               }
-              value={"total orders"}
+              value={"Xem"}
               style={{
                 width: "fit-content",
               }}
@@ -186,10 +186,10 @@ function Dashboard() {
               {data.totalOrderConfirmed}
               {/*Number of confirm orders */}
             </h3>
-            <p>total confirm orders </p>
+            <p>Đơn đã xác nhận </p>
 
             <Btn
-              value={"confirm orders"}
+              value={"Xem"}
               href={
                 currentURL.includes("seller")
                   ? "/seller/order?status=delivered&payment_status=completed"
@@ -206,10 +206,10 @@ function Dashboard() {
               {data.totalOrderCanceld}
               {/*Number of canceled orders */}
             </h3>
-            <p>total canceled orders </p>
+            <p>Đơn đã hủy</p>
 
             <Btn
-              value={"canceled orders"}
+              value={"Xem"}
               href={ currentURL.includes("seller")
               ? '/seller/order?status=canceled&payment_status=pending'
               : '/admin/order?status=canceled&payment_status=pending'}

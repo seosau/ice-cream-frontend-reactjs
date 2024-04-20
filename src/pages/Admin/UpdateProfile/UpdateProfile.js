@@ -63,16 +63,16 @@ function UpdateProfile() {
       .then(({ data }) => {
         console.log(data);
         setcurrentUser(data);
-        Alert("success", "Update Successfully", "Have a nice day");
+        Alert("Thành công", "Cập nhật thành công", "Chúc một ngày tốt lành");
         navigate(url.includes('seller') ? "/seller/dashboard" : '/admin/dashboard');
       })
       .catch((error) => {
         if (error.response) {
           setErrors(error.response.data.errors);
           Alert(
-            "error",
-            "Update Failed",
-            "Something went wrong, please check again"
+            "Lỗi",
+            "Cập nhật thất bại",
+            "Đã có lỗi xảy ra"
           );
         }
       });
@@ -80,7 +80,7 @@ function UpdateProfile() {
   return (
     <div className={cx("container")}>
       <div className={cx("heading")}>
-        <h1 className={cx("heading-title")}>update profile details</h1>
+        <h1 className={cx("heading-title")}>Cập nhật thông tin tài khoản</h1>
         <img src={require("../../../assets/img/separator.png")} alt="spr" />
       </div>
       {loading && <Loader />}
@@ -101,13 +101,13 @@ function UpdateProfile() {
               <div className={cx("col")}>
                 <div className={cx("input-field")}>
                   <p>
-                    your name <span>*</span>
+                    Họ tên <span>*</span>
                   </p>
                   <input
                     className={cx("box")}
                     type="text"
                     name="name"
-                    placeholder="your old name"
+                    placeholder="Nhập họ tên"
                     //fetch placeholder from db
                     value={userDataUpdate.name}
                     onChange={(e) =>
@@ -120,13 +120,13 @@ function UpdateProfile() {
                 </div>
                 <div className={cx("input-field")}>
                   <p>
-                    your email <span>*</span>
+                    Email <span>*</span>
                   </p>
                   <input
                     className={cx("box")}
                     type="email"
                     name="email"
-                    placeholder="youroldemail@gmail.com"
+                    placeholder="Nhập email"
                     //fetch placeholder from db
                     value={userDataUpdate.email}
                     onChange={(e) =>
@@ -139,7 +139,7 @@ function UpdateProfile() {
                 </div>
                 <div className={cx("input-field")}>
                   <p>
-                    select picture <span>*</span>
+                    Ảnh đại diện <span>*</span>
                   </p>
                   <input
                     className={cx("box")}
@@ -153,13 +153,13 @@ function UpdateProfile() {
               <div className={cx("col")}>
                 <div className={cx("input-field")}>
                   <p>
-                    your old password <span>*</span>
+                    Mật khẩu cũ <span>*</span>
                   </p>
                   <input
                     className={cx("box")}
                     type="password"
                     name="oldpass"
-                    placeholder="enter your old password"
+                    placeholder="Nhập mật khẩu cũ"
                     value={userDataUpdate.old_password}
                     onChange={(e) =>
                       setUserDataUpdate({
@@ -171,13 +171,13 @@ function UpdateProfile() {
                 </div>
                 <div className={cx("input-field")}>
                   <p>
-                    your new password <span>*</span>
+                    Nhập mật khẩu mới <span>*</span>
                   </p>
                   <input
                     className={cx("box")}
                     type="password"
                     name="newpass"
-                    placeholder="enter your new password"
+                    placeholder="Nhập mật khẩu mới"
                     value={userDataUpdate.password}
                     onChange={(e) =>
                       setUserDataUpdate({
@@ -189,13 +189,13 @@ function UpdateProfile() {
                 </div>
                 <div className={cx("input-field")}>
                   <p>
-                    confirm password <span>*</span>
+                    Xác nhận mật khẩu mới <span>*</span>
                   </p>
                   <input
                     className={cx("box")}
                     type="password"
                     name="cpass"
-                    placeholder="confirm your password"
+                    placeholder="Nhập lại mật khẩu mới"
                     value={userDataUpdate.password_confirmation}
                     onChange={(e) =>
                       setUserDataUpdate({
@@ -208,8 +208,8 @@ function UpdateProfile() {
               </div>
             </div>
             <div className={cx("flex-btn")}>
-              <Btn value={"update profile"} onclick={onUpdate} />
-              <Btn href="/seller/dashboard" value="Go Back"></Btn>
+              <Btn value={"Cập nhật"} onclick={onUpdate} />
+              <Btn href="/seller/dashboard" value="Quay lại"></Btn>
             </div>
           </form>
         </div>

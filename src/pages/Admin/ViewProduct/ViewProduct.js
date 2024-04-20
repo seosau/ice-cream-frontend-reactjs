@@ -61,13 +61,13 @@ function ViewProduct() {
   const onDelete = (id) => {
     const url = currentPath.includes('/seller') ? '/seller/product' : '/admin/product';
     Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      title: "Bạn có chắc không?",
+      text: "Bạn sẽ không thể khôi phục.",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonText: "Có",
     }).then((result) => {
       if (result.isConfirmed) {
         axiosClient
@@ -75,15 +75,16 @@ function ViewProduct() {
           .then((res) => {
             // getProducts();
             Swal.fire({
-              title: "Deleted!",
-              text: "Your product has been deleted.",
+              title: "Đã xóa",
+              text: "Đã xóa sản phẩm.",
               icon: "success",
             });
             setProducts(prevProducts => prevProducts.filter(product => product.id !== id));
           })
           .catch((error) => {
             Swal.fire({
-              title: "Something went wrong",
+              title: "Lỗi",
+              text: "Đã có lỗi xảy ra",
               icon: "error",
             });
           });
@@ -117,7 +118,7 @@ function ViewProduct() {
   return (
     <div className={cx("container")}>
       <div className={cx("heading")}>
-        <h1 className={cx("heading-title")}>your products</h1>
+        <h1 className={cx("heading-title")}>Danh sách sản phẩm</h1>
         <img src={require("../../../assets/img/separator.png")} alt="spr" />
       </div>
       {products.length > 0 && (
@@ -143,13 +144,13 @@ function ViewProduct() {
               ))
             ) : (
               <div className={cx("empty")}>
-                <p>no product added yet!</p>
+                <p>Không có sản phẩm nào</p>
                 <Btn
                   style={{
                     width: "33%",
                     flex: 1,
                   }}
-                  value={"add product"}
+                  value={"Thêm sản phẩm"}
                   href={"/seller/addproduct"}
                 />
               </div>

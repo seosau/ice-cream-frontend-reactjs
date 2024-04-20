@@ -57,9 +57,9 @@ function Order() {
             ...prevOrderInfo,
             payment_status: paymentStatus.paymentStatus,
             status:
-              paymentStatus.paymentStatus === "completed"
-                ? "delivered"
-                : "in progress",
+              paymentStatus.paymentStatus === "Hoàn thành"
+                ? "Đã giao"
+                : "Đang xử lý",
           };
         }
         return prevOrderInfo;
@@ -69,9 +69,9 @@ function Order() {
         .then(({ data }) => {
           getOrderData();
           Alert(
-            "success",
-            "Updated!",
-            "This order will be deliverd to cusomer!"
+            "Thành công",
+            "Đã cập nhật!",
+            "Sản phẩm sẽ được sớm giao đến khách hàng!"
           );
         })
         .catch((error) => {
@@ -81,13 +81,13 @@ function Order() {
   };
   const handleDeleteOrder = (orderId) => {
     Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      title: "Bạn có chắc không?",
+      text: "Bạn sẽ không thể khôi phục lại.",
       icon: "question",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, cancel it!",
+      confirmButtonText: "Có",
     }).then((result) => {
       if (result.isConfirmed) {
         axiosClient
@@ -102,9 +102,9 @@ function Order() {
               prevOrderData.filter((orderInfo) => orderInfo.id !== orderId)
             );
             Swal.fire({
-              icon: "success",
-              title: "Deleted!",
-              text: "This order was deleted!",
+              icon: "Thành công",
+              title: "Đã xóa!",
+              text: "Đơn hàng này đã được xóa",
             });
           })
           .catch((error) => {
@@ -151,9 +151,9 @@ function Order() {
                     className={cx("status")}
                     style={{
                       color:
-                        orderInfo.status === "canceled"
+                        orderInfo.status === "Đã hủy"
                           ? "red"
-                          : orderInfo.status === "in progress"
+                          : orderInfo.status === "Đang xử lý"
                           ? "orange"
                           : "green",
                     }}
@@ -231,7 +231,7 @@ function Order() {
                         {/*fetch from db*/}
                       </span>
                     </p>
-                    {orderInfo.status === "canceled" ? null : (
+                    {orderInfo.status === "Đã hủy" ? null : (
                       <select
                         className={cx("box")}
                         name="update_payment"
@@ -243,19 +243,19 @@ function Order() {
                           });
                         }}
                       >
-                        <option value="completed">completed</option>
-                        <option value="pending">pending</option>
+                        <option value="Hoàn thành">Hoàn thành</option>
+                        <option value="Đang chờ">Đang chờ</option>
                       </select>
                     )}
                     <div className={cx("flex-btn")}>
                       <Btn
-                        value={"update payment"}
+                        value={"Cập nhật thanh toán"}
                         onclick={() =>
                           handleUpdatePaymentStatus(orderInfo.id, index)
                         }
                       />
                       <Btn
-                        value={"delete order"}
+                        value={"Xóa đơn"}
                         onclick={() => handleDeleteOrder(orderInfo.id)}
                       />
                     </div>
@@ -264,7 +264,7 @@ function Order() {
               ))
             ) : (
               <div className={cx("empty")}>
-                <p>no order placed yet!</p>
+                <p>Không có đơn đặt hàng nào.</p>
               </div>
             )}
           </>

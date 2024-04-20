@@ -33,7 +33,7 @@ function Profile() {
   return (
     <div className={cx("container")}>
       <div className={cx("heading")}>
-        <h1 className={cx("heading-title")}>profile details</h1>
+        <h1 className={cx("heading-title")}>Thông tin tài khoản</h1>
         <img src={require("../../../assets/img/separator.png")} alt="spr" />
       </div>
 
@@ -61,14 +61,14 @@ function Profile() {
               {/*fetch total produts*/}
               {data.totalProducts}
             </span>
-            <p>Total Products</p>
+            <p>Tổng số sản phẩm</p>
             <Btn
               href={
                 currentPath.includes("admin")
                   ? "/admin/viewproduct"
                   : "/seller/viewproduct"
               }
-              value="view your products"
+              value="Xem tất cả"
             />
           </div>
           <div className={cx("box")}>
@@ -76,13 +76,13 @@ function Profile() {
               {/*fetch total orders*/}
               {data.totalOrderPlaced}
             </span>
-            <p>Total Orders Placed</p>
+            <p>Tổng đơn đặt hàng</p>
 
             <Btn
               href={
                 currentPath.includes("admin") ? "/admin/order" : "/seller/order"
               }
-              value="view all orders"
+              value="Xem tất cả"
             />
           </div>
         </div>

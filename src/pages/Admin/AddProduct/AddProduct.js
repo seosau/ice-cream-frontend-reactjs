@@ -80,7 +80,7 @@ function AddProduct() {
   return (
     <div className={cx("container")}>
       <div className={cx("heading")}>
-        <h1 className={cx("heading-title")}>add product</h1>
+        <h1 className={cx("heading-title")}>Thêm sản phẩm</h1>
         <img src={require("../../../assets/img/separator.png")} alt="spr" />
       </div>
       <div className={cx("form-container")}>
@@ -92,14 +92,14 @@ function AddProduct() {
         >
           <div className={inputField}>
             <p>
-              product name<span>*</span>
+              Tên sản phẩm<span>*</span>
             </p>
             <input
               className={cx("box")}
               type="text"
               name="name"
               maxLength={100}
-              placeholder="add product name"
+              placeholder="Nhập tên sản phẩm"
               onChange={(e) => {
                 if (errors?.name) {
                   setErrors({ ...errors, name: "" });
@@ -114,14 +114,14 @@ function AddProduct() {
           </div>
           <div className={inputField}>
             <p>
-              product price<span>*</span>
+              Giá sản phẩm<span>*</span>
             </p>
             <input
               className={cx("box")}
               type="number"
               name="price"
               maxLength={100}
-              placeholder="add product price"
+              placeholder="Nhập giá sản phẩm"
               required
               onChange={(e) => {
                 if (errors?.price) {
@@ -137,7 +137,7 @@ function AddProduct() {
           </div>
           <div className={inputField}>
             <p>
-              product category<span>*</span>
+              Phân loại<span>*</span>
             </p>
             <select
               name="category"
@@ -147,21 +147,21 @@ function AddProduct() {
               }
               value={product.category}
             >
-              <option value="corn">corn</option>
-              <option value="coconut">coconut</option>
-              <option value="chocolate">chocolate</option>
-              <option value="strawberry">strawberry</option>
+              <option value="corn">Bắp</option>
+              <option value="coconut">Dừa</option>
+              <option value="chocolate">Socola</option>
+              <option value="strawberry">Dâu</option>
             </select>
           </div>
           <div className={inputField}>
             <p>
-              product detail<span>*</span>
+              Chi tiết sản phẩm<span>*</span>
             </p>
             <textarea
               className={cx("box")}
               name="description"
               maxLength={1000}
-              placeholder="add product detail"
+              placeholder="Nhập chi tiết sản phẩm"
               required
               onChange={(e) => {
                 if (errors?.product_detail) {
@@ -177,7 +177,7 @@ function AddProduct() {
           </div>
           <div className={inputField}>
             <p>
-              product stock<span>*</span>
+              Số lượng sản phẩm<span>*</span>
             </p>
             <input
               className={cx("box")}
@@ -186,7 +186,7 @@ function AddProduct() {
               maxLength={10}
               min={0}
               max={9999999999}
-              placeholder="add product stock"
+              placeholder="Nhập số lượng sản phẩm"
               required
               onChange={(e) => {
                 if (errors?.stock) {
@@ -202,7 +202,7 @@ function AddProduct() {
           </div>
           <div className={inputField}>
             <p>
-              product image<span>*</span>
+              Ảnh sản phẩm<span>*</span>
             </p>
             <div className={cx("product-img-box")}>
               {product.image_url && (
@@ -228,7 +228,7 @@ function AddProduct() {
                   accept="image/*"
                   onChange={onImageChoose}
                 />
-                Change
+                Thay đổi
               </button>
             </div>
             {errors?.image ? (
@@ -236,9 +236,9 @@ function AddProduct() {
             ) : null}
           </div>
           <div className={cx("flex-btn")}>
-            <Btn value="add product" onclick={addProduct} />
+            <Btn value="Thêm sản phẩm" onclick={addProduct} />
 
-            <Btn value="save as draft" onclick={saveAsDraf} />
+            <Btn value="Lưu nháp" onclick={saveAsDraf} />
           </div>
         </form>
       </div>
