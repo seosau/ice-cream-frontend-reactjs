@@ -2,7 +2,7 @@ import { useState } from "react";
 import className from "classnames/bind";
 import style from "./Register.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faImage,faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { faImage, faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import Btn from "../../../components/Button/Btn";
 import axiosClient from "../../../axiosClient/axios.js";
 
@@ -51,7 +51,7 @@ function Register() {
       .post(`${pathname}`, payload)
       .then(({ data }) => {
         if (pathname.includes("admin")) {
-          Alert("success", "Add Seller Successfully");
+          Alert("success", "Thêm Nhân Viên Thành Công");
           setUserDataRegister({
             name: "",
             email: "",
@@ -63,8 +63,8 @@ function Register() {
         } else {
           Alert(
             "success",
-            "Register Successfully",
-            "Please login for a great experience"
+            "Đăng Ký Thành Công",
+            "Đăng nhập ngay để trải nghiệm"
           );
           navigate("/login");
         }
@@ -85,19 +85,19 @@ function Register() {
     <div className={cx("form-container")}>
       <form encType="multipart/from-data" className={cx("register")}>
         <h3 className={cx("")}>
-          {pathname.includes("admin") ? "Add new seller" : "register now"}
+          {pathname.includes("admin") ? "thêm nhân viên mới" : "đăng ký ngay"}
         </h3>
         <div className={cx("")}>
           <div className={cx("input-field")}>
             <p className={cx("")}>
-              {pathname.includes("admin") ? "seller" : "your"} name{" "}
+              {pathname.includes("admin") ? "họ và tên nhân viên" : "họ và tên"}
               <span className={cx("")}>*</span>
             </p>
             <input
               className={cx("box")}
               type="text"
               name="name"
-              placeholder="enter your name..."
+              placeholder="nhập họ và tên..."
               maxLength={50}
               onChange={(e) => {
                 if (errors?.name) {
@@ -116,14 +116,14 @@ function Register() {
           </div>
           <div className={cx("input-field")}>
             <p className={cx("")}>
-              {pathname.includes("admin") ? "seller" : "your"} email{" "}
+              {pathname.includes("admin") ? "email của nhân viên" : "email"}
               <span className={cx("")}>*</span>
             </p>
             <input
               className={cx("box")}
               type="email"
               name="email"
-              placeholder="enter your email..."
+              placeholder="nhập email..."
               maxLength={50}
               onChange={(e) => {
                 if (errors?.email) {
@@ -142,14 +142,15 @@ function Register() {
           </div>
           <div className={cx("input-field")}>
             <p className={cx("")}>
-              {pathname.includes("admin") ? "seller" : "your"} password{" "}
+              {/* {pathname.includes("admin") ? "seller" : "your"} mật khẩu{" "} */}
+              mật khẩu
               <span className={cx("")}>*</span>
             </p>
             <input
               className={cx("box")}
               type={inputType}
               name="password"
-              placeholder="enter your password..."
+              placeholder="nhập mật khẩu..."
               maxLength={50}
               onChange={(e) => {
                 if (errors?.password) {
@@ -183,13 +184,13 @@ function Register() {
           </div>
           <div className={cx("input-field")}>
             <p className={cx("")}>
-              confirm password <span className={cx("")}>*</span>
+              xác nhận mật khẩu <span className={cx("")}>*</span>
             </p>
             <input
               className={cx("box")}
               type="password"
               name="password-confirmation"
-              placeholder="confirm your password..."
+              placeholder="nhập lại mật khẩu..."
               maxLength={50}
               onChange={(e) => {
                 if (errors?.password) {
@@ -208,7 +209,8 @@ function Register() {
           </div>
           <div className={cx("input-field")}>
             <p>
-              {pathname.includes("admin") ? "seller" : "your"} profile{" "}
+              {/* {pathname.includes("admin") ? "seller" : "your"} ảnh đại diện{" "} */}
+              ảnh đại diện
               <span>*</span>
             </p>
             <div className={cx("profile-img-box")}>
@@ -235,7 +237,7 @@ function Register() {
                   accept="image/*"
                   onChange={onImageChoose}
                 />
-                Change
+                Đổi
               </button>
             </div>
           </div>
@@ -243,9 +245,9 @@ function Register() {
 
         {!pathname.includes("admin") ? (
           <p className={cx("link")}>
-            already have an account?
+            đã có tài khoản?
             <Link to={pathname.includes("seller") ? "/seller/login" : "/login"}>
-              login now
+              đăng nhập ngay
             </Link>
           </p>
         ) : null}

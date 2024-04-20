@@ -37,20 +37,20 @@ function UserProfile() {
       </div> */}
       <div className={cx("profile")}>
         <div className={cx("heading")}>
-          <h1>profile details</h1>
-          <img src={require("../../../assets/img/separator.png")} alt=""/>
+          <h1>Thông tin cá nhân</h1>
+          <img src={require("../../../assets/img/separator.png")} alt="" />
         </div>
         <div className={cx("details")}>
           <div className={cx("user")}>
-            <img src={image_url} alt=""/>
+            <img src={image_url} alt="" />
             <h3>{user.name}</h3>
             <p>{user.email}</p>
             <Btn
               href={`updateprofile`}
-              value="update profile"
+              value="cập nhật thông tin"
               style={{
                 // width: "30%",
-                width: 'fit-content',
+                width: "fit-content",
               }}
             />
           </div>
@@ -65,10 +65,10 @@ function UserProfile() {
               </div>
               <Btn
                 href={`/order`}
-                value="view orders"
+                value="xem đơn hàng"
                 style={{
                   // width: "60%",
-                  width: 'fit-content',
+                  width: "fit-content",
                 }}
               />
             </div>
@@ -79,10 +79,10 @@ function UserProfile() {
               </div>
               <Btn
                 href={`/contact`}
-                value="view messages"
+                value="xem tin nhắn"
                 style={{
                   // width: "60%",
-                  width: 'fit-content',
+                  width: "fit-content",
                 }}
               />
             </div>

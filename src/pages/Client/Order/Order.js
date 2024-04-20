@@ -16,13 +16,13 @@ function Order() {
   const handleEventUpdateOrder = (orderId, index) => {
     if (orderData[index].status === "in progress") {
       Swal.fire({
-        title: "Are you sure?",
-        text: "You won't be able to revert this!",
+        title: "Bạn chắc chắn?",
+        text: "Bạn sẽ không thể hoàn tác hành động này!",
         icon: "question",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, cancel it!",
+        confirmButtonText: "Đúng, hủy nó!",
       }).then((result) => {
         if (result.isConfirmed) {
           const updateOrderData = orderData.map((prevOrderInfo) => {
@@ -43,8 +43,8 @@ function Order() {
             .then(({ data }) => {
               console.log(data);
               Swal.fire({
-                title: "Canceled!",
-                text: "Your order have been canceled!",
+                title: "Đã hủy!",
+                text: "Đơn hàng của bạn đã được hủy!",
                 icon: "success",
               });
             })
@@ -73,15 +73,15 @@ function Order() {
     if (userToken) {
       getOrderData();
     } else {
-      Alert("warning", "Please login to have more experience");
-      navigate('/login')
+      Alert("warning", "Vui lòng đăng nhập để thực hiện chức năng này");
+      navigate("/login");
     }
   }, [userToken]);
   return (
     <div className={cx("main-container")}>
       <div className={cx("orders")}>
         <div className={cx("heading")}>
-          <h1>My Orders</h1>
+          <h1>Đơn hàng của tôi</h1>
           <img
             src={require("../../../assets/img/separator.png")}
             alt="separator"
@@ -109,7 +109,7 @@ function Order() {
                       />
                       <div className={cx("")}>
                         <h3 className={cx("name")}>{orderInfo.product_name}</h3>
-                        <p className={cx("price")}>Price: {orderInfo.price}$</p>
+                        <p className={cx("price")}>Giá: {orderInfo.price}VNĐ</p>
                         <p
                           className={cx(
                             "status",
@@ -125,7 +125,7 @@ function Order() {
                           style={{
                             width: "fit-content",
                           }}
-                          value="view order"
+                          value="xem đơn hàng"
                         />
                         {orderInfo.status.toLowerCase() ===
                         "delivered" ? null : (
@@ -140,8 +140,8 @@ function Order() {
                             }}
                             value={
                               orderInfo.status === "canceled"
-                                ? "order again"
-                                : "cancel"
+                                ? "đặt lại"
+                                : "hủy"
                             }
                             onclick={() =>
                               handleEventUpdateOrder(orderInfo.id, index)
@@ -154,7 +154,7 @@ function Order() {
                 ))
               ) : (
                 <div className={cx("empty")}>
-                  <p>no product was found!</p>
+                  <p>không tìm thấy sản phẩm nào!</p>
                 </div>
               )}
             </>

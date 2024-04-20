@@ -40,8 +40,8 @@ function Contact() {
     } else {
       Alert(
         "warning",
-        "You are not logged in",
-        "Please login to have more experience"
+        "Bạn chưa đăng nhập",
+        "Vui lòng đăng nhập để thực hiện chức năng này"
       );
       navigate("/login");
     }
@@ -53,20 +53,24 @@ function Contact() {
     <div className={cx("main-container")}>
       <div className={cx("banner")}>
         <div className={cx("detail")}>
-          <h1>Contact Us</h1>
+          <h1>Liên hệ chúng tôi</h1>
           <p>
-            Need assistance or have inquiries? Contact us anytime through our<br/>
-            user-friendly contact page. Our dedicated team is ready to help you<br/>
-            promptly and provide the support you need.
+            Bạn cần hỗ trợ hoặc có thắc mắc? Hãy liên hệ với chúng tôi bất cứ{" "}
+            <br />
+            lúc nào thông qua trang người dùng của chúng tôi. Đội ngũ chuyên{" "}
+            <br />
+            nghiệp của chúng tôi sẵn sàng giải đáp thắc mắc và cung cấp sự hỗ{" "}
+            <br />
+            trợ mà bạn cần
           </p>
         </div>
       </div>
       <div className={cx("services")}>
         <div className={cx("heading")}>
-          <h1>Our Services</h1>
+          <h1>Dịch vụ của chúng tôi</h1>
           <p>
-            Just A Few Click To Make The Reservation Online For Saving Your Time
-            And Money
+            Chỉ cần vài cú click để đặt chỗ trực tuyến và tiết kiệm thời gian
+            cũng như tiền bạc của bạn
           </p>
           <img
             src={require("../../../assets/img/separator.png")}
@@ -77,32 +81,32 @@ function Contact() {
           <div className={cx("box")}>
             <img src={require("../../../assets/img/0.png")} alt=""></img>
             <div>
-              <h1>Free Shipping Fast</h1>
-              <p>Rapid delivery with complimentary shipping!</p>
+              <h1>Giao nhanh miễn phí</h1>
+              <p>Giao hàng nhanh chóng và miễn phí!</p>
             </div>
           </div>
           <div className={cx("box")}>
             <img src={require("../../../assets/img/1.png")} alt=""></img>
             <div>
-              <h1>Money Back & Guanrantee</h1>
-              <p>Money-back guarantee for your assurance.</p>
+              <h1>Hoàn tiền & Bảo đảm</h1>
+              <p>Cam kết hoàn tiền để đảm bảo cho bạn</p>
             </div>
           </div>
           <div className={cx("box")}>
             <img src={require("../../../assets/img/2.png")} alt=""></img>
             <div>
-              <h1>Online Support 24/7</h1>
-              <p>24/7 online support for you anytime.</p>
+              <h1>Hỗ trợ trực tuyến 24/7</h1>
+              <p>Giúp bạn có thể liên hệ bất cứ lúc nào</p>
             </div>
           </div>
         </div>
       </div>
       <div className={cx("form-container")}>
         <div className={cx("heading")}>
-          <h1>drop us a line</h1>
+          <h1>liên hệ với chúng tôi</h1>
           <p>
-            Just A Few Click To Make The Reservation Online For Saving Your Time
-            And Money
+            Chỉ cần vài cú click để đặt chỗ trực tuyến và tiết kiệm thời gian
+            cũng như tiền bạc của bạn
           </p>
           <img
             src={require("../../../assets/img/separator.png")}
@@ -112,14 +116,14 @@ function Contact() {
         <form className={cx("register")}>
           <div className={cx("input-field")}>
             <label>
-              name <sup>*</sup>
+              tên <sup>*</sup>
             </label>
             <input
               className={cx("box")}
               type="text"
               name="name"
               required
-              placeholder="enter your name"
+              // placeholder="enter your name"
               value={message.user_name}
               onChange={(e) => {
                 if (errors?.user_name) {
@@ -141,7 +145,7 @@ function Contact() {
               type="text"
               name="email"
               required
-              placeholder="enter your email"
+              // placeholder="enter your email"
               value={message.email}
               onChange={(e) => {
                 if (errors?.email) {
@@ -156,14 +160,14 @@ function Contact() {
           </div>
           <div className={cx("input-field")}>
             <label>
-              subject <sup>*</sup>
+              tiêu đề <sup>*</sup>
             </label>
             <input
               className={cx("box")}
               type="text"
               name="subject"
               required
-              placeholder="enter your reason..."
+              // placeholder="enter your reason..."
               value={message.subject}
               onChange={(e) => {
                 if (errors?.subject) {
@@ -178,7 +182,7 @@ function Contact() {
           </div>
           <div className={cx("input-field")}>
             <label>
-              comment <sup>*</sup>
+              nội dung <sup>*</sup>
             </label>
             <textarea
               className={cx("box")}
@@ -186,7 +190,7 @@ function Contact() {
               cols="30"
               rows="10"
               required
-              placeholder="enter your comment..."
+              // placeholder="enter your comment..."
               value={message.message}
               onChange={(e) => {
                 if (errors?.message) {
@@ -201,7 +205,7 @@ function Contact() {
           </div>
           <Btn
             onclick={handleSubmitMessage}
-            value="send message"
+            value="gửi"
             style={{ width: "40%" }}
           />
         </form>
@@ -209,10 +213,10 @@ function Contact() {
 
       <div className={cx("address")}>
         <div className={cx("heading")}>
-          <h1>our contact details</h1>
+          <h1>Thông tin liên hệ</h1>
           <p>
-            Just A Few Click To Make The Reservation Online For Saving Your Time
-            And Money
+            Chỉ cần vài cú click để đặt chỗ trực tuyến và tiết kiệm thời gian
+            cũng như tiền bạc của bạn
           </p>
           <img
             src={require("../../../assets/img/separator.png")}
@@ -226,16 +230,17 @@ function Contact() {
               className={cx("icon-style")}
             />
             <div>
-              <h4>address</h4>
+              <h4>Địa chỉ</h4>
               <p>
-                1093 Marigold, Coral Way <br /> Miami, Florida, 33169
+                Đường Hàn Thuyên, khu phố 6 P,
+                <br /> Thủ Đức, Thành phố Hồ Chí Minh
               </p>
             </div>
           </div>
           <div className={cx("box")}>
             <FontAwesomeIcon icon={faPhone} className={cx("icon-style")} />
             <div>
-              <h4>phone number</h4>
+              <h4>Số điện thoại</h4>
               <p>0934102546</p>
               <p>0358000001</p>
             </div>

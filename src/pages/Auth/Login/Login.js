@@ -29,7 +29,7 @@ function Login() {
     axiosClient
       .post(`${pathname}`, userDataLogin)
       .then(({ data }) => {
-        Alert("success", "Login Successfully", "Have a nice day");
+        Alert("success", "Đăng Nhập Thành Công", "Chúc 1 ngày tốt lành");
         setUserToken(data.token);
         setcurrentUser(data.user);
       })
@@ -43,7 +43,7 @@ function Login() {
           //   "Something went wrong, please check again"
           // );
         } else {
-          Alert("error", "Login Failed", `${error.response.data.error}`);
+          Alert("error", "Đăng Nhập Thất Bại", `${error.response.data.error}`);
         }
       });
   };
@@ -55,16 +55,16 @@ function Login() {
         encType="multipart/from-data"
         className={cx("login")}
       >
-        <h3 className={cx("")}>login now</h3>
+        <h3 className={cx("")}>đăng nhập ngay</h3>
         <div className={cx("input-field")}>
           <p className={cx("")}>
-            your email <span className={cx("")}>*</span>
+            email <span className={cx("")}>*</span>
           </p>
           <input
             className={cx("box")}
             type="email"
             name="email"
-            placeholder="enter your email..."
+            placeholder="nhập email..."
             maxLength={50}
             required
             onChange={(e) => {
@@ -84,13 +84,13 @@ function Login() {
         </div>
         <div className={cx("input-field")}>
           <p className={cx("")}>
-            your password <span className={cx("")}>*</span>
+            mật khẩu <span className={cx("")}>*</span>
           </p>
           <input
             className={cx("box")}
             type={inputType}
             name="password"
-            placeholder="enter your password..."
+            placeholder="nhập mật khẩu..."
             maxLength={50}
             required
             onChange={(e) => {
@@ -105,7 +105,11 @@ function Login() {
             value={userDataLogin.password}
           />
           {inputType === "password" ? (
-            <FontAwesomeIcon icon={faEye} className={cx("icon-showpassword")} onClick={setShowPassword}/>
+            <FontAwesomeIcon
+              icon={faEye}
+              className={cx("icon-showpassword")}
+              onClick={setShowPassword}
+            />
           ) : (
             <FontAwesomeIcon
               icon={faEyeSlash}
@@ -121,11 +125,11 @@ function Login() {
           ) : null}
         </div>
         <p className={cx("link")}>
-          do not have an account?
+          chưa có tài khoản?
           <Link
             to={pathname.includes("seller") ? "/seller/register" : "/register"}
           >
-            register now
+            đăng ký ngay
           </Link>
         </p>
 

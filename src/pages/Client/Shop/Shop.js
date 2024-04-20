@@ -106,7 +106,7 @@ function Shop() {
         .post("/wishlists", payload)
         .then(({ data }) => {
           setWishListIds(data.wishListIds);
-          Alert("success", "Add to wish list successfully");
+          Alert("success", "Thêm vào giỏ hàng thành công");
         })
         .catch((error) => {
           if (error.response) {
@@ -116,8 +116,8 @@ function Shop() {
     } else {
       Alert(
         "warning",
-        "You are not logged in",
-        "Please login to have more experience"
+        "Bạn chưa đăng nhập",
+        "Vui lòng đăng nhập để thực hiện chức năng này"
       );
       navigate("/login");
     }
@@ -126,8 +126,8 @@ function Shop() {
     if (currentUser.id) {
       if (product.stock === 0) {
         Swal.fire({
-          title: "Sorry",
-          text: "This product will refill soon",
+          title: "Xin lỗi",
+          text: "Sản phẩm này sẽ sớm được thêm vào",
           imageUrl: require("../../../assets/img/crying.png"),
           imageWidth: 80,
           imageHeight: 80,
@@ -139,7 +139,7 @@ function Shop() {
       axiosClient
         .post("/cart", payload)
         .then(({ data }) => {
-          Alert("success", "Add to cart successfully");
+          Alert("success", "Thêm vào giỏ hàng thành công");
           setCartIds(data.cartListIds);
           setQuantityCart(data.quantity);
         })
@@ -151,8 +151,8 @@ function Shop() {
     } else {
       Alert(
         "warning",
-        "You are not logged in",
-        "Please login to have more experience"
+        "Bạn chưa đăng nhập",
+        "Vui lòng đăng nhập để thực hiện chức năng này"
       );
       navigate("/login");
     }
@@ -161,8 +161,8 @@ function Shop() {
     if (currentUser.id) {
       if (product.stock === 0) {
         Swal.fire({
-          title: "Sorry",
-          text: "This product will refill soon",
+          title: "Xin lỗi",
+          text: "Sản phẩm này sẽ sớm được thêm vào",
           imageUrl: require("../../../assets/img/crying.png"),
           imageWidth: 80,
           imageHeight: 80,
@@ -174,8 +174,8 @@ function Shop() {
     } else {
       Alert(
         "warning",
-        "You are not logged in",
-        "Please login to have more experience"
+        "Bạn chưa đăng nhập",
+        "Vui lòng đăng nhập để thực hiện chức năng này"
       );
       navigate("/login");
     }
@@ -184,18 +184,24 @@ function Shop() {
     <div className={cx("main-container")}>
       <div className={cx("banner")}>
         <div className={cx("detail")}>
-          <h1>Our Menu</h1>
+          <h1>Menu Của Chúng Tôi</h1>
           <p>
-            Welcome to our charming ice cream shop! Nestled in the city center,<br/>
-            we offer a delectable array of freshly churned delights. Indulge in<br/>
-            creamy perfection with our exquisite flavors, carefully crafted from<br/>
-            the finest ingredients. Treat yourself to a taste of pure joy!<br/>
+            Chào mừng đến với cửa hàng kem của chúng tôi! Chúng tôi cung cấp một
+            <br />
+            loạt các món ngon tươi mới vô cùng ngon miệng. Hãy thưởng thức sự
+            <br />
+            hoàn hảo của kem mịn màng với những hương vị tinh tế của chúng tôi,
+            <br />
+            được chế biến cẩn thận từ những nguyên liệu tốt nhất. Hãy tự thưởng
+            <br />
+            cho mình một chút niềm vui nào!
+            <br />
           </p>
         </div>
       </div>
       <div className={cx("products")}>
         <div className={cx("heading")}>
-          <h1>Our Latest Flavoure</h1>
+          <h1>Những món ngon mới nhất</h1>
           <img
             src={require("../../../assets/img/separator.png")}
             alt="separator"
@@ -223,10 +229,10 @@ function Shop() {
                       <img src={product.image_url} alt="product" />
                       <p className={cx("status")}>
                         {product.stock > 9
-                          ? "In Stock"
+                          ? "Còn sản phẩm"
                           : product.stock > 0
-                          ? `Hunry, only ${product.stock} left`
-                          : "Out of Stock"}
+                          ? `Nhanh, chỉ còn ${product.stock} sản phẩm`
+                          : "Hết sản phẩm"}
                       </p>
                     </Link>
                     <div className={cx("content")}>
@@ -237,13 +243,13 @@ function Shop() {
                       />
                       <div className={cx("price-name")}>
                         <h2 className={cx("name")}>{product.name}</h2>
-                        <h3 className={cx("price")}>Price ${product.price}</h3>
+                        <h3 className={cx("price")}>Giá {product.price}VNĐ</h3>
                       </div>
                       <div className={cx("flex-btn")}>
                         <Btn
                           onclick={() => handleBuyProduct(product)}
                           style={{ flex: 1 }}
-                          value="Buy Now"
+                          value="Mua Ngay"
                           href={`?from=menu&id=${product.id}`}
                         />
                         <div className={cx("like-cart")}>
@@ -275,7 +281,7 @@ function Shop() {
                 ))
               ) : (
                 <div className={cx("empty")}>
-                  <p>no product was found!</p>
+                  <p>không tìm thấy sản phẩm nào!</p>
                 </div>
               )}
             </>
