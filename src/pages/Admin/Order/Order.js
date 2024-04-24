@@ -213,7 +213,7 @@ function Order() {
                     <p>
                       total price:
                       <span>
-                        {orderInfo.price * orderInfo.quantity}$
+                        {orderInfo.price * orderInfo.quantity}VNĐ
                         {/*fetch from db*/}
                       </span>
                     </p>

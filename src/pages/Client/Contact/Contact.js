@@ -30,7 +30,7 @@ function Contact() {
         .post("/message", payload)
         .then(({ data }) => {
           setMessage({ user_name: "", email: "", subject: "", message: "" });
-          Alert("success", "Thank you for your message");
+          Alert("success", "Cảm ơn góp ý của bạn");
         })
         .catch((error) => {
           if (error.response) {

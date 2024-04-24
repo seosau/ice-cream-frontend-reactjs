@@ -93,7 +93,7 @@ function ViewOrder() {
                 </div>
                 <p className={cx("grand-total")}>
                   {" "}
-                  tổng cộng: {orderInfo.price * orderInfo.quantity}$
+                  tổng cộng: {orderInfo.price * orderInfo.quantity}VNĐ
                 </p>
               </div>
               <div className={cx("col")}>

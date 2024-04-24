@@ -201,7 +201,7 @@ function Cart() {
                           Tổng:
                           <span>
                             {" "}
-                            ${(product.price * product.quantity).toFixed(1)}
+                            {(product.price * product.quantity).toFixed(1)}VNĐ
                           </span>
                         </p>
                         <Btn
@@ -232,7 +232,7 @@ function Cart() {
         {grandTotal > 0 ? (
           <div className={cx("cart-total")}>
             <p>
-              tổng tiền phải trả: <span>{grandTotal}$</span>
+              tổng tiền phải trả: <span>{grandTotal}VNĐ</span>
             </p>
             <Btn
               href="/checkout"

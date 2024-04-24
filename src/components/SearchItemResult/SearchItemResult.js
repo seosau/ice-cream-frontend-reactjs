@@ -15,7 +15,7 @@ function SearchItemResult({ data, onClick }) {
         <h4 className={cx("name")}>
           <span>{data.name}</span>
         </h4>
-        <span className={cx("price")}>{data.price}$</span>
+        <span className={cx("price")}>{data.price}VNĐ</span>
       </div>
     </div>
   );

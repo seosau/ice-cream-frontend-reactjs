@@ -155,7 +155,7 @@ export default function Checkout() {
                 />
                 <div className={cx("product-info")}>
                   <h3 className={cx("name")}>{product.name}</h3>
-                  <span className={cx("price")}>{product.price}$ X</span>
+                  <span className={cx("price")}>{product.price}VNĐ X</span>
                   <div className={cx("quantity")}>
                     <button
                       className={cx("btn-quantity", "quanity-item")}
@@ -186,7 +186,7 @@ export default function Checkout() {
             ))}
           </div>
           <div className={cx("total")}>
-            <span>Tổng tiền phải trả: {grandTotal}$</span>
+            <span>Tổng tiền phải trả: {grandTotal}VNĐ</span>
           </div>
         </div>
         <div className={cx("form-container")}>

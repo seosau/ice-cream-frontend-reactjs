@@ -15,7 +15,7 @@ function ProductListItem({ item, onDelete, url }) {
         {item.status}
       </div>
       {/*-----product price-----*/}
-      <div className={cx("price")}>${item.price}</div>
+      <div className={cx("price")}>{item.price}VNĐ</div>
       <div className={cx("content")}>
         <img
           alt=""

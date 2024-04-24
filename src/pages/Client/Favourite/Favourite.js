@@ -110,7 +110,7 @@ function Favourite() {
     <div className={cx("main-container")}>
       <div className={cx("products")}>
         <div className={cx("heading")}>
-          <h1>My wishlist</h1>
+          <h1>Danh sách yêu thích</h1>
           <img
             src={require("../../../assets/img/separator.png")}
             alt="separator"
@@ -133,7 +133,7 @@ function Favourite() {
                         className={cx("sharp")}
                       />
                       <h3>{product.name}</h3>
-                      <p className={cx("price")}>Price: ${product.price}</p>
+                      <p className={cx("price")}>Giá: {product.price}VNĐ</p>
                       <div className={cx("flex-btn")}>
                         <Btn
                           onclick={() => handleClickCart(product)}

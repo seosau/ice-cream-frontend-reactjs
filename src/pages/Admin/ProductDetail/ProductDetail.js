@@ -47,7 +47,7 @@ function ProductDetail() {
 
             <img alt="" className={cx("image")} src={product.image_url} />
             {/*-----product price-----*/}
-            <div className={cx("price")}>${product.price}</div>
+            <div className={cx("price")}>{product.price}VNĐ</div>
             <div className={cx("title")}>{product.name}</div>
             <div className={cx("content")}>
               {/*Product detail from db */}
