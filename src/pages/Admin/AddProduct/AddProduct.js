@@ -15,7 +15,7 @@ function AddProduct() {
   const [product, setProduct] = useState({
     name: "",
     price: "",
-    category: "corn",
+    category: "bắp",
     product_detail: "",
     stock: "",
     image: "",
@@ -49,14 +49,14 @@ function AddProduct() {
         setProduct({
           name: "",
           price: "",
-          category: "corn",
+          category: "bắp",
           product_detail: "",
           stock: "",
           image: "",
           image_url: "",
           status: "",
         });
-        Alert("success", "Insert product successfully");
+        Alert("Thành công", "Thêm sản phẩm thành công");
       })
       .catch((error) => {
         if (error.response) {
@@ -147,10 +147,10 @@ function AddProduct() {
               }
               value={product.category}
             >
-              <option value="corn">Bắp</option>
-              <option value="coconut">Dừa</option>
-              <option value="chocolate">Socola</option>
-              <option value="strawberry">Dâu</option>
+              <option value="bắp">Bắp</option>
+              <option value="dừa">Dừa</option>
+              <option value="socola">Socola</option>
+              <option value="dâu">Dâu</option>
             </select>
           </div>
           <div className={inputField}>

@@ -3,11 +3,12 @@ import { Link, useNavigate } from "react-router-dom";
 import className from "classnames/bind";
 import style from "./Shop.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHeart, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import { faHeart, faShoppingCart, faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { Alert, Btn, Loader } from "../../../components";
 import FilterProducts from "../../../components/FilterProducts/FilterProducts";
 import PaginationLinks from "../../../components/PaginationLinks/PaginationLinks";
 import axiosClient from "../../../axiosClient/axios";
+import ReactPaginate from "react-paginate";
 import { useStateContext } from "../../../context/ContextProvider";
 import Swal from "sweetalert2";
 const cx = className.bind(style);
@@ -21,6 +22,8 @@ function Shop() {
     setCartIds,
     setQuantityCart,
   } = useStateContext();
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [meta, setMeta] = useState({});
@@ -34,12 +37,12 @@ function Shop() {
       payload = { ...params };
     }
     await axiosClient
-      .get(url, {
+      .get(`${url}?page=${currentPage}`, {
         params: payload,
       })
       .then(({ data }) => {
-        setProducts(data.data);
-        setMeta(data.meta);
+        setProducts(data.content);
+        setTotalPages(data.totalPages);
         setLoading(false);
       })
       .catch((error) => {
@@ -64,15 +67,15 @@ function Shop() {
     setLoading(true);
     setParams({ sortBy, order });
     axiosClient
-      .get(`/viewproduct`, {
+      .get(`/viewproduct?page=${currentPage}`, {
         params: {
           sortBy: sortBy,
           order: order,
         },
       })
       .then(({ data }) => {
-        setProducts(data.data);
-        setMeta(data.meta);
+        setProducts(data.content);
+        setTotalPages(data.totalPages);
         setLoading(false);
       })
       .catch((error) => {
@@ -98,7 +101,7 @@ function Shop() {
   };
   useEffect(() => {
     getProductsFromCurrentUrl();
-  }, [currentURL]);
+  }, [currentPage, currentURL]);
   const handleClickLike = (product) => {
     if (currentUser.id) {
       const payload = { ...product, user_id: currentUser.id };
@@ -180,6 +183,13 @@ function Shop() {
       navigate("/login");
     }
   };
+
+
+
+  const handlePageClick = (event) => {
+    setCurrentPage(+event.selected + 1);
+  };
+
   return (
     <div className={cx("main-container")}>
       <div className={cx("banner")}>
@@ -226,13 +236,13 @@ function Shop() {
                       state={product}
                       className={cx("view-order")}
                     >
-                      <img src={product.image_url} alt="product" />
+                      <img src={product.image} alt="product" />
                       <p className={cx("status")}>
                         {product.stock > 9
                           ? "Còn sản phẩm"
                           : product.stock > 0
-                          ? `Nhanh, chỉ còn ${product.stock} sản phẩm`
-                          : "Hết sản phẩm"}
+                            ? `Nhanh, chỉ còn ${product.stock} sản phẩm`
+                            : "Hết sản phẩm"}
                       </p>
                     </Link>
                     <div className={cx("content")}>
@@ -288,7 +298,41 @@ function Shop() {
           )}
         </div>
         {products.length > 0 && (
-          <PaginationLinks meta={meta} onPageClick={onPageClick} />
+          //     <ReactPaginate
+          //     previousLabel={'previous'}
+          //     nextLabel={'next'}
+          //     breakLabel={'...'}
+          //     breakClassName={'break-me'}
+          //     pageCount={totalPages}
+          //     marginPagesDisplayed={2}
+          //     pageRangeDisplayed={5}
+          //     onPageChange={handlePageClick}
+          //     containerClassName={'pagination'}
+          //     subContainerClassName={'pages pagination'}
+          //     activeClassName={'active'}
+          // />
+
+          <ReactPaginate
+            nextLabel={<FontAwesomeIcon icon={faChevronRight} />}
+            onPageChange={handlePageClick}
+            pageRangeDisplayed={3}
+            marginPagesDisplayed={2}
+            pageCount={totalPages}
+            previousLabel={<FontAwesomeIcon icon={faChevronLeft} />}
+            pageClassName="page-item"
+            pageLinkClassName={cx("btn")}
+            previousClassName="page-item"
+            previousLinkClassName={cx("btn")}
+            nextClassName="page-item"
+            nextLinkClassName={cx("btn")}
+            breakLabel="..."
+            breakClassName="page-item"
+            breakLinkClassName={cx("btn")}
+            containerClassName={cx("paginate")}
+            activeClassName={cx("active")}
+            renderOnZeroPageCount={null}
+          />
+
         )}
       </div>
     </div>
