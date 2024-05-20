@@ -16,7 +16,7 @@ function AddProduct() {
     name: "",
     price: "",
     category: "bắp",
-    product_detail: "",
+    productDetail: "",
     stock: "",
     image: "",
     image_url: "",
@@ -50,13 +50,13 @@ function AddProduct() {
           name: "",
           price: "",
           category: "bắp",
-          product_detail: "",
+          productDetail: "",
           stock: "",
           image: "",
           image_url: "",
           status: "",
         });
-        Alert("Thành công", "Thêm sản phẩm thành công");
+        Alert("success", "Thêm sản phẩm thành công");
       })
       .catch((error) => {
         if (error.response) {
@@ -65,14 +65,14 @@ function AddProduct() {
       });
   };
   const addProduct = () => {
-    const payload = { ...product, status: "active", seller_id: currentUser.id };
+    const payload = { ...product, status: "active", sellerId: currentUser.id };
     storeProduct(payload);
   };
   const saveAsDraf = () => {
     const payload = {
       ...product,
       status: "inactive",
-      seller_id: currentUser.id,
+      sellerId: currentUser.id,
     };
     storeProduct(payload);
   };
@@ -164,15 +164,15 @@ function AddProduct() {
               placeholder="Nhập chi tiết sản phẩm"
               required
               onChange={(e) => {
-                if (errors?.product_detail) {
-                  setErrors({ ...errors, product_detail: "" });
+                if (errors?.productDetail) {
+                  setErrors({ ...errors, productDetail: "" });
                 }
-                setProduct({ ...product, product_detail: e.target.value });
+                setProduct({ ...product, productDetail: e.target.value });
               }}
-              value={product.product_detail}
+              value={product.productDetail}
             ></textarea>
-            {errors?.product_detail ? (
-              <div className={cx("error")}>{errors?.product_detail}</div>
+            {errors?.productDetail ? (
+              <div className={cx("error")}>{errors?.productDetail}</div>
             ) : null}
           </div>
           <div className={inputField}>

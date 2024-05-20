@@ -50,13 +50,13 @@ function Dashboard() {
           <div className={cx("box")}>
             {/*select mesage from db*/}
             <h3 className={cx("box-title")}>
-              {data.totalMessage}
+              {data.totalMessages}
               {/*Number of message */}
             </h3>
             <p>Tin nhắn chưa đọc</p>
 
             <Btn
-              value={"see message"}
+              value={"Xem"}
               style={{
                 width: "fit-content",
               }}
@@ -82,7 +82,7 @@ function Dashboard() {
                   : "/admin/viewproduct"
               }
               value={
-                currentURL.includes("seller") ? "add product" : "view product"
+                currentURL.includes("seller") ? "Thêm" : "Xem"
               }
               style={{
                 width: "fit-content",
@@ -101,8 +101,8 @@ function Dashboard() {
             <Btn
               href={
                 currentURL.includes("seller")
-                  ? "/seller/viewproduct?sortBy=status&order=active"
-                  : "/admin/viewproduct?sortBy=status&order=active"
+                  ? "/seller/viewproduct?sortBy=Trạng%20thái&order=active"
+                  : "/admin/viewproduct?sortBy=Trạng%20thái&order=active"
               }
               value={"Xem"}
               style={{
@@ -113,7 +113,7 @@ function Dashboard() {
           <div className={cx("box")}>
             {/* select deactive product from db*/}
             <h3 className={cx("box-title")}>
-              {data.totalIactiveProducts}
+              {data.totalInactiveProducts}
               {/*Number of inactive product */}
             </h3>
 
@@ -122,8 +122,8 @@ function Dashboard() {
             <Btn
               href={
                 currentURL.includes("seller")
-                  ? "/seller/viewproduct?sortBy=status&order=inactive"
-                  : "/admin/viewproduct?sortBy=status&order=inactive"
+                  ? "/seller/viewproduct?sortBy=Trạng%20thái&order=inactive"
+                  : "/admin/viewproduct?sortBy=Trạng%20thái&order=inactive"
               }
               value="Xem"
               style={{
@@ -192,8 +192,8 @@ function Dashboard() {
               value={"Xem"}
               href={
                 currentURL.includes("seller")
-                  ? "/seller/order?status=delivered&payment_status=completed"
-                  : "/admin/order?status=delivered&payment_status=completed"
+                  ? "/seller/order?status=Đã%20giao&payment_status=Hoàn%20thành"
+                  : "/admin/order?status=Đã%20giao&payment_status=Hoàn%20thành"
               }
               style={{
                 width: "fit-content",
@@ -203,7 +203,7 @@ function Dashboard() {
           <div className={cx("box")}>
             {/*select canceled orders from db*/}
             <h3 className={cx("box-title")}>
-              {data.totalOrderCanceld}
+              {data.totalOrderCanceled}
               {/*Number of canceled orders */}
             </h3>
             <p>Đơn đã hủy</p>
@@ -211,8 +211,8 @@ function Dashboard() {
             <Btn
               value={"Xem"}
               href={ currentURL.includes("seller")
-              ? '/seller/order?status=canceled&payment_status=pending'
-              : '/admin/order?status=canceled&payment_status=pending'}
+              ? '/seller/order?status=Đã%20hủy&payment_status=Đang%20chờ'
+              : '/admin/order?status=Đã%20hủy&payment_status=Đang%20chờ'}
               style={{
                 width: "fit-content",
               }}

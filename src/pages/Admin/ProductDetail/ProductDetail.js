@@ -20,7 +20,7 @@ function ProductDetail() {
           : `/admin/product/${id}`
       )
       .then(({ data }) => {
-        setProduct(data.data);
+        setProduct(data);
         setLoading(false);
       });
   }, []);
@@ -38,20 +38,20 @@ function ProductDetail() {
             <div
               className={cx("status")}
               style={{
-                color: product.status === "Đang bán" ? "limegreen" : "coral",
+                color: product.status === "active" ? "limegreen" : "coral",
               }}
             >
               {product.status}
             </div>
             {/*-----product image-----*/}
 
-            <img alt="" className={cx("image")} src={product.image_url} />
+            <img alt={product.name} className={cx("image")} src={product.image} />
             {/*-----product price-----*/}
             <div className={cx("price")}>{product.price}VNĐ</div>
             <div className={cx("title")}>{product.name}</div>
             <div className={cx("content")}>
               {/*Product detail from db */}
-              {product.product_detail}
+              {product.productDetail}
             </div>
             <div className={cx("flex-btn")}>
               <Btn

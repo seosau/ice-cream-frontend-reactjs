@@ -18,7 +18,7 @@ function EditProduct() {
     price: "",
     image: null,
     image_url: null,
-    product_detail: "",
+    productDetail: "",
     status: "",
     stock: "",
   });
@@ -37,8 +37,8 @@ function EditProduct() {
     reader.readAsDataURL(file);
   };
   const onEdit = async () => {
-    const payload = { ...product};
-    const url =  currentPath.includes("seller") ? '/seller/product' : '/admin/product';
+    const payload = { ...product };
+    const url = currentPath.includes("seller") ? '/seller/product' : '/admin/product';
     if (payload.image) {
       payload.image = payload.image_url;
     }
@@ -51,13 +51,13 @@ function EditProduct() {
             ? "/seller/viewproduct"
             : "/admin/viewproduct"
         );
-        Alert("Thành công", "Cập nhật sản phẩm thành công");
+        Alert("success", "Cập nhật sản phẩm thành công");
       })
       .catch((error) => {
         if (error.response) {
           setErrors(error.response.data.error);
         }
-        Alert("Lỗi", "Đã xảy ra lỗi");
+        Alert("error", "Đã xảy ra lỗi");
       });
   };
 
@@ -70,7 +70,7 @@ function EditProduct() {
           : `/admin/product/${id}`
       )
       .then(({ data }) => {
-        setProduct(data.data);
+        setProduct(data);
         setLoading(false);
       });
   }, []);
@@ -159,9 +159,9 @@ function EditProduct() {
                 <textarea
                   /*fetch desc */ name="description"
                   className={cx("box")}
-                  value={product.product_detail}
+                  value={product.productDetail}
                   onChange={(e) =>
-                    setProduct({ ...product, product_detail: e.target.value })
+                    setProduct({ ...product, productDetail: e.target.value })
                   }
                 ></textarea>
               </div>
@@ -201,7 +201,11 @@ function EditProduct() {
                     className={cx("image")}
                     src={product.image_url}
                   />
-                ) : null}
+                ) : <img
+                  alt="product img"
+                  className={cx("image")}
+                  src={product.image}
+                />}
                 <div className={cx("flex-btn")}>
                   <Btn
                     value={"Cập nhật"}

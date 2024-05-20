@@ -66,8 +66,8 @@ function Message() {
             {mesages.length > 0 ? (
               mesages.map((message) => (
                 <div className={cx("box")}>
-                  <h3 className={cx("name")}>{message.user_name}</h3>
-                  <h4>{message.subbject}</h4>
+                  <h3 className={cx("name")}>{message.userName}</h3>
+                  <h4>{message.subject}</h4>
                   <p>{message.message}</p>
                   <form action="" method="post">
                     <Btn

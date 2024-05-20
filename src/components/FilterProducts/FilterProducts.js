@@ -26,7 +26,7 @@ function FilterProducts({
   ]);
   const selections = [
     {
-      type: "status",
+      type: "Trạng thái",
       options: [
         {
           sortType: "active",

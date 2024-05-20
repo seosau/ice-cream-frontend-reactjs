@@ -8,9 +8,15 @@ import axiosClient from "../../../axiosClient/axios";
 import ProductListItem from "../../../components/ProductListItem/ProductListItem";
 import PaginationLinks from "../../../components/PaginationLinks/PaginationLinks";
 import FilterProducts from "../../../components/FilterProducts/FilterProducts";
+import {faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import ReactPaginate from "react-paginate";
+
 const cx = className.bind(style);
 
 function ViewProduct() {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [meta, setMeta] = useState({});
@@ -27,10 +33,10 @@ function ViewProduct() {
       payload = { ...params };
     }
     axiosClient
-      .get(url, { params: payload })
+      .get(url + `?page=${currentPage}`, { params: payload })
       .then(({ data }) => {
-        setProducts(data.data);
-        setMeta(data.meta);
+        setProducts(data.content);
+        setTotalPages(data.totalPages);
         setLoading(false);
       })
       .catch((error) => {
@@ -52,8 +58,9 @@ function ViewProduct() {
     }
   };
   useEffect(() => {
+    window.scrollTo(0,0);
     getProductsFromCurrentUrl();
-  }, [currentURL]);
+  }, [currentURL, currentPage]);
 
   const onPageClick = (link) => {
     getProducts(link.url);
@@ -93,12 +100,13 @@ function ViewProduct() {
   };
   const onGetSortValue = async (sortBy, order) => {
     setLoading(true);
+    
     setParams({ sortBy, order });
    await axiosClient
       .get(
         currentPath.includes("seller")
-          ? "/seller/viewproduct"
-          : "/admin/viewproduct",
+          ? "/seller/viewproduct" + `?page=${currentPage}`
+          : "/admin/viewproduct" + `?page=${currentPage}`,
         {
           params: {
             sortBy: sortBy,
@@ -107,14 +115,19 @@ function ViewProduct() {
         }
       )
       .then(({ data }) => {
-        setProducts(data.data);
-        setMeta(data.meta);
+        setProducts(data.content);
+        setTotalPages(data.totalPages);
         setLoading(false);
       })
       .catch((error) => {
         console.log(error);
       });
   };
+
+  const handlePageClick = (event) => {
+    setCurrentPage(+event.selected + 1);
+  };
+
   return (
     <div className={cx("container")}>
       <div className={cx("heading")}>
@@ -159,7 +172,26 @@ function ViewProduct() {
         )}
       </div>
       {products.length > 0 && (
-        <PaginationLinks meta={meta} onPageClick={onPageClick} />
+        <ReactPaginate
+        nextLabel={<FontAwesomeIcon icon={faChevronRight} />}
+        onPageChange={handlePageClick}
+        pageRangeDisplayed={3}
+        marginPagesDisplayed={2}
+        pageCount={totalPages}
+        previousLabel={<FontAwesomeIcon icon={faChevronLeft} />}
+        pageClassName="page-item"
+        pageLinkClassName={cx("btn")}
+        previousClassName="page-item"
+        previousLinkClassName={cx("btn")}
+        nextClassName="page-item"
+        nextLinkClassName={cx("btn")}
+        breakLabel="..."
+        breakClassName="page-item"
+        breakLinkClassName={cx("btn")}
+        containerClassName={cx("paginate")}
+        activeClassName={cx("active")}
+        renderOnZeroPageCount={null}
+      />
       )}
     </div>
   );

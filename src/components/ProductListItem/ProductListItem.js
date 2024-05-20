@@ -7,7 +7,7 @@ function ProductListItem({ item, onDelete, url }) {
   return (
     <div className={cx("box")}>
       {/*-----product image-----*/}
-      <img alt="" src={item.image_url} className={cx("image")} />
+      <img alt={item.name} src={item.image} className={cx("image")} />
       <div
         className={cx("status")}
         style={{ color: item.status === "active" ? "limegreen" : "coral" }}
