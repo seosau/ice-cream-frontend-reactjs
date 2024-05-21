@@ -26,12 +26,22 @@ function Login() {
     );
   };
   const onSubmit = () => {
+    if(userDataLogin.email === "" || userDataLogin.password === "") {
+      Alert("error", "Đăng Nhập Thất Bại", "Vui lòng nhập đủ email và mật khẩu");
+      return;
+    }
     axiosClient
       .post(`${pathname}`, userDataLogin)
       .then(({ data }) => {
-        Alert("success", "Đăng Nhập Thành Công", "Chúc 1 ngày tốt lành");
-        setUserToken(data.token);
-        setcurrentUser(data.user);
+        if(data){
+          Alert("success", "Đăng Nhập Thành Công", "Chúc 1 ngày tốt lành");
+          console.log(data);
+          setUserToken(data.token);
+          setcurrentUser(data.user);
+        }
+        else {
+          Alert("error", "Đăng Nhập Thất Bại", "Lỗi xác thực");
+        }
       })
       .catch((error) => {
         if (error.response.data.errors) {
@@ -43,7 +53,7 @@ function Login() {
           //   "Something went wrong, please check again"
           // );
         } else {
-          Alert("error", "Đăng Nhập Thất Bại", `${error.response.data.error}`);
+          Alert("error", "Đăng Nhập Thất Bại", `${error.response.data}`);
         }
       });
   };

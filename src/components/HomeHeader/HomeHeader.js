@@ -88,7 +88,7 @@ function HomeHeader({ children }) {
 
   const handleLogout = () => {
     axiosClient
-      .post("/logout")
+      .post("/getlogout")
       .then((res) => {
         setcurrentUser({});
         setUserToken(null);

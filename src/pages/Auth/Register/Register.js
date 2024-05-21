@@ -73,11 +73,11 @@ function Register() {
         if (error.response) {
           let finalErrors = error.response.data.errors;
           setErrors(finalErrors);
-          // Alert(
-          //   "error",
-          //   "Register Failed",
-          //   "Something went wrong, please check again"
-          // );
+          Alert(
+            "error",
+            "Đăng ký thất bại",
+            error.response.data
+          );
         }
       });
   };
