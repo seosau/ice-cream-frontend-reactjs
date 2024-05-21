@@ -26,7 +26,7 @@ function FilterProducts({
   ]);
   const selections = [
     {
-      type: "status",
+      type: "Trạng thái",
       options: [
         {
           sortType: "active",
@@ -41,7 +41,7 @@ function FilterProducts({
       ],
     },
     {
-      type: "price",
+      type: "Giá",
       options: [
         {
           sortType: "asc",
@@ -50,32 +50,32 @@ function FilterProducts({
         },
         {
           sortType: "desc",
-          title: "Price: Cao đến Thấp",
+          title: "Giá: Cao đến Thấp",
           isChecked: false,
         },
       ],
     },
 
     {
-      type: "category",
+      type: "Loại",
       options: [
         {
-          sortType: "corn",
+          sortType: "bắp",
           title: "Loại: Kem ngô",
           isChecked: false,
         },
         {
-          sortType: "coconut",
-          title: "Loại: Kem đưa",
+          sortType: "dừa",
+          title: "Loại: Kem dừa",
           isChecked: false,
         },
         {
-          sortType: "chocolate",
+          sortType: "socola",
           title: "Loại: Kem socola",
           isChecked: false,
         },
         {
-          sortType: "strawberry",
+          sortType: "dâu",
           title: "Loại: Kem dâu",
           isChecked: false,
         },
@@ -157,7 +157,7 @@ function FilterProducts({
           ) : null;
         })}
       </div>
-      <PaginationLinks meta={meta} onPageClick={onPageClick} isFilter={true} />
+      {/* <PaginationLinks meta={meta} onPageClick={onPageClick} isFilter={true} /> */}
     </div>
   );
 }

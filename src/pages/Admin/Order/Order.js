@@ -25,7 +25,7 @@ function Order() {
     axiosClient
       .get(url)
       .then(({ data }) => {
-        setOrderData(data.orderList);
+        setOrderData(data);
         setLoading(false);
       })
       .catch((error) => {
@@ -35,8 +35,8 @@ function Order() {
   const getProductsFromCurrentUrl = () => {
     if (isSort === true) {
       const searchParams = new URLSearchParams(currentURL);
-      const status = searchParams.get("status");
-      const payment_status = searchParams.get("payment_status");
+      const status = searchParams.get("status")?.toLowerCase();
+      const payment_status = searchParams.get("payment_status")?.toLowerCase();
       setParams({
         status: status,
         payment_status: payment_status,
@@ -48,18 +48,18 @@ function Order() {
   };
   const handleUpdatePaymentStatus = (orderId, index) => {
     if (
-      paymentStatus.paymentStatus === "completed" &&
+      paymentStatus.paymentStatus.toLowerCase() === "hoàn thành" &&
       orderId === paymentStatus.orderId
     ) {
       const updateOrderData = orderData.map((prevOrderInfo) => {
         if (prevOrderInfo.id === orderId) {
           return {
             ...prevOrderInfo,
-            payment_status: paymentStatus.paymentStatus,
+            paymentStatus: paymentStatus.paymentStatus,
             status:
-              paymentStatus.paymentStatus === "Hoàn thành"
-                ? "Đã giao"
-                : "Đang xử lý",
+              paymentStatus.paymentStatus.toLowerCase() === "hoàn thành"
+                ? "đã giao"
+                : "đang xử lý",
           };
         }
         return prevOrderInfo;
@@ -69,7 +69,7 @@ function Order() {
         .then(({ data }) => {
           getOrderData();
           Alert(
-            "Thành công",
+            "success",
             "Đã cập nhật!",
             "Sản phẩm sẽ được sớm giao đến khách hàng!"
           );
@@ -102,7 +102,7 @@ function Order() {
               prevOrderData.filter((orderInfo) => orderInfo.id !== orderId)
             );
             Swal.fire({
-              icon: "Thành công",
+              icon: "success",
               title: "Đã xóa!",
               text: "Đơn hàng này đã được xóa",
             });
@@ -113,31 +113,42 @@ function Order() {
       }
     });
   };
-  const onGetSortValue = (status, payment_status) => {
+  const onGetSortValue = (status, paymentStatus) => {
     setLoading(true);
-    setParams({ status, payment_status });
+    setParams({ status, paymentStatus });
     axiosClient
       .get(currentPath.includes("seller") ? "/seller/order" : "/admin/order", {
         params: {
           status: status,
-          payment_status: payment_status,
+          paymentStatus: paymentStatus,
         },
       })
       .then(({ data }) => {
-        setOrderData(data.orderList);
+        setOrderData(data);
         setLoading(false);
       })
       .catch((error) => {
         console.log(error);
       });
   };
+  const handleStatusChange = (id, newStatus) => {
+    const updatedOrders = orderData.map((order, i) =>
+      order.id === id ? { ...order, paymentStatus: newStatus } : order
+    );
+    setOrderData(updatedOrders);
+    setPaymentStatus({
+      orderId: id,
+      paymentStatus: newStatus
+    })
+  };
+
   useEffect(() => {
     getProductsFromCurrentUrl();
   }, [currentPath]);
   return (
     <div className={cx("container")}>
       <div className={cx("heading")}>
-        <h1 className={cx("heading-title")}>total orders placed</h1>
+        <h1 className={cx("heading-title")}>Tổng đơn đặt hàng</h1>
         <img src={require("../../../assets/img/separator.png")} alt="spr" />
       </div>
       {loading && <Loader />}
@@ -151,100 +162,88 @@ function Order() {
                     className={cx("status")}
                     style={{
                       color:
-                        orderInfo.status === "Đã hủy"
+                        orderInfo.status.toLowerCase() === "Đã hủy".toLowerCase()
                           ? "red"
-                          : orderInfo.status === "Đang xử lý"
-                          ? "orange"
-                          : "green",
+                          : orderInfo.status.toLowerCase() === "Đang xử lý".toLowerCase()
+                            ? "orange"
+                            : "green",
                     }}
                   >
                     {orderInfo.status}
                   </div>
                   <div className={cx("details")}>
                     <p>
-                      seller name:
+                      Người đặt:
                       <span>
-                        {orderInfo.seller_name}
+                        {" " + orderInfo.userName}
                         {/*fetch from db*/}
                       </span>
                     </p>
                     <p>
-                      user name:
+                      Tên sản phẩm:
                       <span>
-                        {orderInfo.user_name}
+                        {" " + orderInfo.productName}
                         {/*fetch from db*/}
                       </span>
                     </p>
                     <p>
-                      product name:
+                      Số lượng:
                       <span>
-                        {orderInfo.product_name}
+                        {" " + orderInfo.quantity}
                         {/*fetch from db*/}
                       </span>
                     </p>
                     <p>
-                      quantity:
+                      Ngày đặt:
                       <span>
-                        {orderInfo.quantity}
+                        {" " + orderInfo.date}
                         {/*fetch from db*/}
                       </span>
                     </p>
                     <p>
-                      place on:
+                      SDT:
                       <span>
-                        {orderInfo.date}
+                        {" " + orderInfo.phoneNumber}
                         {/*fetch from db*/}
                       </span>
                     </p>
                     <p>
-                      phone number:
+                      Email:
                       <span>
-                        {orderInfo.phone_number}
+                        {" " + orderInfo.email}
                         {/*fetch from db*/}
                       </span>
                     </p>
                     <p>
-                      email:
+                      tổng tiền:
                       <span>
-                        {orderInfo.email}
+                        {" " + orderInfo.price * orderInfo.quantity}VNĐ
                         {/*fetch from db*/}
                       </span>
                     </p>
                     <p>
-                      total price:
+                      phương thức thanh toán:
                       <span>
-                        {orderInfo.price * orderInfo.quantity}VNĐ
+                        {" " + orderInfo.paymentMethod}
                         {/*fetch from db*/}
                       </span>
                     </p>
                     <p>
-                      payment method:
+                      địa chỉ:
                       <span>
-                        {orderInfo.payment_method}
+                        {" " + orderInfo.address}
                         {/*fetch from db*/}
                       </span>
                     </p>
-                    <p>
-                      address:
-                      <span>
-                        {orderInfo.address}
-                        {/*fetch from db*/}
-                      </span>
-                    </p>
-                    {orderInfo.status === "Đã hủy" ? null : (
+                    {orderInfo.status.toLowerCase() === "Đã hủy".toLowerCase() ? null : (
                       <select
                         className={cx("box")}
                         name="update_payment"
-                        value={orderInfo.payment_status}
-                        onChange={(e) => {
-                          setPaymentStatus({
-                            orderId: orderInfo.id,
-                            paymentStatus: e.target.value,
-                          });
-                        }}
+                        value={orderInfo.paymentStatus}
+                        onChange={(e) => handleStatusChange(orderInfo.id, e.target.value)}
                       >
-                        <option value="Hoàn thành">Hoàn thành</option>
-                        <option value="Đang chờ">Đang chờ</option>
+                        <option value="hoàn thành">Hoàn thành</option>
+                        <option value="đang chờ">Đang chờ</option>
                       </select>
                     )}
                     <div className={cx("flex-btn")}>

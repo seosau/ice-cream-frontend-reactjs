@@ -28,7 +28,7 @@ function View1Product() {
     await axiosClient
       .get(url)
       .then(({ data }) => {
-        setProducts(data.data);
+        setProducts(data.content);
       })
       .catch((error) => {
         console.log(error);
@@ -151,7 +151,7 @@ function View1Product() {
         {!loading && (
           <div className={cx("main-box")}>
             <div className={cx("img-box")}>
-              <img src={product.image_url} alt="" />
+              <img src={product.image} alt={product.name} />
             </div>
             <div className={cx("detail-box")}>
               <span
@@ -163,7 +163,7 @@ function View1Product() {
               </span>
               <p className={cx("product-price")}>Giá: {product.price}VNĐ</p>
               <h2>{product.name}</h2>
-              <p className={cx("description-text")}>{product.product_detail}</p>
+              <p className={cx("description-text")}>{product.productDetail}</p>
               <div className={cx("detail-btn")}>
                 <Btn
                   onclick={() => handleClickLike(product)}
@@ -228,8 +228,8 @@ function View1Product() {
         <div className={cx("box-container")}>
           {!loading && (
             <>
-              {products.length > 0 ? (
-                products.map((product) => (
+              {products?.length > 0 ? (
+                products.slice(0,8).map((product) => (
                   <div className={cx("box")} key={product.id}>
                     <Link
                       to={`/shop/view1product/${product.id}`}

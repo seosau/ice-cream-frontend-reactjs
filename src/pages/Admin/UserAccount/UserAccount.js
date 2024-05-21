@@ -14,8 +14,8 @@ function UserAccount() {
     const url = currentPath.includes("seller")
       ? "/seller/useraccount"
       : currentPath.includes("useraccount")
-      ? "/admin/useraccount"
-      : "/admin/staffaccount";
+        ? "/admin/useraccount"
+        : "/admin/staffaccount";
     setLoading(true);
     await axiosClient.get(url).then(({ data }) => {
       setListUsers(data);
@@ -76,21 +76,24 @@ function UserAccount() {
                 <div className={cx("box")} key={index}>
                   <img
                     src={
-                      user.image
-                        ? `http://localhost:8000/${user.image}`
+                      user.users.image
+                        ? user.users.image
                         : require("../../../assets/img/avt.png")
                     }
                     alt="user image"
                   />
                   <p>
-                   {currentPath.includes('seller') ? 'user':'seller' }  Họ tên: <span> {user.name} </span>
+                    Họ tên: <span> {user.users.name} </span>
                   </p>
                   <p>
-                  {currentPath.includes('seller') ? 'user':'seller' } Email:<span>{user.email} </span>
+                    Email:<span>{user.users.email} </span>
                   </p>
-                  <p>
-                  {currentPath.includes('seller') ? 'user':'seller confirmed' } Số lượng đơn:<span>{user.orderQuantity} </span>
-                  </p>
+                  {
+                    currentPath.includes("useraccount") &&
+                    <p>
+                      Số lượng đã đặt: <span>{user.orderQuantity} </span>
+                    </p>
+                  }
                   {currentPath.includes("admin") ? (
                     <button
                       className={cx("my-btn")}

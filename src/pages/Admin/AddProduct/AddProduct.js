@@ -15,8 +15,8 @@ function AddProduct() {
   const [product, setProduct] = useState({
     name: "",
     price: "",
-    category: "corn",
-    product_detail: "",
+    category: "bắp",
+    productDetail: "",
     stock: "",
     image: "",
     image_url: "",
@@ -49,14 +49,14 @@ function AddProduct() {
         setProduct({
           name: "",
           price: "",
-          category: "corn",
-          product_detail: "",
+          category: "bắp",
+          productDetail: "",
           stock: "",
           image: "",
           image_url: "",
           status: "",
         });
-        Alert("success", "Insert product successfully");
+        Alert("success", "Thêm sản phẩm thành công");
       })
       .catch((error) => {
         if (error.response) {
@@ -65,14 +65,14 @@ function AddProduct() {
       });
   };
   const addProduct = () => {
-    const payload = { ...product, status: "active", seller_id: currentUser.id };
+    const payload = { ...product, status: "active", sellerId: currentUser.id };
     storeProduct(payload);
   };
   const saveAsDraf = () => {
     const payload = {
       ...product,
       status: "inactive",
-      seller_id: currentUser.id,
+      sellerId: currentUser.id,
     };
     storeProduct(payload);
   };
@@ -147,10 +147,10 @@ function AddProduct() {
               }
               value={product.category}
             >
-              <option value="corn">Bắp</option>
-              <option value="coconut">Dừa</option>
-              <option value="chocolate">Socola</option>
-              <option value="strawberry">Dâu</option>
+              <option value="bắp">Bắp</option>
+              <option value="dừa">Dừa</option>
+              <option value="socola">Socola</option>
+              <option value="dâu">Dâu</option>
             </select>
           </div>
           <div className={inputField}>
@@ -164,15 +164,15 @@ function AddProduct() {
               placeholder="Nhập chi tiết sản phẩm"
               required
               onChange={(e) => {
-                if (errors?.product_detail) {
-                  setErrors({ ...errors, product_detail: "" });
+                if (errors?.productDetail) {
+                  setErrors({ ...errors, productDetail: "" });
                 }
-                setProduct({ ...product, product_detail: e.target.value });
+                setProduct({ ...product, productDetail: e.target.value });
               }}
-              value={product.product_detail}
+              value={product.productDetail}
             ></textarea>
-            {errors?.product_detail ? (
-              <div className={cx("error")}>{errors?.product_detail}</div>
+            {errors?.productDetail ? (
+              <div className={cx("error")}>{errors?.productDetail}</div>
             ) : null}
           </div>
           <div className={inputField}>
