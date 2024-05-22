@@ -85,31 +85,37 @@ function Shop() {
   const onPageClick = (link) => {
     getProducts(link.url);
   };
-  const handleCheckProductInWishList = (product_id) => {
-    const isWishInMenu = wishListIds.some((item) => {
-      return item.product_id === product_id;
+  const handleCheckProductInWishList = (productId) => {
+    console.log(wishListIds);
+    const isWishInMenu = wishListIds?.some((item) => {
+      return item.productId === productId;
     });
     if (isWishInMenu) return true;
     return false;
   };
-  const handleCheckProductInCart = (product_id) => {
-    const isCartInMenu = cartIds.some((item) => {
-      return item.product_id === product_id;
+  const handleCheckProductInCart = (productId) => {
+    const isCartInMenu = cartIds?.some((item) => {
+      return item.productId === productId;
     });
     if (isCartInMenu) return true;
     return false;
   };
   useEffect(() => {
+    
     getProductsFromCurrentUrl();
   }, [currentPage, currentURL]);
   const handleClickLike = (product) => {
     if (currentUser.id) {
-      const payload = { ...product, user_id: currentUser.id };
+      if (handleCheckProductInWishList(product.id)) {
+        Alert("warning", `Đã có trong danh sách!`);
+        return;
+      }
+      const payload = { productId: product.id, userId: currentUser.id };
       axiosClient
         .post("/wishlists", payload)
         .then(({ data }) => {
-          setWishListIds(data.wishListIds);
-          Alert("success", "Thêm vào giỏ hàng thành công");
+          setWishListIds(data);
+          Alert("success", "Thêm vào danh sách yêu thích thành công");
         })
         .catch((error) => {
           if (error.response) {
@@ -138,12 +144,16 @@ function Shop() {
         });
         return;
       }
-      const payload = { ...product, user_id: currentUser.id, quantity: 1 };
+      if (handleCheckProductInCart(product.id)) {
+        Alert("warning", `Đã có trong danh sách!`);
+        return;
+      }
+      const payload = { productId: product.id, userId: currentUser.id, quantity: 1 };
       axiosClient
         .post("/cart", payload)
         .then(({ data }) => {
           Alert("success", "Thêm vào giỏ hàng thành công");
-          setCartIds(data.cartListIds);
+          setCartIds(data);
           setQuantityCart(data.quantity);
         })
         .catch((error) => {

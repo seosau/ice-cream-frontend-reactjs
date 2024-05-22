@@ -11,7 +11,7 @@ import { useStateContext } from "../../../context/ContextProvider";
 const cx = className.bind(style);
 
 function Login() {
-  const { setcurrentUser, setUserToken } = useStateContext();
+  const { setcurrentUser, setUserToken, userToken } = useStateContext();
 
   const [userDataLogin, setUserDataLogin] = useState({
     email: "",
@@ -35,7 +35,6 @@ function Login() {
       .then(({ data }) => {
         if(data){
           Alert("success", "Đăng Nhập Thành Công", "Chúc 1 ngày tốt lành");
-          console.log(data);
           setUserToken(data.token);
           setcurrentUser(data.user);
         }

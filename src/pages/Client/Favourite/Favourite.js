@@ -19,9 +19,9 @@ function Favourite() {
   const getProductsInWishList = () => {
     setLoading(true);
     axiosClient
-      .get("/wishlists")
+      .get("/wishlists/" + currentUser?.id)
       .then(({ data }) => {
-        setProducts(data.wishlists);
+        setProducts(data);
         setLoading(false);
       })
       .catch((error) => {
@@ -29,13 +29,13 @@ function Favourite() {
       });
   };
   useEffect(() => {
-    if (userToken) {
+    if (currentUser) {
       getProductsInWishList();
     } else {
       Alert("warning", "Vui lòng đăng nhập để thực hiện chức năng này");
       navigate("/login");
     }
-  }, [userToken]);
+  }, [currentUser]);
   const handleButtonDelete = (id) => {
     Swal.fire({
       title: "Bạn chắc chắn?",
@@ -48,11 +48,11 @@ function Favourite() {
     }).then((result) => {
       if (result.isConfirmed) {
         axiosClient
-          .delete(`/wishlists/${id}`)
+          .delete(`/wishlists/${id}/${currentUser.id}`)
           .then(({ data }) => {
-            setWishListIds(data.wishListIds);
+            setWishListIds(data);
             setProducts((prevProducts) =>
-              prevProducts.filter((product) => product.product_id !== id)
+              prevProducts.filter((product) => product.id !== id)
             );
             Swal.fire({
               title: "Đã xóa!",
@@ -69,15 +69,15 @@ function Favourite() {
       }
     });
   };
-  const handleCheckProductInCart = (product_id) => {
+  const handleCheckProductInCart = (productId) => {
     const isCartInMenu = cartIds?.some((item) => {
-      return item.product_id === product_id;
+      return item.productId === productId;
     });
     if (isCartInMenu) return true;
     return false;
   };
   const handleClickCart = (product) => {
-    if (product.stock === 0) {
+    if (product.products.stock === 0) {
       Swal.fire({
         title: "Xin lỗi",
         text: "Sản phẩm tạm thời không còn",
@@ -88,17 +88,21 @@ function Favourite() {
       });
       return;
     }
+    if (handleCheckProductInCart(product.products.id)) {
+      Alert("warning", "Sản phẩm đã có trong giỏ hàng!");
+      return;
+    }
     const payload = {
-      ...product,
-      user_id: currentUser.id,
+      userId: 4,
       quantity: 1,
-      id: product.product_id,
+      productId: product.products.id,
     };
     axiosClient
       .post("/cart", payload)
       .then(({ data }) => {
+        console.log(data);
         Alert("success", "Thêm vào giỏ hàng thành công");
-        setCartIds(data.cartListIds);
+        setCartIds(data);
       })
       .catch((error) => {
         if (error.response) {
@@ -120,11 +124,11 @@ function Favourite() {
         <div className={cx("box-container")}>
           {!loading && (
             <>
-              {products.length > 0 ? (
+              {products?.length > 0 ? (
                 products.map((product, index) => (
                   <div key={index} className={cx("box")}>
-                    <Link to={`/shop/view1product/${product.product_id}`}>
-                      <img src={product.image_url} alt="product" />
+                    <Link to={`/shop/view1product/${product.products.id}`}>
+                      <img src={product.products.image} alt="product" />
                     </Link>
                     <div className={cx("content")}>
                       <img
@@ -132,8 +136,8 @@ function Favourite() {
                         src={require("../../../assets/img/shape-19.png")}
                         className={cx("sharp")}
                       />
-                      <h3>{product.name}</h3>
-                      <p className={cx("price")}>Giá: {product.price}VNĐ</p>
+                      <h3>{product.products.name}</h3>
+                      <p className={cx("price")}>Giá: {product.products.price}VNĐ</p>
                       <div className={cx("flex-btn")}>
                         <Btn
                           onclick={() => handleClickCart(product)}
@@ -142,7 +146,7 @@ function Favourite() {
                           }}
                           value={
                             <>
-                              {handleCheckProductInCart(product.product_id)
+                              {handleCheckProductInCart(product.products.id)
                                 ? "Đã Trong Giỏ"
                                 : "Thêm Vào Giỏ"}
 
@@ -150,7 +154,7 @@ function Favourite() {
                                 icon={faCartShopping}
                                 className={cx("detail-icon-style")}
                                 color={
-                                  handleCheckProductInCart(product.product_id)
+                                  handleCheckProductInCart(product.products.id)
                                     ? "#da6285"
                                     : "#808080"
                                 }
@@ -161,14 +165,14 @@ function Favourite() {
                       </div>
                       <div className={cx("flex-btn")}>
                         <Btn
-                          onclick={() => handleButtonDelete(product.product_id)}
+                          onclick={() => handleButtonDelete(product.id)}
                           style={{
                             width: "40%",
                           }}
                           value={"Xóa"}
                         />
                         <Btn
-                          href={`/checkout?from=menu&id=${product.product_id}`}
+                          href={`/checkout?from=menu&id=${product.products.id}`}
                           style={{
                             width: "40%",
                           }}

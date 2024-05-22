@@ -124,7 +124,7 @@ function FilterProducts({
           ) : null;
         })}
         {selectedOptions.map((selection, sectionIndex) => {
-          return !isClient || selection.type !== "status" ? (
+          return !isClient || selection.type.toLowerCase() !== "trạng thái" ? (
             <div className={cx("select")} key={sectionIndex}>
               <span className={cx("select__label")}>{selection.type}</span>
               <FontAwesomeIcon icon={faChevronDown} />

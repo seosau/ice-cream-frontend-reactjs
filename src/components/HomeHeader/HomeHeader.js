@@ -54,9 +54,9 @@ function HomeHeader({ children }) {
       return;
     }
     axiosClient
-      .get("/quantitywishlists")
+      .get("/quantitywishlists/" + currentUser.id )
       .then(({ data }) => {
-        setWishListIds(data.wishListIds);
+        setWishListIds(data);
       })
       .catch((error) => {
         console.log(error);
@@ -67,9 +67,9 @@ function HomeHeader({ children }) {
       return;
     }
     axiosClient
-      .get("/quantityCartItems")
+      .get("/quantityCartItems/" + currentUser.id)
       .then(({ data }) => {
-        setCartIds(data.cartIds);
+        setCartIds(data);
       })
       .catch((error) => {
         console.log(error);
@@ -93,6 +93,8 @@ function HomeHeader({ children }) {
         setcurrentUser({});
         setUserToken(null);
         handleShowProfile();
+        setCartIds([]);
+        setWishListIds([]); 
         navigate("/home");
         Alert("success", "Logout Successfully");
       })
@@ -168,18 +170,18 @@ function HomeHeader({ children }) {
                   <div className={cx("flex-btn")}>
                     <Btn
                       href="/profile"
-                      value="profile"
+                      value="Hồ sơ"
                       onclick={(e) => handleShowProfile()}
                     ></Btn>
-                    <Btn value="logout" onclick={handleLogout}></Btn>
+                    <Btn value="Đăng xuất" onclick={handleLogout}></Btn>
                   </div>
                 </div>
               ) : (
                 <>
                   <p className={cx("text")}>Vui lòng đăng ký hoặc đăng nhập.</p>
                   <div className={cx("flex-btn")}>
-                    <Btn href="/login" value="login" style={{ width: '40%' }}></Btn>
-                    <Btn href="/register" value="register" style={{ width: '40%' }}></Btn>
+                    <Btn href="/login" value="Đăng nhập" style={{ width: '40%' }}></Btn>
+                    <Btn href="/register" value="Đăng ký" style={{ width: '40%' }}></Btn>
                   </div>
                 </>
               )}

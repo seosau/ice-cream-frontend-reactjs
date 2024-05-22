@@ -12,23 +12,23 @@ const cx = className.bind(style);
 
 function Cart() {
   const navigate = useNavigate();
-  const { setCartIds, setQuantityCart, userToken } = useStateContext();
+  const { setCartIds, setQuantityCart, userToken, currentUser } = useStateContext();
   const [grandTotal, setGrandTotal] = useState(0);
   const [loading, setLoading] = useState(false);
   const [products, setProducts] = useState([]);
   const getProductsInCart = async () => {
     setLoading(true);
     await axiosClient
-      .get("/cart")
+      .get("/cart/" + currentUser.id)
       .then(({ data }) => {
-        setProducts(data.cartList);
+        setProducts(data);
         setLoading(false);
       })
       .catch((error) => console.log(error));
   };
   const handleTotalPrice = useCallback(() => {
     const total = products.reduce((accumulator, product) => {
-      return accumulator + product.price * product.quantity;
+      return accumulator + product.products.price * product.quantity;
     }, 0);
     setGrandTotal(total.toFixed(1));
   }, [products, setGrandTotal]);
@@ -60,15 +60,15 @@ function Cart() {
   const handleQuantity = (number, id) => {
     setProducts((prevProducts) =>
       prevProducts.map((product) =>
-        product.product_id === id
+        product.id === id
           ? {
               ...product,
               quantity:
                 number === 1
-                  ? Math.min(product.quantity + 1, product.stock)
+                  ? Math.min(product.quantity + 1, product.products.stock)
                   : number === -1
                   ? Math.max(product.quantity - 1, 1)
-                  : Math.min(Math.max(number, 1), product.stock),
+                  : Math.min(Math.max(number, 1), product.products.stock),
             }
           : product
       )
@@ -76,11 +76,11 @@ function Cart() {
   };
   const handleUpdateCart = async (cart_id, quantity) => {
     await axiosClient
-      .put(`/cart/${cart_id}`, { quantity })
+      .put(`/cart/${cart_id}/${currentUser.id}`, { quantity: quantity })
       .then(({ data }) => {
         Alert("success", "Cập nhật số lượng thành công");
-        setProducts(data.cartList);
-        setQuantityCart(data.quantity);
+        setProducts(data);
+        setQuantityCart(data.length);
       })
       .catch((error) => console.log(error));
   };
@@ -96,7 +96,7 @@ function Cart() {
     }).then((result) => {
       if (result.isConfirmed) {
         axiosClient
-          .delete(`/cart/${cart_id}`)
+          .delete(`/cart/${cart_id}/${currentUser.id}`)
           .then(({ data }) => {
             Swal.fire({
               title: "Đã xóa!",
@@ -105,11 +105,11 @@ function Cart() {
             });
             setProducts((prevProducts) =>
               prevProducts.filter(
-                (product) => product.product_id !== product_id
+                (product) => product.id !== cart_id
               )
             );
-            setCartIds(data.cartListIds);
-            setQuantityCart(data.quantity);
+            setCartIds(data);
+            setQuantityCart(data.length);
           })
           .catch((error) => {
             console.log(error);
@@ -118,13 +118,13 @@ function Cart() {
     });
   };
   useEffect(() => {
-    if (userToken) {
+    if (currentUser) {
       getProductsInCart();
     } else {
       Alert("warning", "Vui lòng đăng nhập để thực hiện chức năng này");
       navigate("/login");
     }
-  }, [userToken]);
+  }, [currentUser]);
   useEffect(() => {
     handleTotalPrice();
   }, [handleTotalPrice]);
@@ -146,21 +146,21 @@ function Cart() {
               {products.length > 0 ? (
                 products.map((product, index) => (
                   <div key={index} className={cx("box")}>
-                    <img src={product.image_url} alt="product" />
+                    <img src={product.products.image} alt="product" />
                     <div className={cx("content")}>
                       <img
                         alt=""
                         src={require("../../../assets/img/shape-19.png")}
                         className={cx("sharp")}
                       />
-                      <h3>{product.name}</h3>
+                      <h3>{product.products.name}</h3>
                       <div className={cx("flex-btn")}>
-                        <p className={cx("price")}>Giá: {product.price}VNĐ</p>
+                        <p className={cx("price")}>Giá: {product.products.price}VNĐ</p>
                         <div className={cx("quantity")}>
                           <button
                             className={cx("btn-quantity", "quanity-item")}
                             onClick={() =>
-                              handleQuantity(-1, product.product_id)
+                              handleQuantity(-1, product.id)
                             }
                           >
                             <FontAwesomeIcon icon={faMinus} color={"#da6285"} />
@@ -172,14 +172,14 @@ function Cart() {
                             onChange={(e) =>
                               handleQuantity(
                                 Number(e.target.value),
-                                product.product_id
+                                product.id
                               )
                             }
                           />
                           <button
                             className={cx("btn-quantity")}
                             onClick={() =>
-                              handleQuantity(1, product.product_id)
+                              handleQuantity(1, product.id)
                             }
                           >
                             <FontAwesomeIcon icon={faPlus} color={"#da6285"} />
@@ -188,7 +188,7 @@ function Cart() {
 
                         <Btn
                           onclick={() =>
-                            handleUpdateCart(product.cart_id, product.quantity)
+                            handleUpdateCart(product.id, product.quantity)
                           }
                           style={{
                             width: "fit-content",
@@ -201,14 +201,14 @@ function Cart() {
                           Tổng:
                           <span>
                             {" "}
-                            {(product.price * product.quantity).toFixed(1)}VNĐ
+                            {(product.products.price * product.quantity).toFixed(1)}VNĐ
                           </span>
                         </p>
                         <Btn
                           onclick={() =>
                             handleButtonDelete(
-                              product.cart_id,
-                              product.product_id
+                              product.id,
+                              product.products.id
                             )
                           }
                           style={{
