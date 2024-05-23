@@ -63,7 +63,7 @@ function Search({ classname }) {
       await axiosClient
         .get(`/searchproduct/${debounced}`)
         .then(({ data }) => {
-          setSearchResult(data.data);
+          setSearchResult(data);
           setLoading(false);
         })
         .catch((error) => {
@@ -75,7 +75,7 @@ function Search({ classname }) {
   const handleViewProductDetail = (data) => {
     handleHideResult();
     handleClear();
-    return navigate(`/shop/view1product/${data.id}`, { data });
+    return navigate(`/shop/view1product/${data.id}`, { productId : data.id });
   };
   return (
     <div>
@@ -112,7 +112,7 @@ function Search({ classname }) {
             <button
               className={cx("clear")}
               onClick={handleClear}
-              style={{ left: width * 0.65 }}
+              style={{ left: width * 0.7 }}
             >
               <FontAwesomeIcon icon={faCircleXmark} />
             </button>

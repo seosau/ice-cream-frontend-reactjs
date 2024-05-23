@@ -30,7 +30,7 @@
   background-color: #fbf2f3;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 2px 12px;
   border-radius: 8px;
-  max-height: min(100vh - 96px - 60px, 734px);
+  max-height: 500px;
   min-height: 100px;
   padding-top: 8px;
   display: flex;
@@ -42,6 +42,8 @@
   right: -217px;
   width: 400px;
   top: 57px;
+  overflow: scroll;
+  background-color: #fbf2f3;
 }
 
 .search-title {

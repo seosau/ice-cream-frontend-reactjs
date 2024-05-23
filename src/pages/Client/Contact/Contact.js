@@ -17,7 +17,8 @@ function Contact() {
   const navigate = useNavigate();
   const { currentUser } = useStateContext();
   const [message, setMessage] = useState({
-    user_name: "",
+    userId: currentUser.id,
+    userName: "",
     email: "",
     subject: "",
     message: "",
@@ -29,7 +30,7 @@ function Contact() {
       await axiosClient
         .post("/message", payload)
         .then(({ data }) => {
-          setMessage({ user_name: "", email: "", subject: "", message: "" });
+          setMessage({ userId: currentUser.id, userName: "", email: "", subject: "", message: "" });
           Alert("success", "Cảm ơn góp ý của bạn");
         })
         .catch((error) => {
@@ -124,16 +125,16 @@ function Contact() {
               name="name"
               required
               // placeholder="enter your name"
-              value={message.user_name}
+              value={message.userMame}
               onChange={(e) => {
-                if (errors?.user_name) {
-                  setErrors({ ...errors, user_name: "" });
+                if (errors?.userName) {
+                  setErrors({ ...errors, userName: "" });
                 }
-                setMessage({ ...message, user_name: e.target.value });
+                setMessage({ ...message, userName: e.target.value });
               }}
             />
             {errors?.user_name ? (
-              <div className={cx("error")}>{errors.user_name}</div>
+              <div className={cx("error")}>{errors.userName}</div>
             ) : null}
           </div>
           <div className={cx("input-field")}>

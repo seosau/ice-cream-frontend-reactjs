@@ -225,7 +225,7 @@ function Home() {
             <div className={cx("box")} key={index}>
               <img src={category.img} alt="category" />
               <Btn
-                href={`/shop?sortBy=category&order=${category.title}`}
+                href={`/shop?sortBy=Loại&order=${category.title}`}
                 value={category.title}
                 style={{ width: "100%" }}
               />

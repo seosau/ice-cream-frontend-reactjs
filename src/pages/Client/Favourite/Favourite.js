@@ -93,14 +93,13 @@ function Favourite() {
       return;
     }
     const payload = {
-      userId: 4,
+      userId: currentUser.id,
       quantity: 1,
       productId: product.products.id,
     };
     axiosClient
       .post("/cart", payload)
       .then(({ data }) => {
-        console.log(data);
         Alert("success", "Thêm vào giỏ hàng thành công");
         setCartIds(data);
       })
@@ -167,14 +166,14 @@ function Favourite() {
                         <Btn
                           onclick={() => handleButtonDelete(product.id)}
                           style={{
-                            width: "40%",
+                            width: "50%",
                           }}
                           value={"Xóa"}
                         />
                         <Btn
                           href={`/checkout?from=menu&id=${product.products.id}`}
                           style={{
-                            width: "40%",
+                            width: "50%",
                           }}
                           value="mua ngay"
                         />

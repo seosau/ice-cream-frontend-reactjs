@@ -8,7 +8,7 @@ function SearchItemResult({ data, onClick }) {
     <div onClick={() => onClick(data)} className={cx("wrapper")}>
       <img
         className={cx("avatar")}
-        src={data.image_url}
+        src={data.image}
         alt={"image product"}
       />
       <div className={cx("info")}>

@@ -180,8 +180,8 @@ function HomeHeader({ children }) {
                 <>
                   <p className={cx("text")}>Vui lòng đăng ký hoặc đăng nhập.</p>
                   <div className={cx("flex-btn")}>
-                    <Btn href="/login" value="Đăng nhập" style={{ width: '40%' }}></Btn>
-                    <Btn href="/register" value="Đăng ký" style={{ width: '40%' }}></Btn>
+                    <Btn href="/login" value="Đăng nhập" style={{ width: '50%' }}></Btn>
+                    <Btn href="/register" value="Đăng ký" style={{ width: '50%' }}></Btn>
                   </div>
                 </>
               )}

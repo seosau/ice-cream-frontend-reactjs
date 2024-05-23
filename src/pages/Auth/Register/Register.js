@@ -252,7 +252,7 @@ function Register() {
           </p>
         ) : null}
         <Btn
-          value={pathname.includes("admin") ? "Add seller" : "register now"}
+          value={pathname.includes("admin") ? "Thêm nhân viên" : "đăng ký ngay"}
           onclick={onSubmit}
         ></Btn>
       </form>

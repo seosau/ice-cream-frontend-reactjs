@@ -144,13 +144,13 @@
 }
 .products .box-container .box .content .flex-btn {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
 }
 .products .box-container .box .content .flex-btn .like-cart{
     display: flex;
     align-items: center;
-    margin-left: 6rem;
+    margin-right: 0.5rem;
 }
 .products .box-container .box .content .flex-btn .like-cart #like-icon{
     padding-right: 2rem;

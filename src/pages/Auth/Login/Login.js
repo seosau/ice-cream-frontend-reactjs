@@ -142,7 +142,7 @@ function Login() {
           </Link>
         </p>
 
-        <Btn value="Login now" onclick={onSubmit}></Btn>
+        <Btn value="Đăng nhập" onclick={onSubmit}></Btn>
       </form>
     </div>
   );

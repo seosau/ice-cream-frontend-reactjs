@@ -40,7 +40,7 @@ function View1Product() {
       setLoading(true);
       try {
         const { data } = await axiosClient.get(`/menu/${product_id}`);
-        setProduct(data.data[0]);
+        setProduct(data);
       } catch (error) {
         console.log(error);
       } finally {
@@ -53,6 +53,7 @@ function View1Product() {
     window.scrollTo(0, 0);
     setLoading(true);
     if (state) {
+      console.log(state);
       setProduct(state);
       setLoading(false);
     } else {
@@ -67,25 +68,29 @@ function View1Product() {
   }, []);
   const handleCheckProductInWishList = (product_id) => {
     const isWishInMenu = wishListIds.some((item) => {
-      return item.product_id === product_id;
+      return item.productId === product_id;
     });
     if (isWishInMenu) return true;
     return false;
   };
   const handleCheckProductInCart = (product_id) => {
     const isCartInMenu = cartIds?.some((item) => {
-      return item.product_id === product_id;
+      return item.productId === product_id;
     });
     if (isCartInMenu) return true;
     return false;
   };
   const handleClickLike = (product) => {
     if (currentUser) {
-      const payload = { ...product, user_id: currentUser.id };
+      if (handleCheckProductInWishList(product.id)) {
+        Alert("warning", `Đã có trong danh sách!`);
+        return;
+      }
+      const payload = { productId: product.id, userId: currentUser.id };
       axiosClient
         .post("/wishlists", payload)
         .then(({ data }) => {
-          setWishListIds(data.wishListIds);
+          setWishListIds(data);
           Alert("success", "Thêm vào yêu thích thành công");
         })
         .catch((error) => {
@@ -115,12 +120,16 @@ function View1Product() {
         });
         return;
       }
-      const payload = { ...product, user_id: currentUser.id, quantity: 1 };
+      if (handleCheckProductInCart(product.id)) {
+        Alert("warning", `Đã có trong danh sách!`);
+        return;
+      }
+      const payload = { productId: product.id, userId: currentUser.id, quantity: 1 };
       axiosClient
         .post("/cart", payload)
         .then(({ data }) => {
-          setCartIds(data.cartListIds);
-          setQuantityCart(data.quantity);
+          setCartIds(data);
+          setQuantityCart(data.length);
           Alert("success", "Thêm vào giỏ hàng thành công");
         })
         .catch((error) => {
@@ -173,7 +182,7 @@ function View1Product() {
                   value={
                     <>
                       {handleCheckProductInWishList(product.id)
-                        ? "Đã Yêu Thích"
+                        ? "Đã Thích"
                         : "Yêu Thích"}
 
                       <FontAwesomeIcon
@@ -239,7 +248,7 @@ function View1Product() {
                         getProductById(product.id);
                       }}
                     >
-                      <img src={product.image_url} alt="product" />
+                      <img src={product.image} alt={product.name} />
                       <p className={cx("status")}>
                         {product.stock > 9
                           ? "Hết Sản Phẩm"
