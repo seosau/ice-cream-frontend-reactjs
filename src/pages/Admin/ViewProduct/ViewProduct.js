@@ -8,7 +8,8 @@ import axiosClient from "../../../axiosClient/axios";
 import ProductListItem from "../../../components/ProductListItem/ProductListItem";
 import PaginationLinks from "../../../components/PaginationLinks/PaginationLinks";
 import FilterProducts from "../../../components/FilterProducts/FilterProducts";
-import {faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import webSocketService from "../../../webSocketService";
+import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ReactPaginate from "react-paginate";
 
@@ -58,8 +59,33 @@ function ViewProduct() {
     }
   };
   useEffect(() => {
-    window.scrollTo(0,0);
+    window.scrollTo(0, 0);
     getProductsFromCurrentUrl();
+    const onConnected = () => {
+      console.log('Connected to WebSocket');
+      webSocketService.subscribe('/topic/productUpdates', (productUpdate) => {
+        setProducts((prevProducts) => {
+          const productIndex = prevProducts.findIndex((product) => product.id === productUpdate.id);
+          if (productIndex !== -1) {
+            // Update the product if it exists in the current list
+            const updatedProducts = [...prevProducts];
+            updatedProducts[productIndex] = { ...updatedProducts[productIndex], ...productUpdate };
+            return updatedProducts;
+          }
+          return prevProducts;
+        });
+      });
+    };
+
+    const onError = (error) => {
+      console.error('WebSocket error:', error);
+    };
+
+    webSocketService.connect(onConnected, onError);
+
+    return () => {
+      webSocketService.disconnect();
+    };
   }, [currentURL, currentPage]);
 
   const onPageClick = (link) => {
@@ -100,9 +126,9 @@ function ViewProduct() {
   };
   const onGetSortValue = async (sortBy, order) => {
     setLoading(true);
-    
+
     setParams({ sortBy, order });
-   await axiosClient
+    await axiosClient
       .get(
         currentPath.includes("seller")
           ? "/seller/viewproduct" + `?page=${currentPage}`
@@ -173,25 +199,25 @@ function ViewProduct() {
       </div>
       {products.length > 0 && (
         <ReactPaginate
-        nextLabel={<FontAwesomeIcon icon={faChevronRight} />}
-        onPageChange={handlePageClick}
-        pageRangeDisplayed={3}
-        marginPagesDisplayed={2}
-        pageCount={totalPages}
-        previousLabel={<FontAwesomeIcon icon={faChevronLeft} />}
-        pageClassName="page-item"
-        pageLinkClassName={cx("btn")}
-        previousClassName="page-item"
-        previousLinkClassName={cx("btn")}
-        nextClassName="page-item"
-        nextLinkClassName={cx("btn")}
-        breakLabel="..."
-        breakClassName="page-item"
-        breakLinkClassName={cx("btn")}
-        containerClassName={cx("paginate")}
-        activeClassName={cx("active")}
-        renderOnZeroPageCount={null}
-      />
+          nextLabel={<FontAwesomeIcon icon={faChevronRight} />}
+          onPageChange={handlePageClick}
+          pageRangeDisplayed={3}
+          marginPagesDisplayed={2}
+          pageCount={totalPages}
+          previousLabel={<FontAwesomeIcon icon={faChevronLeft} />}
+          pageClassName="page-item"
+          pageLinkClassName={cx("btn")}
+          previousClassName="page-item"
+          previousLinkClassName={cx("btn")}
+          nextClassName="page-item"
+          nextLinkClassName={cx("btn")}
+          breakLabel="..."
+          breakClassName="page-item"
+          breakLinkClassName={cx("btn")}
+          containerClassName={cx("paginate")}
+          activeClassName={cx("active")}
+          renderOnZeroPageCount={null}
+        />
       )}
     </div>
   );

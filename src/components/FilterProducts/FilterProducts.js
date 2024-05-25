@@ -29,13 +29,13 @@ function FilterProducts({
       type: "Trạng thái",
       options: [
         {
-          sortType: "active",
-          title: "Trạng thái: Còn hàng",
+          sortType: "đang bán",
+          title: "Trạng thái: đang bán",
           isChecked: false,
         },
         {
-          sortType: "inactive",
-          title: "Trạng thái: Hết hàng",
+          sortType: "chưa bán",
+          title: "Trạng thái: chưa bán",
           isChecked: false,
         },
       ],

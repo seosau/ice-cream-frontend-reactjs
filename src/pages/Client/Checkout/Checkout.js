@@ -128,7 +128,7 @@ export default function Checkout() {
     } else {
       getProductsInCart();
     }
-  }, []);
+  }, [currentUser]);
   useEffect(() => {
     handleTotalPrice();
   }, [products]);

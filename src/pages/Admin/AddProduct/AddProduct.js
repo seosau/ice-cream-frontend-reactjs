@@ -65,13 +65,13 @@ function AddProduct() {
       });
   };
   const addProduct = () => {
-    const payload = { ...product, status: "active", sellerId: currentUser.id };
+    const payload = { ...product, status: "đang bán", sellerId: currentUser.id };
     storeProduct(payload);
   };
   const saveAsDraf = () => {
     const payload = {
       ...product,
-      status: "inactive",
+      status: "chưa bán",
       sellerId: currentUser.id,
     };
     storeProduct(payload);

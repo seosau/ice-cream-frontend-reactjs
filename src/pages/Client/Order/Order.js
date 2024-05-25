@@ -14,7 +14,7 @@ function Order() {
   const [loading, setLoading] = useState(false);
   const [orderData, setOrderData] = useState([]);
   const handleEventUpdateOrder = (orderId, index) => {
-    if (orderData[index].status === "in progress") {
+    if (orderData[index].status.toLowerCase() === "đang xử lý") {
       Swal.fire({
         title: "Bạn chắc chắn?",
         text: "Bạn sẽ không thể hoàn tác hành động này!",
@@ -30,9 +30,9 @@ function Order() {
               return {
                 ...prevOrderInfo,
                 status:
-                  prevOrderInfo.status === "canceled"
-                    ? "in progress"
-                    : "canceled",
+                  prevOrderInfo.status.toLowerCase() === "đã hủy"
+                    ? "đang xử lý"
+                    : "đã hủy",
               };
             }
             return prevOrderInfo;
@@ -53,7 +53,7 @@ function Order() {
             });
         }
       });
-    } else if (orderData[index].status === "canceled") {
+    } else if (orderData[index].status.toLowerCase() === "đã hủy") {
       navigate("/checkout");
     }
   };

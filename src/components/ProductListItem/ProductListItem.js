@@ -10,12 +10,12 @@ function ProductListItem({ item, onDelete, url }) {
       <img alt={item.name} src={item.image} className={cx("image")} />
       <div
         className={cx("status")}
-        style={{ color: item.status === "active" ? "limegreen" : "coral" }}
+        style={{ color: item.status === "đang bán" ? "limegreen" : "coral" }}
       >
         {item.status}
       </div>
       {/*-----product price-----*/}
-      <div className={cx("price")}>{item.price}VNĐ</div>
+      <div className={cx("price")}>{item.price} VNĐ</div>
       <div className={cx("content")}>
         <img
           alt=""
@@ -33,14 +33,14 @@ function ProductListItem({ item, onDelete, url }) {
                 ? `/seller/editproduct/${item.id}`
                 : `/admin/editproduct/${item.id}`
             }
-            value={"edit"}
+            value={"Sửa"}
           />
 
           <Btn
             style={{
               width: "32%",
             }}
-            value={"delete"}
+            value={"Xóa"}
             onclick={() => onDelete(item.id)}
           />
 
@@ -53,7 +53,7 @@ function ProductListItem({ item, onDelete, url }) {
                 ? `/seller/productdetail/${item.id}`
                 : `/admin/productdetail/${item.id}`
             }
-            value={"view"}
+            value={"Xem"}
           />
         </div>
       </div>
