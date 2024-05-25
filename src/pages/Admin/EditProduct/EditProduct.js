@@ -47,13 +47,13 @@ function EditProduct() {
     await axiosClient
       .put(`${url}/${id}`, payload)
       .then((res) => {
-        // navigate(
-        //   currentPath.includes("seller")
-        //     ? "/seller/viewproduct"
-        //     : "/admin/viewproduct"
-        // );
+        navigate(
+          currentPath.includes("seller")
+            ? "/seller/viewproduct"
+            : "/admin/viewproduct"
+        );
         Alert("success", "Cập nhật sản phẩm thành công");
-        // webSocketService.send('/app/updateProduct', res.data)
+        webSocketService.send('/app/updateProduct', res.data)
         console.log(res.data)
       })
       .catch((error) => {
