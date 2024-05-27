@@ -32,7 +32,7 @@ function ViewOrder() {
       });
   }, []);
   const handleEventUpdateOrder = (orderId) => {
-    if (orderInfo.status !== "canceled") {
+    if (orderInfo.status !== "đã hủy") {
       Swal.fire({
         title: "Bạn chắc chắn?",
         text: "Bạn sẽ không thể hoàn tác hành động này!",
@@ -46,7 +46,7 @@ function ViewOrder() {
           const payload = {
             ...orderInfo,
             status:
-              orderInfo.status === "in progress" ? "canceled" : "in progress",
+              orderInfo.status === "đang xử lý" ? "đã hủy" : "đang xử lý",
           };
           axiosClient
             .put(`/cancelorder/${orderId}`, payload)
@@ -118,13 +118,13 @@ function ViewOrder() {
                   {orderInfo.address}
                 </p>
                 <p
-                  className={cx("status", `${orderInfo.status?.toLowerCase()}`)}
+                  className={cx("status", `${orderInfo.status == "đã giao" ? "delivered" : (orderInfo.status == "đã hủy" ? "canceled" : "")}`)}
                 >
                   {orderInfo.status}
                 </p>
-                {orderInfo.status?.toLowerCase() === "delivered" ? null : (
+                {orderInfo.status?.toLowerCase() === "đã giao" ? null : (
                   <Btn
-                    value={orderInfo.status === "canceled" ? "đặt lại" : "hủy"}
+                    value={orderInfo.status === "đã hủy" ? "đặt lại" : "hủy"}
                     onclick={() => handleEventUpdateOrder(orderInfo.id)}
                   />
                 )}

@@ -60,7 +60,7 @@ function Order() {
   const getOrderData = () => {
     setLoading(true);
     axiosClient
-      .get("/order")
+      .get("/getorder")
       .then(({ data }) => {
         setOrderData(data.orderList);
         setLoading(false);
@@ -113,7 +113,7 @@ function Order() {
                         <p
                           className={cx(
                             "status",
-                            `${orderInfo.status.toLowerCase()}`
+                            `${orderInfo.status.toLowerCase() == "đã giao" ? "delivered" : (orderInfo.status.toLowerCase() == "đã hủy" ? "canceled" : "")}`
                           )}
                         >
                           {orderInfo.status}
@@ -128,10 +128,10 @@ function Order() {
                           value="xem đơn hàng"
                         />
                         {orderInfo.status.toLowerCase() ===
-                        "delivered" ? null : (
+                        "đã giao" ? null : (
                           <Btn
                             href={
-                              orderInfo.status === "canceled"
+                              orderInfo.status === "đã hủy"
                                 ? `?from=order&id=${orderInfo.id}`
                                 : ""
                             }
@@ -139,7 +139,7 @@ function Order() {
                               width: "fit-content",
                             }}
                             value={
-                              orderInfo.status === "canceled"
+                              orderInfo.status === "đã hủy"
                                 ? "đặt lại"
                                 : "hủy"
                             }

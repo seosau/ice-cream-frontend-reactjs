@@ -71,7 +71,7 @@ export default function Checkout() {
         products,
       };
       axiosClient
-        .put(`/order/${id}`, payload)
+        .put(`/reorder/${id}`, payload)
         .then(({ data }) => {
           Alert("success", "Đặt lại thành công");
           navigate("/order");
