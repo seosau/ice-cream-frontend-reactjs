@@ -23,6 +23,7 @@ function Cart() {
       .then(({ data }) => {
         setProducts(data);
         setLoading(false);
+        setCartIds(data);
       })
       .catch((error) => console.log(error));
   };
@@ -81,6 +82,7 @@ function Cart() {
         Alert("success", "Cập nhật số lượng thành công");
         setProducts(data);
         setQuantityCart(data.length);
+        setCartIds(data);
       })
       .catch((error) => console.log(error));
   };

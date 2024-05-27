@@ -22,9 +22,9 @@ function ViewOrder() {
   useEffect(() => {
     setLoading(true);
     axiosClient
-      .get(`/order/${id}`)
+      .get(`/orderdetail/${id}`)
       .then(({ data }) => {
-        setOrderInfo(...data.data);
+        setOrderInfo(data);
         setLoading(false);
       })
       .catch((error) => {
@@ -49,7 +49,7 @@ function ViewOrder() {
               orderInfo.status === "in progress" ? "canceled" : "in progress",
           };
           axiosClient
-            .put(`/order/${orderId}`, payload)
+            .put(`/cancelorder/${orderId}`, payload)
             .then(({ data }) => {
               Swal.fire({
                 title: "Đơn hàng của bạn đã được hủy!",
@@ -83,8 +83,8 @@ function ViewOrder() {
             <div className={cx("box")}>
               <div className={cx("col")}>
                 <p className={cx("date")}> {orderInfo.date} </p>
-                <img src={orderInfo.image_url} alt="product" />
-                <h3 className={cx("nameProduct")}>{orderInfo.product_name}</h3>
+                <img src={orderInfo.imageUrl} alt="product" />
+                <h3 className={cx("nameProduct")}>{orderInfo.productName}</h3>
                 <div className={cx("flex")}>
                   <p className={cx("price")}>giá: {orderInfo.price}VNĐ</p>
                   <p className={cx("quantity")}>
@@ -100,11 +100,11 @@ function ViewOrder() {
                 <h3 className={cx("title")}> thông tin nhận hàng </h3>
                 <p className={cx("user")}>
                   <FontAwesomeIcon icon={faUser} className={cx("icon")} />
-                  {orderInfo.user_name}
+                  {orderInfo.userName}
                 </p>
                 <p className={cx("user")}>
                   <FontAwesomeIcon icon={faPhone} className={cx("icon")} />
-                  {orderInfo.phone_number}
+                  {orderInfo.phoneNumber}
                 </p>
                 <p className={cx("user")}>
                   <FontAwesomeIcon icon={faEnvelope} className={cx("icon")} />

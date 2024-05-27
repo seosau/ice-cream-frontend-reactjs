@@ -39,7 +39,7 @@ function Order() {
           });
           setOrderData(updateOrderData);
           axiosClient
-            .put(`/order/${orderId}`, updateOrderData[index])
+            .put(`/cancelorder/${orderId}`, updateOrderData[index])
             .then(({ data }) => {
               console.log(data);
               Swal.fire({
@@ -98,7 +98,7 @@ function Order() {
                       to={`/order/vieworder/${orderInfo.id}`}
                       className={cx("view-order")}
                     >
-                      <img src={orderInfo.image_url} alt="ordered" />
+                      <img src={orderInfo.imageUrl} alt="ordered" />
                       <p className={cx("date")}>{orderInfo.date}</p>
                     </Link>
                     <div className={cx("content")}>
@@ -108,7 +108,7 @@ function Order() {
                         className={cx("sharp")}
                       />
                       <div className={cx("")}>
-                        <h3 className={cx("name")}>{orderInfo.product_name}</h3>
+                        <h3 className={cx("name")}>{orderInfo.productName}</h3>
                         <p className={cx("price")}>Giá: {orderInfo.price}VNĐ</p>
                         <p
                           className={cx(

@@ -15,7 +15,7 @@ export default function Checkout() {
   const from = searchParams.get("from");
   const id = Number(searchParams.get("id"));
   const navigate = useNavigate();
-  const { currentUser, setCartIds } = useStateContext();
+  const { currentUser, setCartIds, cartIds } = useStateContext();
   const [orderData, setOrderData] = useState({
     user_name: "",
     phone_number: "",
@@ -30,31 +30,32 @@ export default function Checkout() {
   const getProductsInCart = () => {
     setLoading(true);
     axiosClient
-      .get("/cart")
+      .get("/cart/" + currentUser.id)
       .then(({ data }) => {
-        setProducts(data.cartList);
+        setProducts(data);
+        setCartIds(data);
         setLoading(false);
       })
       .catch((error) => console.log(error));
   };
   const handleTotalPrice = () => {
     const total = products.reduce((accumulator, product) => {
-      return accumulator + product.price * product.quantity;
+      return accumulator + product.products.price * product.quantity;
     }, 0);
     setGrandTotal(total.toFixed(1));
   };
   const handleQuantity = (number, id) => {
     setProducts((prevProducts) =>
       prevProducts.map((product) =>
-        product.product_id === id
+        product.productId === id
           ? {
               ...product,
               quantity:
                 number === 1
-                  ? Math.min(product.quantity + 1, product.stock)
+                  ? Math.min(product.quantity + 1, product.products.stock)
                   : number === -1
                   ? Math.max(product.quantity - 1, 1)
-                  : Math.min(Math.max(number, 1), product.stock),
+                  : Math.min(Math.max(number, 1), product.products.stock),
             }
           : product
       )
@@ -64,9 +65,10 @@ export default function Checkout() {
     if (id && from === "order") {
       const payload = {
         ...orderData,
-        ...products[0],
+        payment_method: orderData.payment_method == null ? "cash on delivery" : orderData.payment_method,
         user_id: currentUser.id,
         status: "in progress",
+        products,
       };
       axiosClient
         .put(`/order/${id}`, payload)
@@ -101,8 +103,8 @@ export default function Checkout() {
       axiosClient
         .get(`/order/${id}`)
         .then(({ data }) => {
-          setProducts(data.data);
-          setOrderData(...data.data);
+          setProducts(data);
+          setOrderData(...data);
           setLoading(false);
         })
         .catch((error) => {
@@ -111,9 +113,9 @@ export default function Checkout() {
     } else if (from === "menu") {
       setLoading(true);
       axiosClient
-        .get(`/menu/${id}`)
+        .get(`/frommenu/${id}`)
         .then(({ data }) => {
-          setProducts([{ ...data.data[0], quantity: 1, product_id: id }]);
+          setProducts(data);
           setLoading(false);
         })
         .catch((error) => {
@@ -126,7 +128,13 @@ export default function Checkout() {
     if (id) {
       handleGetDataFromCurrentUrl();
     } else {
-      getProductsInCart();
+      // getProductsInCart();
+      if (products.length === 0){
+        setProducts(cartIds);
+      }
+      if (products.length === 0){
+        getProductsInCart();
+      }
     }
   }, []);
   useEffect(() => {
@@ -147,19 +155,19 @@ export default function Checkout() {
           <h3>Giỏ Của Tôi</h3>
           <div className={cx("box-container")}>
             {products.map((product) => (
-              <div className={cx("box")} key={product.product_id}>
+              <div className={cx("box")} key={product.productId}>
                 <img
-                  src={product.image_url}
-                  alt={product.name}
+                  src={product.products.image}
+                  alt={product.products.name}
                   className={cx("")}
                 />
                 <div className={cx("product-info")}>
-                  <h3 className={cx("name")}>{product.name}</h3>
-                  <span className={cx("price")}>{product.price}VNĐ X</span>
+                  <h3 className={cx("name")}>{product.products.name}</h3>
+                  <span className={cx("price")}>{product.products.price}VNĐ X</span>
                   <div className={cx("quantity")}>
                     <button
                       className={cx("btn-quantity", "quanity-item")}
-                      onClick={() => handleQuantity(-1, product.product_id)}
+                      onClick={() => handleQuantity(-1, product.productId)}
                     >
                       <FontAwesomeIcon icon={faMinus} color={"#da6285"} />
                     </button>
@@ -170,13 +178,13 @@ export default function Checkout() {
                       onChange={(e) =>
                         handleQuantity(
                           Number(e.target.value),
-                          product.product_id
+                          product.productId
                         )
                       }
                     />
                     <button
                       className={cx("btn-quantity")}
-                      onClick={() => handleQuantity(1, product.product_id)}
+                      onClick={() => handleQuantity(1, product.productId)}
                     >
                       <FontAwesomeIcon icon={faPlus} color={"#da6285"} />
                     </button>
