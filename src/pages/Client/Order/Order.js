@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 import { Btn, Loader, Alert } from "../../../components";
 import axiosClient from "../../../axiosClient/axios";
 import { useStateContext } from "../../../context/ContextProvider";
+import webSocketService from "../../../webSocketService";
 const cx = className.bind(style);
 
 function Order() {
@@ -42,6 +43,7 @@ function Order() {
             .put(`/cancelorder/${orderId}`, updateOrderData[index])
             .then(({ data }) => {
               console.log(data);
+              webSocketService.send('/app/updateOrder', data)
               Swal.fire({
                 title: "Đã hủy!",
                 text: "Đơn hàng của bạn đã được hủy!",
@@ -72,6 +74,31 @@ function Order() {
   useEffect(() => {
     if (userToken) {
       getOrderData();
+      const onConnected = () => {
+        console.log('Connected to WebSocket');
+        webSocketService.subscribe('/topic/orderUpdates', (orderUpdate) => {
+          setOrderData((prevOrders) => {
+            const orderIndex = prevOrders.findIndex((order) => order.id === orderUpdate.id);
+            if (orderIndex !== -1) {
+              // Update the product if it exists in the current list
+              const updatedProducts = [...prevOrders];
+              updatedProducts[orderIndex] = { ...updatedProducts[orderIndex], ...orderUpdate };
+              return updatedProducts;
+            }
+            return prevOrders;
+          });
+        });
+      };
+  
+      const onError = (error) => {
+        console.error('WebSocket error:', error);
+      };
+  
+      webSocketService.connect(onConnected, onError);
+  
+      return () => {
+        webSocketService.disconnect();
+      };
     } else {
       Alert("warning", "Vui lòng đăng nhập để thực hiện chức năng này");
       navigate("/login");

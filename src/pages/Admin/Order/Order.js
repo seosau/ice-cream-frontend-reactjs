@@ -4,6 +4,7 @@ import style from "./Order.module.scss";
 import Swal from "sweetalert2";
 import { Btn, Alert, Loader } from "../../../components";
 import axiosClient from "../../../axiosClient/axios";
+import webSocketService from "../../../webSocketService";
 const cx = className.bind(style);
 function Order() {
   const [orderData, setOrderData] = useState([]);
@@ -68,6 +69,7 @@ function Order() {
         .put(`/seller/order/${orderId}`, updateOrderData[index])
         .then(({ data }) => {
           getOrderData();
+          webSocketService.send('/app/updateOrder', data)
           Alert(
             "success",
             "Đã cập nhật!",
@@ -144,6 +146,31 @@ function Order() {
 
   useEffect(() => {
     getProductsFromCurrentUrl();
+    const onConnected = () => {
+      console.log('Connected to WebSocket');
+      webSocketService.subscribe('/topic/orderUpdates', (orderUpdate) => {
+        setOrderData((prevOrders) => {
+          const orderIndex = prevOrders.findIndex((order) => order.id === orderUpdate.id);
+          if (orderIndex !== -1) {
+            // Update the product if it exists in the current list
+            const updatedProducts = [...prevOrders];
+            updatedProducts[orderIndex] = { ...updatedProducts[orderIndex], ...orderUpdate };
+            return updatedProducts;
+          }
+          return prevOrders;
+        });
+      });
+    };
+
+    const onError = (error) => {
+      console.error('WebSocket error:', error);
+    };
+
+    webSocketService.connect(onConnected, onError);
+
+    return () => {
+      webSocketService.disconnect();
+    };
   }, [currentPath]);
   return (
     <div className={cx("container")}>

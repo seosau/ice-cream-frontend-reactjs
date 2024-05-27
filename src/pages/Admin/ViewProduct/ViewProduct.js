@@ -106,6 +106,7 @@ function ViewProduct() {
         axiosClient
           .delete(`${url}/${id}`)
           .then((res) => {
+            webSocketService.send('/app/deleteProduct', id)
             // getProducts();
             Swal.fire({
               title: "Đã xóa",

@@ -7,6 +7,7 @@ import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 import { Alert, Btn, Loader } from "../../../components";
 import { useStateContext } from "../../../context/ContextProvider";
 import axiosClient from "../../../axiosClient/axios";
+import webSocketService from "../../../webSocketService";
 const cx = className.bind(style);
 
 export default function Checkout() {
@@ -67,12 +68,13 @@ export default function Checkout() {
         ...orderData,
         payment_method: orderData.payment_method == null ? "cash on delivery" : orderData.payment_method,
         user_id: currentUser.id,
-        status: "in progress",
+        status: "đang xử lý",
         products,
       };
       axiosClient
         .put(`/reorder/${id}`, payload)
         .then(({ data }) => {
+          webSocketService.send('/app/updateOrder', data)
           Alert("success", "Đặt lại thành công");
           navigate("/order");
         })
@@ -154,7 +156,7 @@ export default function Checkout() {
         <div className={cx("summary")}>
           <h3>Giỏ Của Tôi</h3>
           <div className={cx("box-container")}>
-            {products.map((product) => (
+            {products.length > 0 ? products.map((product) => (
               <div className={cx("box")} key={product.productId}>
                 <img
                   src={product.products.image}
@@ -191,7 +193,7 @@ export default function Checkout() {
                   </div>
                 </div>
               </div>
-            ))}
+            )) : null}
           </div>
           <div className={cx("total")}>
             <span>Tổng tiền phải trả: {grandTotal}VNĐ</span>

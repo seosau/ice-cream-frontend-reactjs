@@ -7,6 +7,7 @@ import { faImage } from "@fortawesome/free-solid-svg-icons";
 import axiosClient from "../../../axiosClient/axios";
 import { useStateContext } from "../../../context/ContextProvider";
 import Alert from "../../../components/Alert/Alert";
+import webSocketService from "../../../webSocketService";
 const cx = className.bind(style);
 
 function AddProduct() {
@@ -46,6 +47,7 @@ function AddProduct() {
     await axiosClient
       .post("/seller/product", payload)
       .then((res) => {
+        webSocketService.send('/app/updateProduct', res.data)
         setProduct({
           name: "",
           price: "",

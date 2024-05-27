@@ -12,6 +12,7 @@ import {
 import Swal from "sweetalert2";
 import { Btn, Loader } from "../../../components";
 import axiosClient from "../../../axiosClient/axios";
+import webSocketService from "../../../webSocketService";
 const cx = className.bind(style);
 
 function ViewOrder() {
@@ -51,6 +52,7 @@ function ViewOrder() {
           axiosClient
             .put(`/cancelorder/${orderId}`, payload)
             .then(({ data }) => {
+              webSocketService.send('/app/updateOrder', data)
               Swal.fire({
                 title: "Đơn hàng của bạn đã được hủy!",
                 icon: "success",

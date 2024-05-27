@@ -10,6 +10,7 @@ import PaginationLinks from "../../../components/PaginationLinks/PaginationLinks
 import axiosClient from "../../../axiosClient/axios";
 import ReactPaginate from "react-paginate";
 import { useStateContext } from "../../../context/ContextProvider";
+import webSocketService from "../../../webSocketService";
 import Swal from "sweetalert2";
 const cx = className.bind(style);
 function Shop() {
@@ -103,6 +104,37 @@ function Shop() {
   useEffect(() => {
     
     getProductsFromCurrentUrl();
+    const onConnected = () => {
+      console.log('Connected to WebSocket');
+      webSocketService.subscribe('/topic/productUpdates', (productUpdate) => {
+        setProducts((prevProducts) => {
+          const productIndex = prevProducts.findIndex((product) => product.id === productUpdate.id);
+          if (productIndex !== -1) {
+            // Update the product if it exists in the current list
+            const updatedProducts = [...prevProducts];
+            updatedProducts[productIndex] = { ...updatedProducts[productIndex], ...productUpdate };
+            return updatedProducts;
+          }
+          return prevProducts;
+        });
+      });
+      webSocketService.subscribe('/topic/productDelete', (id) => {
+        setProducts((prevProducts) => {
+          const updatedProducts = prevProducts.filter((product) => product.id !== id);
+          return updatedProducts;
+        });
+      });
+    };
+
+    const onError = (error) => {
+      console.error('WebSocket error:', error);
+    };
+
+    webSocketService.connect(onConnected, onError);
+
+    return () => {
+      webSocketService.disconnect();
+    };
   }, [currentPage, currentURL]);
   const handleClickLike = (product) => {
     if (currentUser.id) {
