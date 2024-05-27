@@ -38,7 +38,7 @@ function ProductDetail() {
             <div
               className={cx("status")}
               style={{
-                color: product.status === "active" ? "limegreen" : "coral",
+                color: product.status === "đang bán" ? "limegreen" : "coral",
               }}
             >
               {product.status}

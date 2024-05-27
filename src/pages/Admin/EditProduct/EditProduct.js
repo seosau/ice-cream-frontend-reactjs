@@ -6,6 +6,7 @@ import { Btn, Loader } from "../../../components";
 import Alert from "../../../components/Alert/Alert";
 import axiosClient from "../../../axiosClient/axios";
 import { useStateContext } from "../../../context/ContextProvider";
+import webSocketService from "../../../webSocketService";
 const cx = className.bind(style);
 function EditProduct() {
   const { id } = useParams();
@@ -52,6 +53,8 @@ function EditProduct() {
             : "/admin/viewproduct"
         );
         Alert("success", "Cập nhật sản phẩm thành công");
+        webSocketService.send('/app/updateProduct', res.data)
+        console.log(res.data)
       })
       .catch((error) => {
         if (error.response) {
@@ -99,8 +102,8 @@ function EditProduct() {
                   }
                   value={product.status}
                 >
-                  <option value="active">Đang bán</option>
-                  <option value="inactive">Chưa bán</option>
+                  <option value="đang bán">Đang bán</option>
+                  <option value="chưa bán">Chưa bán</option>
                 </select>
               </div>
               <div className={inputField}>

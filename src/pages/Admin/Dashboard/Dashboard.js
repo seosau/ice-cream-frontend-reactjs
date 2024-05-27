@@ -101,8 +101,8 @@ function Dashboard() {
             <Btn
               href={
                 currentURL.includes("seller")
-                  ? "/seller/viewproduct?sortBy=Trạng%20thái&order=active"
-                  : "/admin/viewproduct?sortBy=Trạng%20thái&order=active"
+                  ? "/seller/viewproduct?sortBy=Trạng%20thái&order=đang%20bán"
+                  : "/admin/viewproduct?sortBy=Trạng%20thái&order=đang%20bán"
               }
               value={"Xem"}
               style={{
@@ -122,8 +122,8 @@ function Dashboard() {
             <Btn
               href={
                 currentURL.includes("seller")
-                  ? "/seller/viewproduct?sortBy=Trạng%20thái&order=inactive"
-                  : "/admin/viewproduct?sortBy=Trạng%20thái&order=inactive"
+                  ? "/seller/viewproduct?sortBy=Trạng%20thái&order=chưa%20bán"
+                  : "/admin/viewproduct?sortBy=Trạng%20thái&order=chưa%20bán"
               }
               value="Xem"
               style={{

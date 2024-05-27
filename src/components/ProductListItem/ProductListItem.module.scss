@@ -35,17 +35,16 @@
     z-index: 10;
 }
 .price {
-    width: 70px;
-    height: 70px;
-    line-height: 70px;
+    line-height: 50px;
     text-align: center;
-    border-radius: 50%;
     position: absolute;
-    right: 5%;
-    top: 5%;
+    right: 2%;
+    top: 2%;
     font-weight: bolder;
     background-color: var(--pink-color);
     font-size: 1.5rem;
+    padding: 0 0.5rem;
+    border-radius: 1.5rem;
 }
 .content {
     position: relative;

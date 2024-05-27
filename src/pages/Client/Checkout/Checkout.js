@@ -136,7 +136,7 @@ export default function Checkout() {
         getProductsInCart();
       }
     }
-  }, []);
+  }, [currentUser]);
   useEffect(() => {
     handleTotalPrice();
   }, [products]);
