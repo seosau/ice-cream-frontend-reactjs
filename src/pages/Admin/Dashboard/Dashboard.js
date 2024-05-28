@@ -79,10 +79,10 @@ function Dashboard() {
               href={
                 currentURL.includes("seller")
                   ? "/seller/addproduct"
-                  : "/admin/viewproduct"
+                  : "/admin/addproduct"
               }
               value={
-                currentURL.includes("seller") ? "Thêm" : "Xem"
+                "Thêm"
               }
               style={{
                 width: "fit-content",
