@@ -88,6 +88,12 @@ function Order() {
             return prevOrders;
           });
         });
+        webSocketService.subscribe('/topic/orderDelete', (id) => {
+          setOrderData((prevOrders) => {
+              const updatedProducts = prevOrders.filter((order) => order.id !== id);
+              return updatedProducts;
+          });
+        });
       };
   
       const onError = (error) => {

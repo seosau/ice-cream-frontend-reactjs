@@ -100,6 +100,7 @@ function Order() {
           )
           .then(({ data }) => {
             // getProductsFromCurrentUrl();
+            webSocketService.send('/app/deleteOrder', orderId)
             setOrderData((prevOrderData) =>
               prevOrderData.filter((orderInfo) => orderInfo.id !== orderId)
             );
