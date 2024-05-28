@@ -21,7 +21,7 @@ export default function Checkout() {
     user_name: "",
     phone_number: "",
     email: "",
-    payment_method: "cash on delivery",
+    payment_method: "thanh toán khi nhận",
     address: "",
   });
   const [loading, setLoading] = useState(false);
@@ -66,7 +66,7 @@ export default function Checkout() {
     if (id && from === "order") {
       const payload = {
         ...orderData,
-        payment_method: orderData.payment_method == null ? "cash on delivery" : orderData.payment_method,
+        payment_method: orderData.payment_method == null ? "thanh toán khi nhận" : orderData.payment_method,
         user_id: currentUser.id,
         status: "đang xử lý",
         products,
@@ -126,6 +126,10 @@ export default function Checkout() {
     }
   };
   useEffect(() => {
+    if (!currentUser) {
+      Alert("warning", "Vui lòng đăng nhập để thực hiện chức năng này");
+      navigate("/login");
+    }
     window.scrollTo(0, 0);
     if (id) {
       handleGetDataFromCurrentUrl();
@@ -289,8 +293,8 @@ export default function Checkout() {
                     });
                   }}
                 >
-                  <option value="cash on delivery">thanh toán khi nhận</option>
-                  <option value="credit or debit card">
+                  <option value="thanh toán khi nhận">thanh toán khi nhận</option>
+                  <option value="thẻ tín dụng hoặc thẻ ghi nợ">
                     thẻ tín dụng hoặc thẻ ghi nợ
                   </option>
                   <option value="net banking">net banking</option>
